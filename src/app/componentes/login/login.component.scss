@@ -7,7 +7,6 @@
  
 
 
-
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
@@ -150,6 +149,9 @@ iframe {
 .limiter {
   width: 100%;
   margin: 0 auto;
+  background-image: url('https://cdn.discordapp.com/attachments/482652450701180928/738849446669975632/photo-1509099896299-af46ad97ff57.png');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .container-login100 {
@@ -165,7 +167,6 @@ iframe {
   align-items: center;
   padding: 15px;
   position: relative;
-  background-color: #fff;
 }
 
 .wrap-login100 {
@@ -341,12 +342,18 @@ box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.16);
 }
 
 .login100-form-btn:hover {
-  background-color: #F5BC00;
+    -webkit-box-shadow: inset 0px 3px 12px 0px rgba(0,0,0,0.16);
+-moz-box-shadow: inset 0px 3px 12px 0px rgba(0,0,0,0.16);
+box-shadow: inset 0px 3px 12px 0px rgba(0,0,0,0.16);
+  //background-color: #C99400;
 }
 
 
 .login100-form-btn2:hover {
-  background-color: #FFE58E;
+    -webkit-box-shadow: inset 0px 3px 12px 0px rgba(0,0,0,0.16);
+    -moz-box-shadow: inset 0px 3px 12px 0px rgba(0,0,0,0.16);
+    box-shadow: inset 0px 3px 12px 0px rgba(0,0,0,0.16);
+  //background-color: #C99400;
 }
 
 
