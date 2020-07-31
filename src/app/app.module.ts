@@ -7,6 +7,7 @@ import { BarraSuperiorComponent } from './componentes/barra-superior/barra-super
 import { LoginComponent } from './componentes/login/login.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { ReportesComponent } from './componentes/reportes/reportes.component';
+import { RecuperarContrasenaComponent } from './componentes/recuperar-contrasena/recuperar-contrasena.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ReportesComponent } from './componentes/reportes/reportes.component';
     BarraSuperiorComponent,
     LoginComponent,
     InicioComponent,
-    ReportesComponent
+    ReportesComponent,
+    RecuperarContrasenaComponent
   ],
   imports: [
     BrowserModule,
