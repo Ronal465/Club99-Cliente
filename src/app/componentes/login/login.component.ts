@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from "../../servicios/login.service";
 
 @Component({
   selector: 'app-login',
@@ -17,21 +18,43 @@ import { Component, OnInit } from '@angular/core';
 
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  LoginUsuario = {
+    CorreoElectronico: "",
+    Contrasena: ""
+  };
+
+  constructor(private loginService : LoginService) { }
 
   ngOnInit() {
   }
 
 
-  LlenarListas(){
+  LlenarListas() {
 
   }
 
-  Loguearse(){
+  Loguearse() {
+
+
+    
+    this.loginService.PostLoguearse({
+      CorreoElectronico: this.LoginUsuario.CorreoElectronico,
+      Contrasena: this.LoginUsuario.Contrasena
+    }).subscribe(
+      res => {
+
+        alert(res.Estado);
+
+      }, err => {
+        alert(err);
+      }
+    )
+
+
 
   }
 
-  Registrarse(){
+  Registrarse() {
 
   }
 

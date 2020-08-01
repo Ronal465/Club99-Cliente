@@ -4,6 +4,7 @@ import {InicioComponent} from './componentes/inicio/inicio.component';
 import {LoginComponent} from './componentes/login/login.component';
 import {ReportesComponent} from "./componentes/reportes/reportes.component";
 import { RegistroComponent } from './componentes/registro/registro.component';
+import { RecuperarContrasenaComponent } from "./componentes/recuperar-contrasena/recuperar-contrasena.component";
 
 const routes: Routes = [
   {
@@ -14,22 +15,6 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
-  },
-  {
-    path: 'inicio',
-    component: InicioComponent
-  },
-  {
-    path: 'Reportes',
-    component: ReportesComponent
-  },
-  {
-    path: 'Registro',
-    component: RegistroComponent
-  },
-  {
-    path: '**',
-    component: InicioComponent
   }
 
   
