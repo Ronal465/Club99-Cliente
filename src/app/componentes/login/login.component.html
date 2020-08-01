@@ -6,16 +6,9 @@
     30/07/2020
  -->
 
-<ng-container id="Login"></ng-container>
-
-<ng-container id="Registrar"></ng-container>
-
-<ng-container id="RecuperarContraseña"></ng-container>
-
-
-
-<div class="limiter">
-   <div class="container-login100">
+<ng-container id="Login">
+  <div class="limiter">
+    <div class="container-login100">
       <div class="wrap-login100">
          <form class="login100-form validate-form p-l-55 p-r-55 p-t-140">
             <span class="login100-form-title">
@@ -29,35 +22,36 @@
             <div class="wrap-input100 validate-input" data-validate = "Please enter password">
                <input class="input100" type="password" name="pass"  placeholder="Contraseña"  [(ngModel)]="this.LoginUsuario.Contrasena">
             </div>
-
-            <div class="text-left p-t-13 p-b-23">
-
-               <a href="#" class="txt2">
-                  ¿Olvidaste tu contraseña?
-               </a>
+  
+            <!-- Enlace olvidaste contraseña -->
+            <div class="mb-3">
+              <button (click)="mostrarVistaRecuperarContrasena()" type="button" class="txt2 bg-transparent border-0">¿Olvidaste tu
+                contraseña?</button>
             </div>
-
+  
+            <!-- Botones Iniciar sesion y Registrarse -->
             <div class="container-login100-form-btn">
                <button class="login100-form-btn" (click)="Loguearse()" >
                   Iniciar Sesión
                </button>
             </div>
             <div class="container-login100-form-btn">
-               ó
+              ó
             </div>
             <div class="container-login100-form-btn">
-               <button class="login100-form-btn2">
-                  Registrate
-               </button>
+              <button class="login100-form-btn2">
+                Registrate
+              </button>
             </div>
+          </form>
+        </div>
 
-            <div class="flex-col-c p-t-30 p-b-40">
-
-            </div>
-         </form>
+        <app-recuperar-contrasena *ngIf="vistaRecuperarContrasena == true"></app-recuperar-contrasena>
       </div>
-   </div>
-</div>
+    </div>
+  </div>
+</ng-container>
 
+<ng-container id="Registrar"></ng-container>
 
-
+<ng-container id="RecuperarContraseña"></ng-container>

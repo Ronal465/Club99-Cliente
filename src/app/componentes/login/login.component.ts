@@ -4,7 +4,7 @@ import { LoginService } from "../../servicios/login.service";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss', '../../styles.scss']
+  styleUrls: ['./login.component.scss']
 })
 
 /* Autor:
@@ -22,6 +22,10 @@ export class LoginComponent implements OnInit {
     CorreoElectronico: "",
     Contrasena: ""
   };
+  public vistaRecuperarContrasena = false;
+  public vistaLogin = true;
+  public contrasena = 'fada';
+  public contrasenaVisible = true;
 
   constructor(private loginService : LoginService) { }
 
@@ -52,13 +56,16 @@ export class LoginComponent implements OnInit {
 
 
 
-  }
+  // LlenarListas(){
 
-  Registrarse() {
+  //Registrarse() {
 
-  }
+  // Loguearse(){
 
+  // }
 
+  // Registrarse(){
 
+  // }
 
 }
