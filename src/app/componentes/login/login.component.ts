@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss', '../../styles.scss']
+  styleUrls: ['./login.component.scss']
 })
 
 /* Autor:
@@ -17,25 +17,32 @@ import { Component, OnInit } from '@angular/core';
 
 export class LoginComponent implements OnInit {
 
+  public vistaRecuperarContrasena = false;
+  public vistaLogin = true;
+  public contrasena = 'fada';
+  public contrasenaVisible = true;
+
   constructor() { }
 
   ngOnInit() {
   }
 
-
-  LlenarListas(){
-
-  }
-
-  Loguearse(){
-
-  }
-
-  Registrarse(){
-
+  mostrarVistaRecuperarContrasena() {
+    this.vistaRecuperarContrasena = true;
+    this.vistaLogin = false;
   }
 
 
+  // LlenarListas(){
 
+  // }
+
+  // Loguearse(){
+
+  // }
+
+  // Registrarse(){
+
+  // }
 
 }
