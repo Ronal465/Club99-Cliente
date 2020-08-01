@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.scss']
 })
+// '../login/login.component.scss'
 export class RegistroComponent implements OnInit {
 
   constructor() { }

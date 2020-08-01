@@ -10,54 +10,51 @@
   <div class="limiter">
     <div class="container-login100">
       <div class="wrap-login100">
-        <div *ngIf="vistaLogin == true">
-          <!-- Titulo Inicio sesion -->
-          <span class="login100-form-title">
-            INICIO DE SESIÓN
-          </span>
-  
-          <!-- Inicio sesion -->
-          <form class="login100-form p-5">
-            <!-- Campo Correo Electronico -->
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">@</span>
-              </div>
-              <input type="email" name="CorreoElectronico" class="form-control" placeholder="Correo Electrónico">
-            </div>
-  
-            <!-- Campo Contraseña -->
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon2"><i class="fas fa-lock"></i></span>
-              </div>
-              <input type="password" name="Contraseña" class="form-control" placeholder="Contraseña">
-            </div>
-  
-            <!-- Enlace olvidaste contraseña -->
-            <div class="mb-3">
-              <button (click)="mostrarVistaRecuperarContrasena()" type="button" class="txt2 bg-transparent border-0">¿Olvidaste tu
-                contraseña?</button>
-            </div>
-  
-            <!-- Botones Iniciar sesion y Registrarse -->
-            <div class="container-login100-form-btn">
-              <button class="login100-form-btn">
-                Iniciar Sesión
-              </button>
-            </div>
-            <div class="container-login100-form-btn">
-              ó
-            </div>
-            <div class="container-login100-form-btn">
-              <button class="login100-form-btn2">
-                Registrate
-              </button>
-            </div>
-          </form>
-        </div>
+        <!-- Titulo Inicio sesion -->
+        <span class="login100-form-title">
+          INICIO DE SESIÓN
+        </span>
 
-        <app-recuperar-contrasena *ngIf="vistaRecuperarContrasena == true"></app-recuperar-contrasena>
+        <!-- Inicio sesion -->
+        <form class="login100-form p-5">
+          <!-- Campo Correo Electronico -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">@</span>
+            </div>
+            <input type="email" name="CorreoElectronico" class="form-control" placeholder="Correo Electrónico">
+          </div>
+
+          <!-- Campo Contraseña -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon2"><i class="fas fa-lock"></i></span>
+            </div>
+            <input type="password" name="Contraseña" class="form-control" placeholder="Contraseña">
+          </div>
+
+          <!-- Enlace olvidaste contraseña -->
+          <div class="mb-3">
+            <button [routerLink]="['/recuperar-contraseña']" type="button"
+              class="txt2 bg-transparent border-0">¿Olvidaste tu
+              contraseña?</button>
+          </div>
+
+          <!-- Botones Iniciar sesion y Registrarse -->
+          <div class="container-login100-form-btn">
+            <button type="submit" class="login100-form-btn">
+              Iniciar Sesión
+            </button>
+          </div>
+          <div class="container-login100-form-btn">
+            ó
+          </div>
+          <div class="container-login100-form-btn">
+            <button class="login100-form-btn2">
+              Registrate
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

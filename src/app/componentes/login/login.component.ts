@@ -17,19 +17,9 @@ import { Component, OnInit } from '@angular/core';
 
 export class LoginComponent implements OnInit {
 
-  public vistaRecuperarContrasena = false;
-  public vistaLogin = true;
-  public contrasena = 'fada';
-  public contrasenaVisible = true;
-
   constructor() { }
 
   ngOnInit() {
-  }
-
-  mostrarVistaRecuperarContrasena() {
-    this.vistaRecuperarContrasena = true;
-    this.vistaLogin = false;
   }
 
 
