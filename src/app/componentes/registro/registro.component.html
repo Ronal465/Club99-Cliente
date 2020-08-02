@@ -4,61 +4,69 @@
      Ronaldo Carlos Rodriguez Perez
      Fecha Ultima Edicion:
     30/07/2020
- --> 
+ -->
 
- <ng-container id="Login"></ng-container>
+<ng-container id="Login"></ng-container>
 
- <ng-container id="Registrar"></ng-container>
- 
- <ng-container id="RecuperarContraseña"></ng-container>
- 
- 
- 
- <div class="limiter">
-    <div class="container-login100">
-       <div class="wrap-login100">
-          <form class="login100-form validate-form p-l-55 p-r-55 p-t-140">
-             <span class="login100-form-title">
-                INICIO DE SESIÓN
-             </span>
- 
-             <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-                <input class="input100" type="text" name="username" placeholder="Correo Electronico">
-             </div>
- 
-             <div class="wrap-input100 validate-input" data-validate = "Please enter password">
-                <input class="input100" type="password" name="pass" placeholder="Contraseña">
-             </div>
- 
-             <div class="text-left p-t-13 p-b-23">
- 
-                <a href="#" class="txt2">
-                   ¿Olvidaste tu contraseña?
-                </a>
-             </div>
- 
-             <div class="container-login100-form-btn">
-                <button class="login100-form-btn">
-                   Iniciar Sesión
-                </button>
-             </div>
-             <div class="container-login100-form-btn">
-                ó
-             </div>
-             <div class="container-login100-form-btn">
-                <button class="login100-form-btn2">
-                   Registrate
-                </button>
-             </div>
- 
-             <div class="flex-col-c p-t-30 p-b-40">
- 
-             </div>
-          </form>
-       </div>
-    </div>
- </div>
- 
- 
- 
- 
+<ng-container id="Registrar"></ng-container>
+
+<ng-container id="RecuperarContraseña"></ng-container>
+
+
+
+<div class="limiter">
+   <div class="container-login100">
+      <div class="wrap-login100">
+         <form class="login100-form validate-form p-l-55 p-r-55 p-t-140">
+            <span class="login100-form-title">
+               REGISTRO
+            </span>
+            <span class="login100-form-title2">
+               Tus Datos Personales
+            </span>
+            
+               <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
+                  <input class="input100" type="text" name="username" placeholder="Nombre Completo">
+               </div>
+               <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter password">
+                 <!-- <input class="input100" type="text" name="Tipe" placeholder="Tipo de Documento">-->
+                  <select class="input100" name="Tipe" id="TipoDocumento" placeholder="No de Documento">
+                     <option hidden selected>Tipo de Documento</option>
+                     <option value="1">Cedula de Ciudadania</option>
+                     <option value="2">Tarjeta de Identidad</option>
+                     <option value="3">Cedula de Extranjeria</option>
+                   </select>
+               </div>
+
+               <div class="wrap-input100 validate-input" data-validate="Please enter password">
+                  <input class="input100 dropdown" type="text" name="" placeholder="No de Documento">
+
+               </div>
+            <div class="text-left p-t-13 p-b-23">
+
+               <a href="#" class="txt2">
+                  ¿Olvidaste tu contraseña?
+               </a>
+            </div>
+
+            <div class="container-login100-form-btn">
+               <button class="login100-form-btn">
+                  Iniciar Sesión
+               </button>
+            </div>
+            <div class="container-login100-form-btn">
+               ó
+            </div>
+            <div class="container-login100-form-btn">
+               <button class="login100-form-btn2">
+                  Registrate
+               </button>
+            </div>
+
+            <div class="login100-form-titleF">
+asd
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
