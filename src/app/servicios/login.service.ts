@@ -21,10 +21,10 @@ export class LoginService {
   
   constructor(private http : HttpClient ) {}
 
-   PutLoguearse(ObtUsuario : Usuario) : Observable<any>{
+   PostLoguearse(Informacion : any) : Observable<any>{
      
-    return this.http.put(`${this.ApiURL}/list/Profesion`,ObtUsuario);
-
+    return this.http.post(`${this.ApiURL}/Login/Login`,Informacion);
+    
   } 
 
 

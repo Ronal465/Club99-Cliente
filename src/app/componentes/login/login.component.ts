@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../../servicios/login.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss', '../../styles.scss']
+  styleUrls: ['./login.component.scss']
 })
 
 /* Autor:
@@ -17,25 +18,51 @@ import { Component, OnInit } from '@angular/core';
 
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  LoginUsuario = {
+    CorreoElectronico: '',
+    Contrasena: ''
+  };
+  public vistaRecuperarContrasena = false;
+  public vistaLogin = true;
+  public contrasena = 'fada';
+  public contrasenaVisible = true;
+
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
   }
 
 
-  LlenarListas(){
+  LlenarListas() {
 
   }
 
-  Loguearse(){
+  Loguearse() {
+
+
+
+    this.loginService.PostLoguearse({
+      CorreoElectronico: this.LoginUsuario.CorreoElectronico,
+      Contrasena: this.LoginUsuario.Contrasena
+    }).subscribe(
+      res => {
+
+        alert(res.Estado);
+
+      }, err => {
+        alert(err);
+      }
+    );
 
   }
+  // LlenarListas(){
 
-  Registrarse(){
+  // Loguearse(){
 
-  }
+  // }
 
+  // Registrarse(){
 
-
+  // }
 
 }
