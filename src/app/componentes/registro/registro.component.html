@@ -6,25 +6,22 @@
     30/07/2020
  -->
 
-<ng-container id="Login"></ng-container>
 
-<ng-container id="Registrar"></ng-container>
-
-<ng-container id="RecuperarContraseña"></ng-container>
+<ng-container id="Registrar">
 
 
 
 <div class="limiter">
    <div class="container-login100">
       <div class="wrap-login100">
-         <form class="login100-form validate-form p-l-55 p-r-55 p-t-150">
-            <span class="login100-form-title">
-               REGISTRO
-            </span>
-            <span class="login100-form-title2">
-               Tus Datos Personales
-            </span>
-            
+         <span class="login100-form-title">
+            REGISTRO
+         </span>
+         <span class="login100-form-title2">
+            Tus Datos Personales
+         </span>
+         <form class="login100-form pb-4 pl-5 pr-5">
+
             <div class="input-group mb-3">
                <input type="text" name="CorreoElectronico" class="form-control" placeholder="Nombre Completo">
              </div>
@@ -39,27 +36,21 @@
              <div class="input-group mb-3">
                <input type="text" name="CorreoElectronico" class="form-control" placeholder="No de Documento">
              </div>
-
-
-            <div class="p-t-13 p-b-160">
-
-
-            </div>
-
-            <div class="login100-form-titleF">
-               <div class="text-center p-b-10">
-                  <span class="txt2">
-                     ¿Ya tienes una cuenta?
-                  </span>
-               </div>
-
-               <div class="container-login100-form-btn">
-                  <button class="login100-form-btn">
-                     Iniciar Sesión
-                  </button>
-               </div>
-            </div>
          </form>
+         <div class="login100-form-titleB">
+            <div class="text-center pb-1">
+               <span class="txt3">
+                  ¿Ya tienes una cuenta?
+               </span>
+            </div>
+
+            <div [routerLink]="['/login']" class="container-login100-form-btn">
+               <button class="login100-form-btn">
+                  Iniciar Sesión
+               </button>
+            </div>
+         </div>
       </div>
    </div>
 </div>
+</ng-container>
