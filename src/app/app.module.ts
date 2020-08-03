@@ -10,6 +10,7 @@ import { InicioComponent } from './componentes/inicio/inicio.component';
 import { ReportesComponent } from './componentes/reportes/reportes.component';
 import { RecuperarContrasenaComponent } from './componentes/recuperar-contrasena/recuperar-contrasena.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
+import { CambiarContrasenaComponent } from './componentes/cambiar-contrasena/cambiar-contrasena.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RegistroComponent } from './componentes/registro/registro.component';
     InicioComponent,
     ReportesComponent,
     RecuperarContrasenaComponent,
-    RegistroComponent
+    RegistroComponent,
+    CambiarContrasenaComponent
   ],
   imports: [
     BrowserModule,
