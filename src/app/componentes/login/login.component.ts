@@ -22,10 +22,6 @@ export class LoginComponent implements OnInit {
     CorreoElectronico: '',
     Contrasena: ''
   };
-  public vistaRecuperarContrasena = false;
-  public vistaLogin = true;
-  public contrasena = 'fada';
-  public contrasenaVisible = true;
 
   constructor(private loginService: LoginService) { }
 
@@ -38,9 +34,6 @@ export class LoginComponent implements OnInit {
   }
 
   Loguearse() {
-
-
-
     this.loginService.PostLoguearse({
       CorreoElectronico: this.LoginUsuario.CorreoElectronico,
       Contrasena: this.LoginUsuario.Contrasena
@@ -53,7 +46,6 @@ export class LoginComponent implements OnInit {
         alert(err);
       }
     );
-
   }
   // LlenarListas(){
 

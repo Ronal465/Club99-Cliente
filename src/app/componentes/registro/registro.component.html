@@ -9,70 +9,115 @@
 
 <ng-container id="Registrar">
 
-<div class="limiter">
-   <div class="container-login100">
+  <div class="limiter">
+    <div class="container-login100">
       <div class="wrap-login100">
-         <span class="login100-form-title">
-            REGISTRO
-         </span>
-         <span class="login100-form-title2">
-            Tus Datos Personales
-         </span>
-         <form class="login100-form pb-4 pl-5 pr-5">
+        <!-- Titulo Registro -->
+        <span class="login100-form-title">
+          REGISTRO
+        </span>
 
+        <!-- Subtitulo -->
+        <span class="login100-form-title2">
+          Tus Datos Personales
+        </span>
+
+        <!-- Formulario registro -->
+        <form class="login100-form pb-4 pl-5 pr-5">
+          <!-- Step 1 -->
+          <div *ngIf="">
+            <!-- Campo Nombre completo -->
             <div class="input-group mb-3">
-               <input type="text" name="CorreoElectronico" class="form-control" placeholder="Nombre Completo">
-             </div>
-             <div class="input-group mb-3">
-               <select type="text" name="CorreoElectronico" class="form-control" placeholder="Nombre Completo">
-                  <option hidden selected>Tipo de Documento</option>
-                  <option value="1">Cedula de Ciudadania</option>
-                  <option value="2">Tarjeta de Identidad</option>
-                  <option value="3">Cedula de Extranjeria</option>
-               </select>
-             </div>
-             <div class="input-group mb-3">
-               <input type="text" name="CorreoElectronico" class="form-control" placeholder="No de Documento">
-             </div>
-         </form>
-         <div class="login100-form-titleB">
-            <div class="text-center pb-1">
-               <span class="txt3">
-                  ¿Ya tienes una cuenta?
-               </span>
+              <input type="text" name="CorreoElectronico" class="form-control" placeholder="Nombre Completo">
             </div>
 
-            <div [routerLink]="['/login']" class="container-login100-form-btn">
-               <button class="login100-form-btn">
-                  Iniciar Sesión
-               </button>
+            <!-- Campo tipo documentacion -->
+            <div class="input-group mb-3">
+              <select type="text" name="CorreoElectronico" class="form-control" placeholder="Nombre Completo">
+                <option hidden selected>Tipo de Documento</option>
+                <option value="1">Cedula de Ciudadania</option>
+                <option value="2">Tarjeta de Identidad</option>
+                <option value="3">Cedula de Extranjeria</option>
+              </select>
             </div>
-         </div>
+
+            <!-- Campo numero de documento -->
+            <div class="input-group mb-3">
+              <input type="text" name="CorreoElectronico" class="form-control" placeholder="No de Documento">
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div *ngIf="">
+            <!-- Campo Nombre completo -->
+            <div class="input-group mb-3">
+              <input type="text" name="CorreoElectronico" class="form-control" placeholder="Nombre Completo">
+            </div>
+
+            <!-- Campo tipo documentacion -->
+            <div class="input-group mb-3">
+              <select type="text" name="CorreoElectronico" class="form-control" placeholder="Nombre Completo">
+                <option hidden selected>Tipo de Documento</option>
+                <option value="1">Cedula de Ciudadania</option>
+                <option value="2">Tarjeta de Identidad</option>
+                <option value="3">Cedula de Extranjeria</option>
+              </select>
+            </div>
+
+            <!-- Campo numero de documento -->
+            <div class="input-group mb-3">
+              <input type="text" name="CorreoElectronico" class="form-control" placeholder="No de Documento">
+            </div>
+          </div>
+        </form>
+
+        <!-- Footer Registro -->
+        <div class="login100-form-titleB">
+          <div class="text-center pb-1">
+            <span class="txt3">
+              ¿Ya tienes una cuenta?
+            </span>
+          </div>
+
+          <div [routerLink]="['/login']" class="container-login100-form-btn">
+            <button class="login100-form-btn">
+              Iniciar Sesión
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="steps">
-         <div class="selected-step rounded-circle d-flex justify-content-center align-items-center ml-5">
-            <div class="step rounded-circle " >
+
+      <!-- Steps -->
+      <div class="steps-container">
+        <div class="steps">
+          <div class="selected-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+            <div class="step rounded-circle">
 
             </div>
-         </div>
-         <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5" >
-            <div class="non-step rounded-circle " >
+          </div>
+          <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+            <div class="non-step rounded-circle">
 
             </div>
-         </div>
-         <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
-            <div class="non-step rounded-circle " >
+          </div>
+          <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+            <div class="non-step rounded-circle">
 
             </div>
-         </div>
-         <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
-            <div class="non-step rounded-circle ">
+          </div>
+          <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+            <div class="non-step rounded-circle">
 
             </div>
-         </div>
+          </div>
+        </div>
+        <div class="steps">
+          <i class="fas fa-arrow-circle-left steps-icon rounded-circle"></i>
+          <i class="fas fa-arrow-circle-right steps-icon rounded-circle"></i>
+        </div>
       </div>
-   </div>
-</div>
+    </div>
+  </div>
 
 
 
