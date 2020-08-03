@@ -34,7 +34,7 @@ const routes: Routes = [
     component: ReportesComponent
   },
   {
-    path: 'Registro',
+    path: 'registro',
     component: RegistroComponent
   },
   {
