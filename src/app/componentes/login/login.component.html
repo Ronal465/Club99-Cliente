@@ -16,13 +16,23 @@
         </span>
 
         <!-- Inicio sesion -->
-        <form class="login100-form p-5">
+        <form class="login100-form p-5" [formGroup]="loginForm" (ngSubmit)="Loguearse()">
           <!-- Campo Correo Electronico -->
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">@</span>
             </div>
-            <input type="email" name="CorreoElectronico" class="form-control" placeholder="Correo Electrónico">
+            <input type="email" (input)="validarCorreoElectronico()" formControlName="CorreoElectronico" class="form-control" placeholder="Correo Electrónico">
+
+            <!-- Errores Correo Electronico -->
+            <div class="alert alert-danger" *ngIf="CorreoElectronico.invalid && (CorreoElectronico.dirty || CorreoElectronico.touched)">
+              <div class="invalid-feedback" *ngIf="CorreoElectronico.errors.required">
+                El correo es obligatorio
+              </div>
+              <div class="container-error-message" *ngIf="CorreoElectronico.errors.pattern">
+                El correo debe ser de tipo email
+              </div>
+            </div>
           </div>
 
           <!-- Campo Contraseña -->
@@ -30,7 +40,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon2"><i class="fas fa-lock"></i></span>
             </div>
-            <input type="password" name="Contraseña" class="form-control" placeholder="Contraseña">
+            <input type="password" (input)="Loguearse()" formControlName="Contraseña" class="form-control" placeholder="Contraseña">
           </div>
 
           <!-- Enlace olvidaste contraseña -->
