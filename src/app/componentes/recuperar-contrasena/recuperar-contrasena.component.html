@@ -8,7 +8,7 @@
         </span>
 
         <!-- Recuperar contraseña -->
-        <form class="login100-form p-5">
+        <form [formGroup]="recuperarContrasenaForm" class="login100-form p-5">
 
           <p>
             Se le enviara un enlace con el que cambiara su contraseña al correo de su cuenta que digite.<br><br>
@@ -20,7 +20,9 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">@</span>
             </div>
-            <input type="email" name="CorreoElectronico" class="form-control" placeholder="Correo Electrónico">
+            <input id="CorreoElectronico" type="email" formControlName="CorreoElectronico" (input)="validarCorreoElectronico()" class="form-control" placeholder="Correo Electrónico">
+            <!-- Errores Correo Electronico -->
+            <div id="erroresCorreoElectronico" class="invalid-feedback"></div>
           </div>
 
           <!-- Boton enviar -->

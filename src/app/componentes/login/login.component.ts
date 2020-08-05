@@ -21,11 +21,6 @@ export class LoginComponent implements OnInit {
   // Expresión regular para validacion del email
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  // LoginUsuario = {
-  //   CorreoElectronico: '',
-  //   Contrasena: ''
-  // };
-
   // Formulario Login
   loginForm = new FormGroup({
     CorreoElectronico: new FormControl('', [Validators.required, Validators.pattern(this.emailPattern)]),
@@ -35,11 +30,6 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService) { }
 
   ngOnInit() {
-  }
-
-
-  LlenarListas() {
-
   }
 
   // Validacion del campo Correo Electronico
@@ -73,6 +63,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  // Ingresar al sistema
   Loguearse() {
     if (this.loginForm.valid) {
       // this.loginService.PostLoguearse(this.loginForm.value)
