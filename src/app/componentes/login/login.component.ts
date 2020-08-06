@@ -47,16 +47,7 @@ export class LoginComponent implements OnInit {
 
   // Validacion del campo contraseña
   validarContrasena() {
-    const Contrasena = document.getElementById('Contrasena');
-    const errorContrasena = document.getElementById('erroresContrasena');
-    if (this.Contrasena.errors != null) {
-      if (this.Contrasena.errors.required) {
-        Contrasena.className = 'form-control is-invalid';
-        errorContrasena.innerHTML = 'Este campo es requerido';
-      }
-    }else {
-      Contrasena.className = 'form-control is-valid';
-    }
+    this.mensajesErrores.Contrasena = this.validaciones.validarContrasena(this.Contrasena);
   }
 
   // Ingresar al sistema

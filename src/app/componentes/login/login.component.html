@@ -36,9 +36,9 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon2"><i class="fas fa-lock"></i></span>
               </div>
-              <input id="Contrasena" (input)="validarContrasena()" formControlName="Contrasena" class="form-control" type="password" placeholder="Contraseña">
+              <input (input)="validarContrasena()" formControlName="Contrasena" [class]="{'form-control': true, 'is-invalid': mensajesErrores.Contrasena ? true : false, 'is-valid': mensajesErrores.Contrasena == null ? true : false}" type="password" placeholder="Contraseña">
               <!-- Errores Correo Electronico -->
-              <div id="erroresContrasena" class="invalid-feedback"></div>
+              <div class="invalid-feedback">{{ mensajesErrores.Contrasena }}</div>
             </div>
           </div>
 

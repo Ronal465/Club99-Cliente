@@ -1,5 +1,3 @@
-
-
 export class Validaciones {
 
   constructor() {}
@@ -16,5 +14,13 @@ export class Validaciones {
     }
   }
 
-
+  validarContrasena(Contrasena: any): any {
+    if (Contrasena.errors != null) {
+      if (Contrasena.errors.required) {
+        return 'Este campo es requerido';
+      }
+    }else {
+      return null;
+    }
+  }
 }
