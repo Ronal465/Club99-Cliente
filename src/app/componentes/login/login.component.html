@@ -24,9 +24,9 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">@</span>
               </div>
-              <input id="CorreoElectronico" (input)="validarCorreoElectronico()" formControlName="CorreoElectronico" class="form-control" type="email" placeholder="Correo Electrónico">
+              <input (input)="validarCorreoElectronico()" formControlName="CorreoElectronico" [class]="{'form-control': true, 'is-invalid': mensajesErrores.CorreoElectronico ? true : false, 'is-valid': mensajesErrores.CorreoElectronico == null ? true : false}" type="email" placeholder="Correo Electrónico">
               <!-- Errores Correo Electronico -->
-              <div id="erroresCorreoElectronico" class="invalid-feedback"></div>
+              <div class="invalid-feedback">{{ mensajesErrores.CorreoElectronico }}</div>
             </div>
           </div>
 

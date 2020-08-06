@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../servicios/login.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Validaciones } from '../../Validaciones/validaciones';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export class LoginComponent implements OnInit {
 
+  public validaciones = new Validaciones();
+
+  mensajesErrores = {
+    CorreoElectronico: '',
+    Contrasena: ''
+  };
+
   // Expresión regular para validacion del email
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -34,19 +42,7 @@ export class LoginComponent implements OnInit {
 
   // Validacion del campo Correo Electronico
   validarCorreoElectronico() {
-    const CorreoElectronico = document.getElementById('CorreoElectronico');
-    const errorCorreoElectronico = document.getElementById('erroresCorreoElectronico');
-    if (this.CorreoElectronico.errors != null) {
-      if (this.CorreoElectronico.errors.required) {
-        CorreoElectronico.className = 'form-control is-invalid';
-        errorCorreoElectronico.innerHTML = 'Este campo es requerido';
-      }else if (this.CorreoElectronico.errors.pattern) {
-        CorreoElectronico.className = 'form-control is-invalid';
-        errorCorreoElectronico.innerHTML = 'Este campo debe ser de tipo email';
-      }
-    }else {
-      CorreoElectronico.className = 'form-control is-valid';
-    }
+    this.mensajesErrores.CorreoElectronico = this.validaciones.validarEmail(this.CorreoElectronico);
   }
 
   // Validacion del campo contraseña
