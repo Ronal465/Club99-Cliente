@@ -8,13 +8,13 @@ import { ReportesComponent } from './componentes/reportes/reportes.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo:'/login',
-  //   pathMatch: 'full'
-  // },
   {
-    path: 'login',
+    path: '',
+    redirectTo:'/Inicio',
+    pathMatch: 'full'
+  },
+  {
+    path: 'Login',
     component: LoginComponent
   },
   {
@@ -26,7 +26,7 @@ const routes: Routes = [
     component: CambiarContrasenaComponent
   },
   {
-    path: 'inicio',
+    path: 'Inicio',
     component: InicioComponent
   },
   {
@@ -34,7 +34,7 @@ const routes: Routes = [
     component: ReportesComponent
   },
   {
-    path: 'registro',
+    path: 'Registro',
     component: RegistroComponent
   },
   {

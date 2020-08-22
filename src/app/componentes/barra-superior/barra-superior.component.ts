@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ListasFormulariosService } from "../../servicios/listas-formularios.service";
+
 
 @Component({
   selector: 'app-barra-superior',
@@ -16,9 +18,41 @@ import { Component, OnInit } from '@angular/core';
 
 export class BarraSuperiorComponent implements OnInit {
 
-  constructor() { }
+   ListFuncionTipoUsuarios = [];
+
+
+
+  constructor(private ListasFormulariosService: ListasFormulariosService) { }
 
   ngOnInit() {
+
+    this.ListarFuncionesTipoUsuario(1);
+
+
   }
+
+  ListarFuncionesTipoUsuario(IntIdUsuario) {
+
+    this.ListasFormulariosService.GetListaFuncionTipoUsuario(IntIdUsuario).subscribe(
+      res => {
+        this.ListFuncionTipoUsuarios = res;
+        this.ElegirOpcionesNavar();
+      },
+      err => {
+
+      }
+
+    )
+  }
+  ElegirOpcionesNavar() {
+
+    this.ListFuncionTipoUsuarios.forEach((element)=>{
+
+      console.log(element);
+
+    })
+
+  }
+
 
 }
