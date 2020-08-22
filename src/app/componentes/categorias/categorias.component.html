@@ -1,0 +1,58 @@
+<app-barra-superior></app-barra-superior>
+<div class="limiter">
+    <div class="container-Categorias">
+
+        <div class="Buscador">
+            <input class="BarraBuscador">
+            <button class="BotonBuscador"></button>
+        </div>
+        <div class="ContainerFiltros">
+
+            <div class="FiltroExclusividad">
+                <div class="FiltroExclusivo" *ngFor="let Exclusivo of ListaFiltosExclusivod">
+                    <div class="NombreFiltro">
+                        {{Exclusivo.Nombre}}
+                    </div>
+                    <div class="ChetBoxFiltro">
+                        <input type="checkbox" value="{{Exclusivo.idTipoExclusividad}}">
+                    </div>
+                </div>
+            </div>
+
+        
+
+        </div>
+        <div class="ContainerCursos">
+
+            <div class="CursoLista" *ngFor="let Curso of ListCursos">
+                <div class="ImagenCurso">
+                    {{Curso[0].LinkImagen}}
+                </div>
+                <div class="InfoCurso">
+                    <div class="InfoCurso1">
+                        <div class="NombreCurso">
+                            {{Curso[0].Nombre}}
+                        </div>
+                        <div class="AutorCurso">
+                            {{Curso[1].Nombre}}
+                        </div>
+                    </div>
+                    <div class="InfoCurso2"  >
+                        <div class="FiltrosCurso" >
+                            <div class="FiltroCurs" *ngFor="let Fitltro of Curso[2]">
+                                {{Fitltro.Nombre}}
+                            </div>
+                        </div>
+                        <div class="BotonCurso">
+                            <button>Boton Accion</button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

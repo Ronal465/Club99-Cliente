@@ -12,6 +12,7 @@ import { ReportesComponent } from './componentes/reportes/reportes.component';
 import { RecuperarContrasenaComponent } from './componentes/recuperar-contrasena/recuperar-contrasena.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { CambiarContrasenaComponent } from './componentes/cambiar-contrasena/cambiar-contrasena.component';
+import { CategoriasComponent } from './componentes/categorias/categorias.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CambiarContrasenaComponent } from './componentes/cambiar-contrasena/cam
     ReportesComponent,
     RecuperarContrasenaComponent,
     RegistroComponent,
-    CambiarContrasenaComponent
+    CambiarContrasenaComponent,
+    CategoriasComponent
   ],
   imports: [
     BrowserModule,

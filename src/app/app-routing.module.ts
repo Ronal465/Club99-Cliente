@@ -6,11 +6,12 @@ import { RecuperarContrasenaComponent } from './componentes/recuperar-contrasena
 import { CambiarContrasenaComponent } from './componentes/cambiar-contrasena/cambiar-contrasena.component';
 import { ReportesComponent } from './componentes/reportes/reportes.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
+import { CategoriasComponent } from "./componentes/categorias/categorias.component";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo:'/Inicio',
+    redirectTo: '/Inicio',
     pathMatch: 'full'
   },
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'Registro',
     component: RegistroComponent
+  },
+  {
+    path: 'Categorias',
+    component: CategoriasComponent
   },
   {
     path: '**',
