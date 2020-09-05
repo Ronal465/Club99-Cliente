@@ -17,7 +17,7 @@ import {Observable} from 'rxjs';
 
 export class ListasFormulariosService {
 
-  ApiURL = 'http://localhost:3000';
+  ApiURL = 'http://localhost:3000/api';
   
   constructor(private http : HttpClient ) {}
 
@@ -29,10 +29,14 @@ export class ListasFormulariosService {
 
   GetListaFuncionTipoUsuario(IntTipoUsuaro) : Observable<any>{
      
-    return this.http.get(`${this.ApiURL}/api/list/FuncionTipoUsuario/${IntTipoUsuaro}`);
+    return this.http.get(`${this.ApiURL}/list/FuncionTipoUsuario/${IntTipoUsuaro}`);
 
   } 
 
+  GetListaExclusividad() : Observable<any>{
+     
+    return this.http.get(`${this.ApiURL}/list/TipoExclusividad/`);
 
+  }
 
 }

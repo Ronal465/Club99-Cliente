@@ -39,7 +39,7 @@ const routes: Routes = [
     component: RegistroComponent
   },
   {
-    path: 'Categorias',
+    path: 'Categorías',
     component: CategoriasComponent
   },
   {

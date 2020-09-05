@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ListasFormulariosService } from "../../servicios/listas-formularios.service";
-
+import { JWTService } from "../../servicios/jwt.service";
 
 @Component({
   selector: 'app-barra-superior',
@@ -22,11 +22,13 @@ export class BarraSuperiorComponent implements OnInit {
 
 
 
-  constructor(private ListasFormulariosService: ListasFormulariosService) { }
+  constructor(private ListasFormulariosService: ListasFormulariosService,private JWTService : JWTService) { }
 
   ngOnInit() {
 
-    this.ListarFuncionesTipoUsuario(1);
+
+    this.ValidarUsuario();
+   
 
 
   }
@@ -52,6 +54,33 @@ export class BarraSuperiorComponent implements OnInit {
 
     })
 
+  }
+
+  ValidarUsuario(){
+
+    var TokenLogin = localStorage.getItem('TokenLogin');
+
+    this.JWTService.ValidarLoginBarraSuperior(TokenLogin).subscribe(
+      res=>{
+
+        if(res.Estado == "Correcto"){
+          this.ListarFuncionesTipoUsuario(res.idTipoUsuario);
+
+        }else{
+          this.ListarFuncionesTipoUsuario(1);
+        }
+
+      },err =>{
+
+      }
+    )
+
+    
+  }
+
+  CerrarSesion(){
+    alert("Gonorrea");
+    localStorage.removeItem('TokenLogin');
   }
 
 

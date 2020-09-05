@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../servicios/login.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Validaciones } from '../../Validaciones/validaciones';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
     Contrasena: new FormControl('', [Validators.required])
   });
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private Router: Router) { }
 
   ngOnInit() {
   }
@@ -53,20 +54,48 @@ export class LoginComponent implements OnInit {
   // Ingresar al sistema
   Loguearse() {
     if (this.loginForm.valid) {
-      // this.loginService.PostLoguearse(this.loginForm.value)
-      // .subscribe(
-        // res => {
-        //   alert(res.Estado);
-        // }, err => {
-        //   alert(err);
-        // }
-      // );
+      this.loginService.PostLoguearse(this.loginForm.value)
+        .subscribe(
+          res => {
+            this.ValidarLogin(res);
+          }, err => {
+            alert(err);
+          }
+        );
       console.log('Valido');
-    }else{
+    } else {
 
       console.log('No valido');
     }
   }
+
+  ValidarLogin(Respuesta) {
+
+
+    if (Respuesta.Estado == "FalloCorreo") {
+      alert("Mal Correo");
+
+
+    } else if (Respuesta.Estado == "FalloContraseña") {
+      alert("Mal contraseña");
+
+
+    } else if (Respuesta.Estado == "Bloqueado") {
+      alert("Bloqueado");
+
+
+    } else if (Respuesta.Estado == "Correcto") {
+
+      localStorage.clear();
+      localStorage.setItem('TokenLogin',"" + Respuesta.TokenLogin);
+      alert("Login Correcto");
+      this.Router.navigateByUrl('/Inicio');
+    
+    } 
+
+
+  }
+
 
   // Valores del formulario login
   get CorreoElectronico() { return this.loginForm.get('CorreoElectronico'); }

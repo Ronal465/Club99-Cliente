@@ -6,12 +6,11 @@
  
    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
 
-
-
      <ul class="navbar-nav mr-auto">
 
        <li class="nav-item" *ngFor="let Funciones of ListFuncionTipoUsuarios">
-         <a class="nav-link" href="{{Funciones.Nombre}}">{{Funciones.Nombre}}</a>
+         <a class="nav-link" *ngIf="Funciones.Nombre != 'Cierra la Sesión' "   href="{{Funciones.Nombre}}">{{Funciones.Nombre}}</a>
+         <a class="nav-link" *ngIf="Funciones.Nombre == 'Cierra la Sesión' "  href="" (click)="CerrarSesion()" >{{Funciones.Nombre}}</a>
        </li>
 
      </ul>
