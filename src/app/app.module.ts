@@ -4,6 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {  MatDatepickerModule } from '@angular/material/datepicker';
+import {  MatFormField } from '@angular/material/form-field';
+
 
 import { BarraSuperiorComponent } from './componentes/barra-superior/barra-superior.component';
 import { LoginComponent } from './componentes/login/login.component';
@@ -13,6 +16,7 @@ import { RecuperarContrasenaComponent } from './componentes/recuperar-contrasena
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { CambiarContrasenaComponent } from './componentes/cambiar-contrasena/cambiar-contrasena.component';
 import { CategoriasComponent } from './componentes/categorias/categorias.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,10 @@ import { CategoriasComponent } from './componentes/categorias/categorias.compone
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatFormField
   ],
   providers: [],
   bootstrap: [AppComponent]

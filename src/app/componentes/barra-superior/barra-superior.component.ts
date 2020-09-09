@@ -38,24 +38,12 @@ export class BarraSuperiorComponent implements OnInit {
     this.ListasFormulariosService.GetListaFuncionTipoUsuario(IntIdUsuario).subscribe(
       res => {
         this.ListFuncionTipoUsuarios = res;
-        this.ElegirOpcionesNavar();
       },
       err => {
-
       }
 
     )
   }
-  ElegirOpcionesNavar() {
-
-    this.ListFuncionTipoUsuarios.forEach((element)=>{
-
-      console.log(element);
-
-    })
-
-  }
-
   ValidarUsuario(){
 
     var TokenLogin = localStorage.getItem('TokenLogin');

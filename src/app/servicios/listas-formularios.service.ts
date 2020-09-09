@@ -33,10 +33,62 @@ export class ListasFormulariosService {
 
   } 
 
+  GetListaDepartamentos(IntidPais) : Observable<any>{
+     
+    return this.http.get(`${this.ApiURL}/list/Departamento/${IntidPais}`);
+
+  } 
+
+  GetListaCiudades(IntidDepartamento) : Observable<any>{
+     
+    return this.http.get(`${this.ApiURL}/list/Ciudad/${IntidDepartamento}`);
+
+  } 
+
   GetListaExclusividad() : Observable<any>{
      
     return this.http.get(`${this.ApiURL}/list/TipoExclusividad/`);
 
   }
+
+  GetListaClasificacionEtnica() : Observable<any>{
+     
+    return this.http.get(`${this.ApiURL}/list/ClasificacionEtnica`);
+
+  }
+  
+
+  GetListatipoidentificacion() : Observable<any>{
+     
+    return this.http.get(`${this.ApiURL}/list/TipoIdentificacion`);
+
+  }
+
+  GetListaSeguridadSocial() : Observable<any>{
+     
+    return this.http.get(`${this.ApiURL}/list/TipoSeguridadSocial`);
+
+  }
+
+
+  GetListaPaises() : Observable<any>{
+     
+    return this.http.get(`${this.ApiURL}/list/Pais`);
+
+  }
+  
+
+  GetListaNivelAcademico() : Observable<any>{
+     
+    return this.http.get(`${this.ApiURL}/list/NivelAcademico`);
+
+  }
+
+  GetListaProfesion() : Observable<any>{
+     
+    return this.http.get(`${this.ApiURL}/list/Profesion`);
+
+  }
+
 
 }
