@@ -4,8 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {  MatDatepickerModule } from '@angular/material/datepicker';
-import {  MatFormField } from '@angular/material/form-field';
+
+//date
+import { MatNativeDateModule  } from "@angular/material/core";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 import { BarraSuperiorComponent } from './componentes/barra-superior/barra-superior.component';
@@ -14,7 +18,6 @@ import { InicioComponent } from './componentes/inicio/inicio.component';
 import { ReportesComponent } from './componentes/reportes/reportes.component';
 import { RecuperarContrasenaComponent } from './componentes/recuperar-contrasena/recuperar-contrasena.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
-import { CambiarContrasenaComponent } from './componentes/cambiar-contrasena/cambiar-contrasena.component';
 import { CategoriasComponent } from './componentes/categorias/categorias.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -27,7 +30,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReportesComponent,
     RecuperarContrasenaComponent,
     RegistroComponent,
-    CambiarContrasenaComponent,
     CategoriasComponent
   ],
   imports: [
@@ -37,8 +39,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatNativeDateModule,
     MatDatepickerModule,
-    MatFormField
+    MatFormFieldModule,
+    MatInputModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

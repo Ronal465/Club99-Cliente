@@ -48,7 +48,7 @@ export class BarraSuperiorComponent implements OnInit {
 
     var TokenLogin = localStorage.getItem('TokenLogin');
 
-    this.JWTService.ValidarLoginBarraSuperior(TokenLogin).subscribe(
+    this.JWTService.PostValidarLoginBarraSuperior(TokenLogin).subscribe(
       res=>{
 
         if(res.Estado == "Correcto"){

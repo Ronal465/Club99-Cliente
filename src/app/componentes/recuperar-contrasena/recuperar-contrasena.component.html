@@ -1,6 +1,6 @@
 <app-barra-superior></app-barra-superior>
 
-<ng-container id="recuperarContrasena">
+<ng-container id="recuperarContrasena" *ngIf="Opcion == 1" >
   <div class="limiter">
     <div class="container-login100">
       <div class="wrap-login100">
@@ -12,7 +12,7 @@
         <!-- Recuperar contraseña -->
         <form [formGroup]="recuperarContrasenaForm" class="login100-form p-5">
 
-          <p>
+          <p id="MensajeRecuperar" >
             Se le enviara un enlace con el que cambiara su contraseña al correo de su cuenta que digite.<br><br>
             <strong>IMPORTANTE:</strong> Este correo no sera valido pasadas 24 horas de haberse enviado el correo.
           </p>
@@ -29,16 +29,52 @@
 
           <!-- Boton enviar -->
           <div class="container-login100-form-btn">
-            <button type="submit" class="login100-form-btn">
+            <button type="submit" (click)="MandarCorreo()" class="login100-form-btn" *ngIf="BotonodesEnviar ==1" >
               Enviar
             </button>
           </div>
-          <div class="container-login100-form-btn">
+          <div class="container-login100-form-btn" *ngIf="BotonodesEnviar ==1" >
             ó
           </div>
           <div class="container-login100-form-btn">
             <button [routerLink]="['/Login']" class="login100-form-btn2">
               Iniciar sesión
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container  id="CambiarContrasena" *ngIf="Opcion == 2" >
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <!-- Titulo Cambiar contraseña -->
+        <span id="tituloCambiarContraseña" class="login100-form-title">
+          CAMBIAR CONTRASEÑA
+        </span>
+
+        <!-- Cambiar contraseña -->
+        <form class="login100-form p-5" [formGroup]="ChangeForm" (ngSubmit)="Change()">
+
+          <!-- Campo Nueva contraseña -->
+          <div class="Form-group mb-3">
+            <input type="password" formControlName='nuevaContraseña' name="nuevaContraseña" (input)='validarPass()' id='nuevaContraseña' class="form-control" placeholder="Nueva Contraseña">
+            <div id="erroresPassword" class="invalid-feedback">Este campo solo acepta letras</div>
+          </div>
+
+          <!-- Campo Confirmar contraseña -->
+          <div class="Form-group mb-3">
+            <input type="password" name="confirmarContraseña" (input)='validarConfirmPass($event)' id='confirmarContraseña' class="form-control" placeholder="Confirmar Contraseña">
+            <div id="erroresConfirm" class="invalid-feedback">Este campo solo acepta letras</div>
+          </div>
+
+          <!-- Botones Cambiar contraseña -->
+          <div class="container-login100-form-btn">
+            <button type="submit" class="login100-form-btn">
+              Cambiar contraseña
             </button>
           </div>
         </form>

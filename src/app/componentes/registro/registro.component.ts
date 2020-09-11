@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../servicios/login.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ListasFormulariosService } from "../../servicios/listas-formularios.service";
+import { ValidacionesService } from "../../servicios/validaciones.service";
+import { ActivatedRoute,Router } from '@angular/router';
+import { RegistrarService } from "../../servicios/registrar.service";
+
 
 @Component({
   selector: 'app-registro',
@@ -12,6 +16,7 @@ import { ListasFormulariosService } from "../../servicios/listas-formularios.ser
 export class RegistroComponent implements OnInit {
 
   public steps = 1;
+  public Option = 1;
 
   private namePattern: any = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/
   private docPattern: any = /^((\d{8})|(\d{10})|(\d{11})|(\d{6}-\d{5}))?$/
@@ -27,7 +32,13 @@ export class RegistroComponent implements OnInit {
   CondicionesSocial = [];
   NivelAcademicos = [];
   Profesiones = [];
-
+  Generos = [];
+  Terminos= false;
+  TokenRegister ;
+  ValidarExistentes={
+    Documento : true,
+    Correo: false
+  }
 
   RegisterForm = new FormGroup({
 
@@ -37,11 +48,15 @@ export class RegistroComponent implements OnInit {
     CorreoElectronico: new FormControl('', [Validators.required, Validators.pattern(this.emailPattern)]),
     Contrasena: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(this.passPatternNumber), Validators.pattern(this.passPatternUpper)]),
     TipoDocumento: new FormControl(null, Validators.required),
+    Date: new FormControl(null, Validators.required),
+    Genero: new FormControl(null, Validators.required),
+    NumTelefono: new FormControl('', [Validators.required, Validators.pattern(this.passPatternNumber)]),
 
     //Ubicacion
     PaisResidencia: new FormControl(null, Validators.required),
     Departamento: new FormControl(null, Validators.required),
     Ciudad: new FormControl(null, Validators.required),
+    Direccion: new FormControl(null, Validators.required),
 
     //Direccion
     TipoPoblacion: new FormControl(null, Validators.required),
@@ -55,9 +70,32 @@ export class RegistroComponent implements OnInit {
 
 
 
-  constructor(private loginService: LoginService, private ListasFormulariosService: ListasFormulariosService) { }
+  constructor(private loginService: LoginService, private ListasFormulariosService: ListasFormulariosService,
+              private ValidacionesService: ValidacionesService, private ActivatedRoute: ActivatedRoute, private RegistrarService: RegistrarService,
+              private Router: Router) { }
 
   ngOnInit(): void {
+
+    if(this.ActivatedRoute.snapshot.params.TokenRegister != null){
+      this.RegistrarService.PostValidacionTokenRegister({TokenRegister : this.ActivatedRoute.snapshot.params.TokenRegister}).subscribe(
+        res=>{
+
+          if(res.Estado == "Correcto"){
+            this.Option = 2;
+            this.TokenRegister =this.ActivatedRoute.snapshot.params.TokenRegister ;
+            this.CrearUsuario();
+          }else{
+            alert("Fallo De Link");
+            this.Router.navigateByUrl('/Inicio');
+          }
+        },
+        err =>{
+          alert("Fallo De Link");
+          this.Router.navigateByUrl('/Inicio');
+        }
+      
+      )
+    }
 
     this.RellenarFormuarios(1, 0);
     this.RellenarFormuarios(2, 0);
@@ -65,8 +103,8 @@ export class RegistroComponent implements OnInit {
     this.RellenarFormuarios(6, 0);
     this.RellenarFormuarios(7, 0);
     this.RellenarFormuarios(8, 0);
+    this.RellenarFormuarios(9, 0);
   }
-
   RellenarFormuarios(Numero, index) {
 
     if (Numero == 1) {
@@ -143,6 +181,15 @@ export class RegistroComponent implements OnInit {
           this.Profesiones = [];
         }
       )
+    }else if (Numero == 9) {
+      this.ListasFormulariosService.GetListaGeneros().subscribe(
+        res => {
+          this.Generos = res;
+        },
+        err => {
+          this.Generos = [];
+        }
+      )
     }
 
 
@@ -154,7 +201,6 @@ export class RegistroComponent implements OnInit {
 
     if (this.Nombres.errors != null) {
       if (this.Nombres.errors.required) {
-        console.log('este campo es requrido')
         name.className = 'form-control is-invalid'
         errorname.innerHTML = 'Este campo es requerido'
       } else if (this.Nombres.errors.pattern) {
@@ -167,7 +213,6 @@ export class RegistroComponent implements OnInit {
       return true;
     }
   }
-
   validarApellidos(): boolean {
     const Apellidos = document.getElementById('Apellidos');
     const errorApellidos = document.getElementById('erroresApellidos');
@@ -186,7 +231,6 @@ export class RegistroComponent implements OnInit {
       return true;
     }
   }
-  
   validarTipoDoc(): boolean {
     const TipoDoc = document.getElementById('TipoDocumento');
     const errorTipodocument = document.getElementById('erroresTipoDocumento');
@@ -200,21 +244,85 @@ export class RegistroComponent implements OnInit {
       return true;
     }
   }
-  validarDoc(): boolean {
+   validarDoc()  {
     const documen = document.getElementById('NumDocumento');
     const errordocument = document.getElementById('erroresDocumento');
-
+ 
     if (this.Doc.errors != null) {
       if (this.Doc.errors.required) {
-        console.log('este campo es requrido')
-        documen.className = 'form-control is-invalid'
-        errordocument.innerHTML = 'Este campo es requerido'
+        documen.className = 'form-control is-invalid';
+        errordocument.innerHTML = 'Este campo es requerido';
+        this.ValidarExistentes.Documento = false;
+
       } else if (this.Doc.errors.pattern) {
-        documen.className = 'form-control is-invalid'
-        errordocument.innerHTML = 'Debes ingresar un documento valido'
+
+        documen.className = 'form-control is-invalid';
+        errordocument.innerHTML = 'Debes ingresar un documento valido';
+        this.ValidarExistentes.Documento = false;
       }
     } else {
-      documen.className = 'form-control is-valid';
+     this.ValidacionesService.PostValidacionDocumento({ NumeroIdentificacion: this.Doc.value}).subscribe(
+        res=>{
+          if(res.Estado == "Correcto"){
+            documen.className = 'form-control is-valid';
+            this.ValidarExistentes.Documento = true;
+          }else{
+            this.ValidarExistentes.Documento = false;
+            documen.className = 'form-control is-invalid';
+            errordocument.innerHTML = 'Numero de documento ya registrado '
+          }
+        },
+        err=>{
+          this.ValidarExistentes.Documento = false;
+        }
+      );
+    
+    }
+  }
+  validarGenero(): boolean {
+
+    const Genero = document.getElementById('Genero');
+    const errorGenero = document.getElementById('erroresGenero');
+    if (this.Genero.errors != null) {
+      if (this.Genero.errors.required) {
+        Genero.className = 'form-control is-invalid'
+        errorGenero.innerHTML = 'Este campo es requerido'
+      } return false;
+    } else {
+      Genero.className = 'form-control is-valid';
+      return true;
+    }
+  }
+  validarDate(): boolean {
+
+    const Date = document.getElementById('Date');
+    const errorDate = document.getElementById('erroresDate');
+    if (this.Date.errors != null) {
+      if (this.Date.errors.required) {
+        Date.style.border= " 1px solid red";
+        errorDate.innerHTML = 'Este campo es requerido'
+      } 
+      return false;
+    } else {
+       Date.style.border= " 1px solid green";
+      return true;
+    }
+
+  }
+  validarNumTelefono(): boolean {
+    const NumTelefono = document.getElementById('NumTelefono');
+    const errorNumTelefono = document.getElementById('erroresNumTelefono');
+
+    if (this.NumTelefono.errors != null) {
+      if (this.NumTelefono.errors.required) {
+        NumTelefono.className = 'form-control is-invalid'
+        errorNumTelefono.innerHTML = 'Este campo es requerido'
+      } else if (this.Doc.errors.pattern) {
+        NumTelefono.className = 'form-control is-invalid'
+        errorNumTelefono.innerHTML = 'Debes ingresar un numero valido'
+      }
+    } else {
+      NumTelefono.className = 'form-control is-valid';
       return true;
     }
   }
@@ -260,6 +368,19 @@ export class RegistroComponent implements OnInit {
       } return false;
     } else {
       ciudad.className = 'form-control is-valid';
+      return true;
+    }
+  }
+  validarDireccion(): boolean {
+    const Direccion = document.getElementById('Direccion');
+    const errorDireccion = document.getElementById('erroresDireccion');
+    if (this.Direccion.errors != null) {
+      if (this.Direccion.errors.required) {
+        Direccion.className = 'form-control is-invalid'
+        errorDireccion.innerHTML = 'Este campo es requerido'
+      } return false;
+    } else {
+      Direccion.className = 'form-control is-valid';
       return true;
     }
   }
@@ -333,25 +454,43 @@ export class RegistroComponent implements OnInit {
     }
   }
   // Step 5
-  validarEmail(): boolean {
+   validarEmail() {
     const Email = document.getElementById('CorreoElectronico');
     const errorEmail = document.getElementById('erroresEmail');
-
+  
     if (this.CorreoElectronico.errors != null) {
       if (this.CorreoElectronico.errors.required) {
-        console.log('este campo es requrido')
-        Email.className = 'form-control is-invalid'
-        errorEmail.innerHTML = 'Este campo es requerido'
+        Email.className = 'form-control is-invalid';
+        errorEmail.innerHTML = 'Este campo es requerido';
+        this.ValidarExistentes.Correo = false;
       } else if (this.CorreoElectronico.errors.pattern) {
-        Email.className = 'form-control is-invalid'
-        errorEmail.innerHTML = 'Ingresa un correo electronico Valido'
+        Email.className = 'form-control is-invalid';
+        errorEmail.innerHTML = 'Ingresa un correo electronico Valido';
+        this.ValidarExistentes.Correo = false;
 
       }
-      return false;
+      
     } else {
-      Email.className = 'form-control is-valid';
-      return true;
+      this.ValidacionesService.PostValidacionCorreo({ CorreoElectronico: this.CorreoElectronico.value}).subscribe(
+        res=>{
+          if(res.Estado == "Correcto"){
+            Email.className = 'form-control is-valid';
+            this.ValidarExistentes.Correo = true;
+          }else{
+            Email.className = 'form-control is-invalid';
+            this.ValidarExistentes.Correo = false;
+            errorEmail.innerHTML = 'Correo electroico ya registrado '
+           
+          }
+        },
+        err=>{
+          this.ValidarExistentes.Correo = false;
+        }
+      );
+     
+    
     }
+  
   }
   validarPass(): boolean {
     const Password = document.getElementById('Pass');
@@ -359,7 +498,7 @@ export class RegistroComponent implements OnInit {
 
     if (this.Contrasena.errors != null) {
       if (this.Contrasena.errors.required) {
-        console.log('este campo es requrido')
+     
         Password.className = 'form-control is-invalid'
         errorPass.innerHTML = 'Este campo es requerido'
       } else if (this.Contrasena.errors.minlength) {
@@ -386,7 +525,7 @@ export class RegistroComponent implements OnInit {
     const errorPass = document.getElementById('erroresConfirm');
     if (this.Contrasena.errors == null) {
       if (this.Contrasena.value == event.target.value) {
-        console.log('epa Hpta')
+
         ConfirmPassword.className = 'form-control is-valid';
         return true;
       } else {
@@ -418,14 +557,15 @@ export class RegistroComponent implements OnInit {
 
   }
   continue(step) {
+ 
     switch (this.steps) {
       case 1:
-        if (this.validarName() &&  this.validarApellidos() && this.validarTipoDoc() && this.validarDoc()) {
+        if (this.validarName() &&  this.validarApellidos() && this.validarTipoDoc() && this.ValidarExistentes.Documento && this.validarGenero() && this.validarNumTelefono()  && this.validarDate() )  {
           this.stepsfunction(step);
         }
         break;
       case 2:
-        if (this.validarPais() && this.ValidarDepartamento() && this.validarCiudad()) {
+        if (this.validarPais() && this.ValidarDepartamento() && this.validarCiudad() && this.validarDireccion() ){
           this.stepsfunction(step);
 
         }
@@ -449,24 +589,91 @@ export class RegistroComponent implements OnInit {
     }
   }
   Registrarse() {
+   
+    const  errorTerminos = document.getElementById('erroresConfirm');
     if (this.RegisterForm.valid) {
-      // this.loginService.PostLoguearse({
-      //   CorreoElectronico: this.LoginUsuario.CorreoElectronico,
-      //   Contrasena: this.LoginUsuario.Contrasena
-      // });
-      // .subscribe(
-      // res => {
-      //   alert(res.Estado);
-      // }, err => {
-      //   alert(err);
-      // }
-      // );
-      console.log(this.RegisterForm);
-    } else {
+      if(this.Terminos){
 
-      console.log('No valido');
+        if( this.ValidarExistentes.Correo == true && this.ValidarExistentes.Documento == true ){
+
+
+        
+
+        this.RegistrarService.PostMandarCorreoCrear([{
+          Nombres : this.Nombres.value,
+          Apellidos : this.Apellidos.value,
+          FechaNacimiento: this.Date.value.toJSON().slice(0, 10),
+          idTipoIdentificacion : this.TipoDocumento.value,
+          NumeroIdentificacion : this.Doc.value,
+          idProfesion : this.Profesion.value,
+          idClasificacionEtnica : this.TipoPoblacion.value,
+          CorreoElectronico : this.CorreoElectronico.value,
+          Contrasena :this.Contrasena.value,
+          idTipoGenero: this.Genero.value,
+          idNivelAcademico:this.NivelAcademico.value,
+          Telefono: this.NumTelefono.value
+        },{
+          idTipoSeguridadSocial: this.CondicionSocial.value,
+          Descripcion: this.DescripcionCondicion.value
+        },{
+          idPais: this.PaisResidencia.value,
+          idCiudad: this.Ciudad.value,
+          idDepartamento: this.Departamento.value,
+          Direccion: this.Direccion.value
+        }]).subscribe(
+          res=>{
+            if(res.Estado == "Correcto"){
+              alert("Se le ah envado Un Correo Exitosamente para validar su registro");
+              this.Router.navigateByUrl('/Inicio');
+            }
+          },
+          err=>{
+            alert("Hubo un error al enviar su correo");
+          }
+        )
+
+        }
+
+      }else{
+       
+        errorTerminos.innerHTML = 'Acepte los Terminos y Condiciones';
+
+      }
+     
+    } else {
+      errorTerminos.innerHTML = 'Acepte los Terminos y Condiciones';
+
     }
   }
+  validarTerminos(event){
+    this.Terminos = event.checked;
+  }
+  CrearUsuario(){
+ 
+  
+    this.RegistrarService.PostCrearUsuario({TokenRegister: this.TokenRegister}).subscribe(
+      res=>{
+
+        if(res.Estado == "Correcto"){
+
+          var ValidacionCuenta = document.getElementById("ValidacionCuenta");
+          ValidacionCuenta.innerHTML = "Su cuenta se a creado Correctamente";
+
+        }else{
+          var ValidacionCuenta = document.getElementById("ValidacionCuenta");
+          ValidacionCuenta.innerHTML = "Link Expirado.";
+
+        }
+      },
+      err=>{
+        var ValidacionCuenta = document.getElementById("ValidacionCuenta");
+        ValidacionCuenta.innerHTML = "Link Expirado.";
+      }
+    )
+  }
+
+
+
   get Nombres() { return this.RegisterForm.get('Nombres'); }
   get Apellidos() { return this.RegisterForm.get('Apellidos'); }
   get Doc() { return this.RegisterForm.get('Doc'); }
@@ -481,5 +688,12 @@ export class RegistroComponent implements OnInit {
   get DescripcionCondicion() { return this.RegisterForm.get('DescripcionCondicion'); }
   get NivelAcademico() { return this.RegisterForm.get('NivelAcademico'); }
   get Profesion() { return this.RegisterForm.get('Profesion'); }
+  get Direccion() { return this.RegisterForm.get('Direccion'); }
+  get Genero() { return this.RegisterForm.get('Genero'); }
+  get Date() { return this.RegisterForm.get('Date'); }
+  get NumTelefono() { return this.RegisterForm.get('NumTelefono'); }
+
+  
+  
 
 }

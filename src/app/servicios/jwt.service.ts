@@ -18,7 +18,7 @@ export class JWTService {
     }
 
 
-    ValidarLoginBarraSuperior(TokenLogin: string) : Observable<any>{
+    PostValidarLoginBarraSuperior(TokenLogin: string) : Observable<any>{
      
       return this.http.post(`${this.ApiURL}Validar/TokenLogin/`,{ TokenLogin: TokenLogin});
   

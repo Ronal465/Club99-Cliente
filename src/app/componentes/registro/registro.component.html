@@ -7,7 +7,7 @@
  -->
 <app-barra-superior></app-barra-superior>
 
-<ng-container id="Registrar">
+<ng-container id="Registrar" *ngIf="Option == 1">
 
    <div class="limiter">
       <div class="container-login100">
@@ -17,7 +17,7 @@
                REGISTRO
             </span>
             <!-- Formulario registro -->
-            <form class="login100-form pb-4 pl-5 pr-5" [formGroup]="RegisterForm" (ngSubmit)="Registrarse()">
+            <form class="login100-form pb-4 pl-5 pr-5" [formGroup]="RegisterForm">
                <!-- Step 1 -->
                <div *ngIf="steps==1">
                   <!-- Subtitulo -->
@@ -26,10 +26,11 @@
                   </span>
                   <!-- Campo Nombres -->
                   <div class="form-group mb-3">
-                     <input type="text" name="Nombres" id="Nombres" formControlName="Nombres"
-                        (input)="validarName()" class="form-control" placeholder="Nombres" required>
+                     <input type="text" name="Nombres" id="Nombres" formControlName="Nombres" (input)="validarName()"
+                        class="form-control" placeholder="Nombres" required>
                      <div id="erroresNombres" class="invalid-feedback">Este campo solo acepta letras</div>
                   </div>
+                  <!-- Campo Apellidos -->
                   <div class="form-group mb-3">
                      <input type="text" name="Apellidos" id="Apellidos" formControlName="Apellidos"
                         (input)="validarApellidos()" class="form-control" placeholder="Apellidos" required>
@@ -46,19 +47,44 @@
                      </select>
                      <div id="erroresTipoDocumento" class="invalid-feedback">Este campo solo acepta letras</div>
                   </div>
-
                   <!-- Campo numero de documento -->
                   <div class="form-group mb-3">
                      <input type="number" name="NumDocumento" (input)="validarDoc()" formControlName="Doc"
                         id="NumDocumento" class="form-control" placeholder="No de Documento">
                      <div id="erroresDocumento" class="invalid-feedback">Este campo solo acepta letras</div>
                   </div>
-                  <mat-form-field color="accent" appearance="fill">
-                     <mat-label>Inherited calendar color</mat-label>
-                     <input matInput [matDatepicker]="picker1">
-                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                     <mat-datepicker #picker1></mat-datepicker>
-                   </mat-form-field>
+                  <!-- Campo Genero -->
+                  <div class="form-group mb-3">
+                     <select formControlName="Genero" id='Genero' type="text" (change)="validarGenero()" name="Genero"
+                        class="form-control" required placeholder="d.ff">
+                        <option hidden [ngValue]="null" selected>Genero</option>
+                        <option *ngFor="let Genero of Generos " value="{{Genero.idTipoGenero}}">
+                           {{Genero.Nombre}}</option>
+
+                     </select>
+                     <div id="erroresGenero" class="invalid-feedback">Este campo solo acepta letras</div>
+                  </div>
+                  <!-- Campo numero de telefono -->
+                  <div class="form-group mb-3">
+                     <input type="number" name="NumTelefono" (input)="validarNumTelefono()"
+                        formControlName="NumTelefono" id="NumTelefono" class="form-control"
+                        placeholder="No de Telefono">
+                     <div id="erroresNumTelefono" class="invalid-feedback">Este campo solo acepta numeros</div>
+                  </div>
+                  <!-- Campo numero de FechaNacimiento -->
+                  <div class="form-group mb-3">
+                     <mat-form-field appearance="fill" style="width: 100%; height: 100%;" id="Date">
+                        <mat-label>Fecha Nacimiento</mat-label>
+                        <input matInput [matDatepicker]="dp3" disabled formControlName="Date"
+                           (dateChange)="validarDate()">
+                        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                     </mat-form-field>
+                     <div id="erroresDate" class="invalid-feedback">Este campo solo fechas</div>
+
+                  </div>
+
+
                </div>
 
                <!-- Step 2 -->
@@ -90,7 +116,6 @@
                      <div id="erroresDepartamento" class="invalid-feedback">Este campo solo acepta letras</div>
                   </div>
 
-
                   <!-- Campo Ciudad -->
                   <div class="input-group mb-3">
                      <select type="text" formControlName='Ciudad' id='Ciudad' (change)="validarCiudad()" name="Ciudad"
@@ -103,9 +128,13 @@
                   </div>
 
                   <!-- Campo Direccion -->
-                  <div class="input-group mb-3">
-                     <input type="text" name="Direccion" class="form-control" placeholder="Dirección">
+                  <div class="form-group mb-3">
+                     <input type="text" name="Direccion" id="Direccion" formControlName="Direccion"
+                        (input)="validarDireccion()" class="form-control" placeholder="Dirección" required>
+                     <div id="erroresDireccion" class="invalid-feedback">Este campo es obligatorio</div>
                   </div>
+
+
                </div>
 
                <!-- Step 3 -->
@@ -167,11 +196,11 @@
 
                   <!-- Campo Profesion -->
                   <div class="input-group mb-3">
-                     <select type="text" formControlName='Profesion' id='Profesion'
-                        (change)="validarProfesion()" name="Profesion" class="form-control">
+                     <select type="text" formControlName='Profesion' id='Profesion' (change)="validarProfesion()"
+                        name="Profesion" class="form-control">
                         <option hidden [ngValue]="null" selected>Profesion</option>
-                        <option *ngFor="let profe of Profesiones"
-                           value="{{profe.idProfesion}} "> {{profe.Nombre}} </option>
+                        <option *ngFor="let profe of Profesiones" value="{{profe.idProfesion}} "> {{profe.Nombre}}
+                        </option>
 
                      </select>
                      <div id="erroresProfesion" class="invalid-feedback">Este campo solo acepta letras</div>
@@ -198,7 +227,6 @@
                         name="password" class="form-control" placeholder="Contraseña">
                      <div id="erroresPassword" class="invalid-feedback">Este campo solo acepta letras</div>
                   </div>
-
                   <!-- Campo Confirmar Contraseña-->
                   <div class="input-group mb-3">
                      <input type="password" name="confirmPassword" id="confirmPassword"
@@ -206,17 +234,21 @@
                      <div id="erroresConfirm" class="invalid-feedback">Este campo solo acepta letras</div>
                   </div>
                   <!-- Check de Terminos y politicas de privacidad -->
-                  <div class="form-check">
-                     <input type="checkbox" class="form-check-input" id="checkTerminos">
+                  <div class="form-check mb-3">
+                     <input type="checkbox" class="form-check-input" id="checkTerminos"
+                        (change)="validarTerminos($event.target)">
                      <label class="form-check-label" for="checkTerminos">Acepto los <a href="#">Términos de servicio</a>
                         y
                         las <a href="#">Políticas de privacidad</a> </label>
+                     <div id="erroresTerminos" class="invalid-feedback">Debe aceptar los terminos y condicones</div>
                   </div>
+
+
                   <br>
                   <!-- Boton final para creacion de cuenta -->
                   <div class="container-login100-form-btn">
                      <button type="submit" (click)='Registrarse()' [disabled]="!RegisterForm.valid"
-                       class="login100-form-btn2">
+                        class="login100-form-btn2">
                         Crear mi cuenta
                      </button>
                   </div>
@@ -415,6 +447,39 @@
                      class="fas fa-arrow-circle-right steps-icon-disabled rounded-circle">--</i>
                </div>
             </div>
+         </div>
+      </div>
+   </div>
+
+</ng-container>
+
+
+<ng-container id="ValidarRegister" *ngIf="Option == 2">
+
+   <div class="limiter">
+      <div class="container-login100">
+         <div class="wrap-login100">
+            <!-- Titulo Registro -->
+            <span class="login100-form-title">
+               Validar Registro
+            </span>
+            <!-- Formulario registro -->
+            <form class="login100-form pb-4 pl-5 pr-5" [formGroup]="RegisterForm">
+               <!-- Step 1 -->
+               <div >
+                  <!-- Subtitulo -->
+                  <span class="login100-form-title2">
+                     Validacion Correcta
+                  </span>
+
+                  <div class="form-group mb-3">
+                     <p  id="ValidacionCuenta">
+                        Validacion De Cuenta
+                     </p>
+                  </div>
+
+               </div>
+              </form>
          </div>
       </div>
    </div>

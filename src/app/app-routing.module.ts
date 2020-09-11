@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { RecuperarContrasenaComponent } from './componentes/recuperar-contrasena/recuperar-contrasena.component';
-import { CambiarContrasenaComponent } from './componentes/cambiar-contrasena/cambiar-contrasena.component';
 import { ReportesComponent } from './componentes/reportes/reportes.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { CategoriasComponent } from "./componentes/categorias/categorias.component";
@@ -19,12 +18,8 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'recuperar-contraseña',
+    path: 'RecuperarContraseña',
     component: RecuperarContrasenaComponent
-  },
-  {
-    path: 'cambiar-contraseña',
-    component: CambiarContrasenaComponent
   },
   {
     path: 'Inicio',
@@ -37,6 +32,13 @@ const routes: Routes = [
   {
     path: 'Registro',
     component: RegistroComponent
+  },
+  {
+    path: 'ValidacionCorreoRegistro/:TokenRegister',
+    component: RegistroComponent
+  },{
+    path: 'RecuperarContrasena/:TokenRecuperar',
+    component: RecuperarContrasenaComponent
   },
   {
     path: 'Categorías',

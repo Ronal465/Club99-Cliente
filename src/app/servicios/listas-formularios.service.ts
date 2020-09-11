@@ -56,7 +56,6 @@ export class ListasFormulariosService {
     return this.http.get(`${this.ApiURL}/list/ClasificacionEtnica`);
 
   }
-  
 
   GetListatipoidentificacion() : Observable<any>{
      
@@ -70,14 +69,12 @@ export class ListasFormulariosService {
 
   }
 
-
   GetListaPaises() : Observable<any>{
      
     return this.http.get(`${this.ApiURL}/list/Pais`);
 
   }
   
-
   GetListaNivelAcademico() : Observable<any>{
      
     return this.http.get(`${this.ApiURL}/list/NivelAcademico`);
@@ -89,6 +86,14 @@ export class ListasFormulariosService {
     return this.http.get(`${this.ApiURL}/list/Profesion`);
 
   }
+
+  GetListaGeneros() : Observable<any>{
+     
+    return this.http.get(`${this.ApiURL}/list/TipoGenero`);
+
+  }
+  
+
 
 
 }
