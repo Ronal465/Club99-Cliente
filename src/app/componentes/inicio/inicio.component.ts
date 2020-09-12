@@ -22,4 +22,8 @@ export class InicioComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  InfoCurso(){
+    alert("Le estoy mostrando un curso eva e maria");
+  }
 }

@@ -20,6 +20,7 @@ import { RecuperarContrasenaComponent } from './componentes/recuperar-contrasena
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { CategoriasComponent } from './componentes/categorias/categorias.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ComunidadComponent } from './componentes/comunidad/comunidad.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReportesComponent,
     RecuperarContrasenaComponent,
     RegistroComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    ComunidadComponent
   ],
   imports: [
     BrowserModule,

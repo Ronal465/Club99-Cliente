@@ -55,11 +55,11 @@ JsonBuscarCurso = [
       [{
         idTipoFiltro: 0,
         idFiltro: 0,
-        Nombre: "Puteria"
+        Nombre: "Gratis"
       }, {
         idTipoFiltro: 0,
         idFiltro: 0,
-        Nombre: "Zorreria"
+        Nombre: "Paises"
       }]
     ],
     [
@@ -67,7 +67,7 @@ JsonBuscarCurso = [
         idCurso: 0,
         Nombre: "Como ser costeño",
         Descripcion: "Los venecos Dominan",
-        LinkImagen: "veeneco.com",
+        LinkImagen: "https://www.infobae.com/new-resizer/XuO8IeUAerRJb3BMZSe6TCc_AZQ=/420x280/filters:format(jpg):quality(85)//arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/LZHCA3UL5NGL5MAEFYIGON7NUI.jpg",
         Valoracion: 5
       },
       {
@@ -77,11 +77,11 @@ JsonBuscarCurso = [
       [{
         idTipoFiltro: 0,
         idFiltro: 0,
-        Nombre: "Puteria"
+        Nombre: "Gratis"
       }, {
         idTipoFiltro: 0,
         idFiltro: 0,
-        Nombre: "Zorreria"
+        Nombre: "Paises"
       }]
     ]
 

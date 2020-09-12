@@ -47,6 +47,7 @@ export class BarraSuperiorComponent implements OnInit {
   ValidarUsuario(){
 
     var TokenLogin = localStorage.getItem('TokenLogin');
+    console.log(TokenLogin);
 
     this.JWTService.PostValidarLoginBarraSuperior(TokenLogin).subscribe(
       res=>{
@@ -67,7 +68,7 @@ export class BarraSuperiorComponent implements OnInit {
   }
 
   CerrarSesion(){
-    alert("Gonorrea");
+    alert("Se Cerro La Sesion");
     localStorage.removeItem('TokenLogin');
   }
 

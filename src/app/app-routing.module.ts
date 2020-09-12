@@ -6,6 +6,7 @@ import { RecuperarContrasenaComponent } from './componentes/recuperar-contrasena
 import { ReportesComponent } from './componentes/reportes/reportes.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { CategoriasComponent } from "./componentes/categorias/categorias.component";
+import { ComunidadComponent } from './componentes/comunidad/comunidad.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,14 @@ const routes: Routes = [
   },
   {
     path: 'Categorías',
+    component: CategoriasComponent
+  },
+  {
+    path: 'Comunidad',
+    component: ComunidadComponent
+  },
+  {
+    path: 'Buscador',
     component: CategoriasComponent
   },
   {
