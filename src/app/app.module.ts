@@ -21,6 +21,8 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { CategoriasComponent } from './componentes/categorias/categorias.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComunidadComponent } from './componentes/comunidad/comunidad.component';
+import { EditarperfilComponent } from './componentes/editarperfil/editarperfil.component';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { ComunidadComponent } from './componentes/comunidad/comunidad.component'
     RecuperarContrasenaComponent,
     RegistroComponent,
     CategoriasComponent,
-    ComunidadComponent
+    ComunidadComponent,
+    EditarperfilComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,8 @@ import { ComunidadComponent } from './componentes/comunidad/comunidad.component'
     MatNativeDateModule,
     MatDatepickerModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
 
   ],
   providers: [],
