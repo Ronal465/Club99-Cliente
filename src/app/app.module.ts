@@ -24,6 +24,9 @@ import { ComunidadComponent } from './componentes/comunidad/comunidad.component'
 import { BarraInferiorComponent } from './componentes/barra-inferior/barra-inferior.component';
 import { MirarVideoComponent } from './componentes/mirar-video/mirar-video.component';
 import {MatSelectModule} from '@angular/material/select';
+import { EditarperfilComponent } from './componentes/editarperfil/editarperfil.component';
+import {MatButtonModule} from '@angular/material/button';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +39,8 @@ import {MatSelectModule} from '@angular/material/select';
     CategoriasComponent,
     ComunidadComponent,
     BarraInferiorComponent,
-    MirarVideoComponent
+    MirarVideoComponent,
+    EditarperfilComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonModule
 
   ],
   providers: [],

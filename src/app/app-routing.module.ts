@@ -8,6 +8,7 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { CategoriasComponent } from "./componentes/categorias/categorias.component";
 import { ComunidadComponent } from './componentes/comunidad/comunidad.component';
 import { MirarVideoComponent } from "./componentes/mirar-video/mirar-video.component";
+import { EditarperfilComponent } from './componentes/editarperfil/editarperfil.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,11 @@ const routes: Routes = [
   {
     path: 'Buscador',
     component: CategoriasComponent
+  },
+  
+  {
+    path: 'Editarperfil',
+    component: EditarperfilComponent
   },
   {
     path: '**',
