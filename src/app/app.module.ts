@@ -21,8 +21,12 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { CategoriasComponent } from './componentes/categorias/categorias.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComunidadComponent } from './componentes/comunidad/comunidad.component';
+import { BarraInferiorComponent } from './componentes/barra-inferior/barra-inferior.component';
+import { MirarVideoComponent } from './componentes/mirar-video/mirar-video.component';
+import {MatSelectModule} from '@angular/material/select';
 import { EditarperfilComponent } from './componentes/editarperfil/editarperfil.component';
 import {MatButtonModule} from '@angular/material/button';
+import { EditarusuarioComponent } from './componentes/editarusuario/editarusuario.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,15 @@ import {MatButtonModule} from '@angular/material/button';
     RegistroComponent,
     CategoriasComponent,
     ComunidadComponent,
+
+    EditarperfilComponent,
+    EditarusuarioComponent,
+   
+
+    BarraInferiorComponent,
+    MirarVideoComponent,
     EditarperfilComponent
+e96b53e00570d922ac32bfa1dc3a9283580fd2
   ],
   imports: [
     BrowserModule,
@@ -48,6 +60,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatButtonModule
 
   ],

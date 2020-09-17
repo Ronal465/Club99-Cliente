@@ -7,13 +7,19 @@ import { ReportesComponent } from './componentes/reportes/reportes.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { CategoriasComponent } from "./componentes/categorias/categorias.component";
 import { ComunidadComponent } from './componentes/comunidad/comunidad.component';
+import { MirarVideoComponent } from "./componentes/mirar-video/mirar-video.component";
 import { EditarperfilComponent } from './componentes/editarperfil/editarperfil.component';
+import {EditarusuarioComponent} from './componentes/editarusuario/editarusuario.component';
+
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/Inicio',
     pathMatch: 'full'
+  },{
+    path:'MirarVideo',
+    component: MirarVideoComponent
   },
   {
     path: 'Login',
@@ -54,6 +60,13 @@ const routes: Routes = [
     path: 'Buscador',
     component: CategoriasComponent
   },
+ 
+  
+  {
+    path: 'EditarUsuario',
+    component: EditarusuarioComponent
+  },
+ 
   
   {
     path: 'Editarperfil',
