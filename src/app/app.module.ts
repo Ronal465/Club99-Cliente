@@ -40,14 +40,16 @@ import { EditarusuarioComponent } from './componentes/editarusuario/editarusuari
     CategoriasComponent,
     ComunidadComponent,
 
+
     EditarperfilComponent,
     EditarusuarioComponent,
    
 
+
+
     BarraInferiorComponent,
     MirarVideoComponent,
     EditarperfilComponent
-e96b53e00570d922ac32bfa1dc3a9283580fd2
   ],
   imports: [
     BrowserModule,
