@@ -7,12 +7,16 @@ import { ReportesComponent } from './componentes/reportes/reportes.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { CategoriasComponent } from "./componentes/categorias/categorias.component";
 import { ComunidadComponent } from './componentes/comunidad/comunidad.component';
+import { MirarVideoComponent } from "./componentes/mirar-video/mirar-video.component";
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/Inicio',
     pathMatch: 'full'
+  },{
+    path:'MirarVideo',
+    component: MirarVideoComponent
   },
   {
     path: 'Login',

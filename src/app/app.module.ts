@@ -21,7 +21,9 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { CategoriasComponent } from './componentes/categorias/categorias.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComunidadComponent } from './componentes/comunidad/comunidad.component';
-
+import { BarraInferiorComponent } from './componentes/barra-inferior/barra-inferior.component';
+import { MirarVideoComponent } from './componentes/mirar-video/mirar-video.component';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,9 @@ import { ComunidadComponent } from './componentes/comunidad/comunidad.component'
     RecuperarContrasenaComponent,
     RegistroComponent,
     CategoriasComponent,
-    ComunidadComponent
+    ComunidadComponent,
+    BarraInferiorComponent,
+    MirarVideoComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,8 @@ import { ComunidadComponent } from './componentes/comunidad/comunidad.component'
     MatNativeDateModule,
     MatDatepickerModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
 
   ],
   providers: [],

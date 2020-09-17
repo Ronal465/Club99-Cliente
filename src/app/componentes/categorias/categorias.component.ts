@@ -83,6 +83,28 @@ JsonBuscarCurso = [
         idFiltro: 0,
         Nombre: "Paises"
       }]
+    ],
+    [
+      {
+        idCurso: 0,
+        Nombre: "Como Ganar El Corazon De Hanna",
+        Descripcion: "Ponme Atencio uwu",
+        LinkImagen: "https://i.ytimg.com/vi/2WbnJfAbG7U/maxresdefault.jpg",
+        Valoracion: 5
+      },
+      {
+        idUsuario: 0,
+        Nombre: "Ronaldo Carlos"
+      },
+      [{
+        idTipoFiltro: 0,
+        idFiltro: 0,
+        Nombre: "Amame"
+      }, {
+        idTipoFiltro: 0,
+        idFiltro: 0,
+        Nombre: "Amorcito"
+      }]
     ]
 
 
