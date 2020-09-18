@@ -1,0 +1,130 @@
+.limiter {
+    width: 100%;
+    margin: 0 auto;
+    background-image: url("../../../img/fondo_registro.png");
+    background-size: cover;
+    background-position-y: center;
+    background-repeat: no-repeat;
+}
+.container-Categorias {
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    padding: 15px;
+    position: relative;
+}
+.Buscador {
+
+    margin-top: 10vh;
+    margin-left: 30%;
+    width:40%;
+    height: 7vh;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 90% 10%;
+    grid-template-columns: 90% 10%;
+    -ms-grid-rows: 100%;
+    grid-template-rows: 100%;
+    position: absolute;
+}
+.BarraBuscador{
+      width: 100%;
+      height: 100%;
+      border: 2px solid black;
+}
+.BotonBuscador{
+    margin: 0;
+    width: 90%;
+    height: 100%;
+    margin-left: 10%;
+    border: 2px solid black;
+}
+.ContainerFiltros{
+
+    margin-top: 25vh;
+    margin-left: 2%;
+    width:25%;
+    border:  2px solid black;
+    position: absolute;
+}
+.ContainerCursos{
+
+    margin-top: 25vh;
+    margin-left: 30%;
+    width:65%;
+    border:  2px solid black;
+    position: absolute;
+}
+.CursoLista{
+    
+      margin-left: 2%;
+      border: 2px solid black;
+      height: 20vh;
+      margin: 2vh;
+      display: -ms-grid;
+      display: grid;
+      -ms-grid-columns: 20% 80%;
+      grid-template-columns: 20% 80%;
+      -ms-grid-rows: 100%;
+      grid-template-rows: 100%;
+
+}
+.InfoCurso{
+    border: 2px solid blue;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 100%;
+    grid-template-columns: 100%;
+    -ms-grid-rows: 50% 50%;
+    grid-template-rows:  50% 50%;
+}
+.ImagenCurso{
+
+      margin: 1px;
+      border: 2px solid red;
+}
+.InfoCurso1{
+    border: 2px solid blue;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 80% 20%;
+    grid-template-columns: 80% 20%;
+    -ms-grid-rows:  100%;
+    grid-template-rows:  100%;
+}
+.InfoCurso2{
+    border: 2px solid pink;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 90% 10%;
+    grid-template-columns: 90% 10%;
+    -ms-grid-rows:  100%;
+    grid-template-rows:  100%;
+}
+.BotonCurso{
+    height:  100%;
+    width: 100%;
+}
+.FiltroExclusividad{
+  margin: 1vh;
+  border: 2px solid tomato;
+
+}
+.FiltroExclusivo{
+  width: 100%;
+  height: 5vh;
+  border: 2px solid turquoise;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 90% 10%;
+  grid-template-columns: 90% 10%;
+  -ms-grid-rows:  100%;
+  grid-template-rows:  100%;
+}
+.ImagenCurso img{
+  height: 100%;
+  width: 100%;
+}

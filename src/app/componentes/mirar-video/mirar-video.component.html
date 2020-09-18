@@ -1,0 +1,71 @@
+<app-barra-superior></app-barra-superior>
+
+<div class="Pantalla">
+  <div class="Cabezera">
+    <div class="Titulo">
+      <p id="NomreCurso"  > {{Curso[0].Nombre }}</p>
+    </div>
+    <div class="Titulo2">
+      Tu Progreso
+    </div>
+    <div class="BarraProgreso">
+      <div class="progress">
+        <div id="Profeso" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
+          aria-valuemax="100">{{PorcentajeCurso}}%</div>
+      </div>
+    </div>
+  </div>
+  <div class="DataListSecciones">
+    <mat-form-field appearance="fill" >
+      <mat-label> {{Seccion.Numero}} {{Seccion.Nombre}} </mat-label >
+      <mat-select >
+        <mat-option  value="{{Seccion.idSeccionCurso}}" *ngFor="let Seccion of Secciones">
+          {{Seccion.Numero}} {{Seccion.Nombre}} 
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="ContenidoCurso">
+    <div class="Video" *ngIf="Seccion.idTipoArchivoMultimedia == 1">
+      <video controls>
+        <source
+          src="https://club99.s3.us-east-2.amazonaws.com/VideosCursos/%C2%BFQu%C3%A9+es+angular+y+para+que+sirve_.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="Descargable" *ngIf="Seccion.idTipoArchivoMultimedia == 2">
+    </div>
+    <div class="Video" *ngIf="Seccion.idTipoArchivoMultimedia == 3">
+    </div>
+  </div>
+  <div class="InfoCurso">
+    <p>{{Seccion.Contenido}} </p>
+    
+  </div>
+  <div class="CuadriculaPreguntasProfesor">
+    <div class="ConatinerProfesor" >
+      <div class="ImagenProfesor">
+ 
+        <img src="{{Profesor.LinkImagenProfesor}}">
+      </div>
+      <div class="InfoProfesor">
+          <div class="NombreProfesor">
+            <h3>Profesor:</h3>
+          </div>
+          <div class="Experiencia">
+            <h3>Experencia:</h3>
+          </div>
+          <div class="CursoProfesor">
+            <h3>CursosProfesor:</h3>
+          </div>
+      </div>
+    </div >
+    <div class="PreguntasCurso">
+
+    </div>
+  </div>
+
+
+</div>
+
+<app-barra-inferior></app-barra-inferior>

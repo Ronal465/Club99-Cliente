@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ListasFormulariosService } from "../../servicios/listas-formularios.service";
+import { JWTService } from "../../servicios/jwt.service";
 
 @Component({
   selector: 'app-barra-superior',
@@ -16,9 +18,59 @@ import { Component, OnInit } from '@angular/core';
 
 export class BarraSuperiorComponent implements OnInit {
 
-  constructor() { }
+   ListFuncionTipoUsuarios = [];
+
+
+
+  constructor(private ListasFormulariosService: ListasFormulariosService,private JWTService : JWTService) { }
 
   ngOnInit() {
+
+
+    this.ValidarUsuario();
+   
+
+
   }
+
+  ListarFuncionesTipoUsuario(IntIdUsuario) {
+
+    this.ListasFormulariosService.GetListaFuncionTipoUsuario(IntIdUsuario).subscribe(
+      res => {
+        this.ListFuncionTipoUsuarios = res;
+      },
+      err => {
+      }
+
+    )
+  }
+  ValidarUsuario(){
+
+    var TokenLogin = localStorage.getItem('TokenLogin');
+    console.log(TokenLogin);
+
+    this.JWTService.PostValidarLoginBarraSuperior(TokenLogin).subscribe(
+      res=>{
+
+        if(res.Estado == "Correcto"){
+          this.ListarFuncionesTipoUsuario(res.idTipoUsuario);
+
+        }else{
+          this.ListarFuncionesTipoUsuario(1);
+        }
+
+      },err =>{
+
+      }
+    )
+
+    
+  }
+
+  CerrarSesion(){
+    alert("Se Cerro La Sesion");
+    localStorage.removeItem('TokenLogin');
+  }
+
 
 }

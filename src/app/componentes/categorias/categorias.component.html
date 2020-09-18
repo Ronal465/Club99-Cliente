@@ -1,0 +1,55 @@
+<app-barra-superior></app-barra-superior>
+<div class="limiter">
+    <div class="container-Categorias">
+
+        <div class="Buscador">
+            <input class="BarraBuscador" [(ngModel)]="JsonBuscarCurso[0].TextoBusqueda" >
+            <button class="BotonBuscador" (click)="BuscarCursos()" ></button>
+        </div>
+        <div class="ContainerFiltros">
+            <div class="FiltroExclusividad">
+                <div class="TituloFiltro">
+                    Exclusivos
+                </div>
+                <div class="FiltroExclusivo" *ngFor="let Exclusivo of ListaFiltosExclusivos; let i = index">
+                    <div class="NombreFiltro">
+                        {{Exclusivo.Nombre}}
+                    </div>
+                    <div class="ChetBoxFiltro">
+                        <input type="checkbox" value="{{Exclusivo.idTipoExclusividad}}" (click)="FiltrosExclusivos(Exclusivo.Nombre,Exclusivo.idTipoExclusividad);"  [(ngModel)]="ListChetboxExcluvios[i].Valor"  >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ContainerCursos">
+            <div class="CursoLista" *ngFor="let Curso of ListCursos">
+                <div class="ImagenCurso">
+                    <img src="{{Curso[0].LinkImagen}}">
+                </div>
+                <div class="InfoCurso">
+                    <div class="InfoCurso1">
+                        <div class="NombreCurso">
+                            {{Curso[0].Nombre}}
+                        </div>
+                        <div class="AutorCurso">
+                            {{Curso[1].Nombre}}
+                        </div>
+                    </div>
+                    <div class="InfoCurso2">
+                        <div class="FiltrosCurso">
+                            <div class="FiltroCurs" *ngFor="let Fitltro of Curso[2]">
+                                {{Fitltro.Nombre}}
+                            </div>
+                        </div>
+                        <div class="BotonCurso">
+                            <button>Boton Accion</button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-barra-inferior></app-barra-inferior>

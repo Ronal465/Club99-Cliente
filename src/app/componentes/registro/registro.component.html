@@ -1,0 +1,488 @@
+<!-- Autor:
+     Ronaldo Carlos Rodriguez Perez
+     Ultima Edicion Por:
+     Ronaldo Carlos Rodriguez Perez
+     Fecha Ultima Edicion:
+    30/07/2020
+ -->
+<app-barra-superior></app-barra-superior>
+
+<ng-container id="Registrar" *ngIf="Option == 1">
+
+   <div class="limiter">
+      <div class="container-login100">
+         <div class="wrap-login100">
+            <!-- Titulo Registro -->
+            <span class="login100-form-title">
+               REGISTRO
+            </span>
+            <!-- Formulario registro -->
+            <form class="login100-form pb-4 pl-5 pr-5" [formGroup]="RegisterForm">
+               <!-- Step 1 -->
+               <div *ngIf="steps==1">
+                  <!-- Subtitulo -->
+                  <span class="login100-form-title2">
+                     Tus Datos Personales
+                  </span>
+                  <!-- Campo Nombres -->
+                  <div class="form-group mb-3">
+                     <input type="text" name="Nombres" id="Nombres" formControlName="Nombres" (input)="validarName()"
+                        class="form-control" placeholder="Nombres" required>
+                     <div id="erroresNombres" class="invalid-feedback">Este campo solo acepta letras</div>
+                  </div>
+                  <!-- Campo Apellidos -->
+                  <div class="form-group mb-3">
+                     <input type="text" name="Apellidos" id="Apellidos" formControlName="Apellidos"
+                        (input)="validarApellidos()" class="form-control" placeholder="Apellidos" required>
+                     <div id="erroresApellidos" class="invalid-feedback">Este campo solo acepta letras</div>
+                  </div>
+                  <!-- Campo tipo documentacion -->
+                  <div class="form-group mb-3">
+                     <select formControlName="TipoDocumento" id='TipoDocumento' type="text" (change)="validarTipoDoc()"
+                        name="TipoDocumento" class="form-control" required placeholder="d.ff">
+                        <option hidden [ngValue]="null" selected>Tipo de Documento</option>
+                        <option *ngFor="let Tipo of TiposDocumento " value="{{Tipo.idTipoIdentificacion}}">
+                           {{Tipo.Nombre}}</option>
+
+                     </select>
+                     <div id="erroresTipoDocumento" class="invalid-feedback">Este campo solo acepta letras</div>
+                  </div>
+                  <!-- Campo numero de documento -->
+                  <div class="form-group mb-3">
+                     <input type="number" name="NumDocumento" (input)="validarDoc()" formControlName="Doc"
+                        id="NumDocumento" class="form-control" placeholder="No de Documento">
+                     <div id="erroresDocumento" class="invalid-feedback">Este campo solo acepta letras</div>
+                  </div>
+                  <!-- Campo Genero -->
+                  <div class="form-group mb-3">
+                     <select formControlName="Genero" id='Genero' type="text" (change)="validarGenero()" name="Genero"
+                        class="form-control" required placeholder="d.ff">
+                        <option hidden [ngValue]="null" selected>Genero</option>
+                        <option *ngFor="let Genero of Generos " value="{{Genero.idTipoGenero}}">
+                           {{Genero.Nombre}}</option>
+
+                     </select>
+                     <div id="erroresGenero" class="invalid-feedback">Este campo solo acepta letras</div>
+                  </div>
+                  <!-- Campo numero de telefono -->
+                  <div class="form-group mb-3">
+                     <input type="number" name="NumTelefono" (input)="validarNumTelefono()"
+                        formControlName="NumTelefono" id="NumTelefono" class="form-control"
+                        placeholder="No de Telefono">
+                     <div id="erroresNumTelefono" class="invalid-feedback">Este campo solo acepta numeros</div>
+                  </div>
+                  <!-- Campo numero de FechaNacimiento -->
+                  <div class="form-group mb-3">
+                     <mat-form-field appearance="fill" style="width: 100%; height: 100%;" id="Date">
+                        <mat-label>Fecha Nacimiento</mat-label>
+                        <input matInput [matDatepicker]="dp3" disabled formControlName="Date"
+                           (dateChange)="validarDate()">
+                        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                     </mat-form-field>
+                     <div id="erroresDate" class="invalid-feedback">Este campo solo fechas</div>
+
+                  </div>
+
+
+               </div>
+
+               <!-- Step 2 -->
+               <div *ngIf="steps==2">
+                  <!-- Subtitulo -->
+                  <span class="login100-form-title2">
+                     Tu Ubicación
+                  </span>
+                  <!-- Campo Pais de Residencia -->
+                  <div class="input-group mb-3">
+                     <select type="text" formControlName='PaisResidencia' id='PaisResidencia' (change)="validarPais()"
+                        name="PaisResidencia" class="form-control">
+                        <option hidden [ngValue]="null" selected> País de Residencia</option>
+                        <option *ngFor="let Pais of Paises " value="{{Pais.idPais}}">{{Pais.Nombre}}</option>
+
+
+                     </select>
+                     <div id="erroresPais" class="invalid-feedback">Este campo solo acepta letras</div>
+                  </div>
+
+                  <!-- Campo Departamento -->
+                  <div class="input-group mb-3">
+                     <select type="text" formControlName='Departamento' id='Departamento'
+                        (change)="ValidarDepartamento()" name="Departamento" class="form-control">
+                        <option hidden [ngValue]="null" selected>Departamento</option>
+                        <option *ngFor=" let Departamento of Departamentos" value="{{Departamento.idDepartamento}}">
+                           {{Departamento.Nombre}}</option>
+                     </select>
+                     <div id="erroresDepartamento" class="invalid-feedback">Este campo solo acepta letras</div>
+                  </div>
+
+                  <!-- Campo Ciudad -->
+                  <div class="input-group mb-3">
+                     <select type="text" formControlName='Ciudad' id='Ciudad' (change)="validarCiudad()" name="Ciudad"
+                        class="form-control">
+                        <option hidden [ngValue]="null" selected>Ciudad</option>
+                        <option *ngFor=" let Ciudad of Ciudades" value="{{Ciudad.idCiudad}}">{{Ciudad.Nombre}}</option>
+
+                     </select>
+                     <div id="erroresCiudad" class="invalid-feedback">Este campo solo acepta letras</div>
+                  </div>
+
+                  <!-- Campo Direccion -->
+                  <div class="form-group mb-3">
+                     <input type="text" name="Direccion" id="Direccion" formControlName="Direccion"
+                        (input)="validarDireccion()" class="form-control" placeholder="Dirección" required>
+                     <div id="erroresDireccion" class="invalid-feedback">Este campo es obligatorio</div>
+                  </div>
+
+
+               </div>
+
+               <!-- Step 3 -->
+               <div *ngIf="steps==3">
+                  <!-- Subtitulo -->
+                  <span class="login100-form-title2">
+                     Condición Social
+                  </span>
+                  <!-- Campo Tipo de población -->
+                  <div class="input-group mb-3">
+                     <select type="text" formControlName='TipoPoblacion' id='TipoPoblacion'
+                        (change)="validarPoblacion()" name="TipoPoblacion" class="form-control">
+                        <option hidden [ngValue]="null" selected> Tipo de población</option>
+                        <option *ngFor="let Poblacion of TiposPoblacion" value="{{Poblacion.idClasificacionEtnica}}">
+                           {{Poblacion.Nombre}} </option>
+                     </select>
+                     <div id="erroresTipoPoblacion" class="invalid-feedback">Este campo solo acepta letras</div>
+                  </div>
+
+                  <!-- Campo Condicion Social -->
+                  <div class="input-group mb-3">
+                     <select type="text" formControlName='CondicionSocial' id='CondicionSocial'
+                        (change)="validarCondicion()" name="CondicionSocial" class="form-control">
+                        <option hidden [ngValue]="null" selected>Condición Social</option>
+                        <option *ngFor="let Condicion of CondicionesSocial"
+                           value="{{Condicion.idTipoSeguridadSocial}} "> {{Condicion.Nombre}} </option>
+
+                     </select>
+                     <div id="erroresCondicion" class="invalid-feedback">Este campo solo acepta letras</div>
+                  </div>
+
+                  <!-- Campo Descripcion  Condicion Social -->
+                  <div class="form-group mb-3">
+                     <input type="text" name="DescripcionCondicion" id="DescripcionCondicion"
+                        formControlName="DescripcionCondicion" (input)="ValidarDescripcionCondicion()"
+                        class="form-control" placeholder="Descripción Condición Social" required>
+                     <div id="erroresDescripcionCondicion" class="invalid-feedback">Este campo solo acepta numeros y
+                        letras</div>
+                  </div>
+
+               </div>
+
+               <!-- Step 4 -->
+               <div *ngIf="steps==4">
+                  <!-- Subtitulo -->
+                  <span class="login100-form-title2">
+                     Academico
+                  </span>
+                  <!-- Campo NivelAcademico -->
+                  <div class="input-group mb-3">
+                     <select type="text" formControlName='NivelAcademico' id='NivelAcademico'
+                        (change)="validarNivelAcademico()" name="NivelAcademico" class="form-control">
+                        <option hidden [ngValue]="null" selected>Nivel de estudios</option>
+                        <option *ngFor="let Nivel of NivelAcademicos" value="{{Nivel.idNivelAcademico}}">
+                           {{Nivel.Nombre}} </option>
+                     </select>
+                     <div id="erroresNivelAcademico" class="invalid-feedback">Este campo solo acepta letras</div>
+                  </div>
+
+                  <!-- Campo Profesion -->
+                  <div class="input-group mb-3">
+                     <select type="text" formControlName='Profesion' id='Profesion' (change)="validarProfesion()"
+                        name="Profesion" class="form-control">
+                        <option hidden [ngValue]="null" selected>Profesion</option>
+                        <option *ngFor="let profe of Profesiones" value="{{profe.idProfesion}} "> {{profe.Nombre}}
+                        </option>
+
+                     </select>
+                     <div id="erroresProfesion" class="invalid-feedback">Este campo solo acepta letras</div>
+                  </div>
+
+               </div>
+
+               <!-- Step 5 -->
+               <div *ngIf="steps==5">
+                  <!-- Subtitulo -->
+                  <span class="login100-form-title2">
+                     Datos de Usuario
+                  </span>
+                  <!-- Campo Correo Electronico -->
+                  <div class="input-group mb-3">
+                     <input type="email" id="CorreoElectronico" formControlName="CorreoElectronico"
+                        (input)="validarEmail()" name="CorreoElectronico" class="form-control"
+                        placeholder="Correo Electronico">
+                     <div id="erroresEmail" class="invalid-feedback">Este campo solo acepta letras</div>
+                  </div>
+                  <!-- Campo Contraseña-->
+                  <div class="input-group mb-3">
+                     <input type="password" formControlName="Contrasena" id="Pass" (input)="validarPass()"
+                        name="password" class="form-control" placeholder="Contraseña">
+                     <div id="erroresPassword" class="invalid-feedback">Este campo solo acepta letras</div>
+                  </div>
+                  <!-- Campo Confirmar Contraseña-->
+                  <div class="input-group mb-3">
+                     <input type="password" name="confirmPassword" id="confirmPassword"
+                        (input)="validarConfirmPass($event)" class="form-control" placeholder="Confirma tu Contraseña">
+                     <div id="erroresConfirm" class="invalid-feedback">Este campo solo acepta letras</div>
+                  </div>
+                  <!-- Check de Terminos y politicas de privacidad -->
+                  <div class="form-check mb-3">
+                     <input type="checkbox" class="form-check-input" id="checkTerminos"
+                        (change)="validarTerminos($event.target)">
+                     <label class="form-check-label" for="checkTerminos">Acepto los <a href="#">Términos de servicio</a>
+                        y
+                        las <a href="#">Políticas de privacidad</a> </label>
+                     <div id="erroresTerminos" class="invalid-feedback">Debe aceptar los terminos y condicones</div>
+                  </div>
+
+
+                  <br>
+                  <!-- Boton final para creacion de cuenta -->
+                  <div class="container-login100-form-btn">
+                     <button type="submit" (click)='Registrarse()' [disabled]="!RegisterForm.valid"
+                        class="login100-form-btn2">
+                        Crear mi cuenta
+                     </button>
+                  </div>
+               </div>
+
+            </form>
+
+            <!-- Footer Registro -->
+            <div class="login100-form-titleB">
+               <div class="text-center pb-1">
+                  <span class="txt3">
+                     ¿Ya tienes una cuenta?
+                  </span>
+               </div>
+
+               <div [routerLink]="['/Login']" class="container-login100-form-btn">
+                  <button class="login100-form-btn">
+                     Iniciar Sesión
+                  </button>
+               </div>
+            </div>
+         </div>
+
+         <!-- Steps -->
+
+         <div class="steps-container">
+            <!-- Step 1 -->
+            <div *ngIf="steps==1">
+               <div class="steps">
+                  <div class="selected-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="non-step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="non-step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="non-step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="non-step rounded-circle">
+
+                     </div>
+                  </div>
+               </div>
+               <div class="steps">
+                  <i (click)="stepsfunction(0)" class=" steps-icon-disabled rounded-circle"> -- </i>
+                  <i (click)="continue(1)" class=" steps-icon rounded-circle"> -- </i>
+
+               </div>
+            </div>
+            <!-- Step 2 -->
+            <div *ngIf="steps==2">
+               <div class="steps">
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="selected-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="non-step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="non-step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="non-step rounded-circle">
+
+                     </div>
+                  </div>
+               </div>
+               <div class="steps">
+                  <i (click)="stepsfunction(0)" class="fas fa-arrow-circle-left steps-icon rounded-circle">--</i>
+                  <i (click)="continue(1)" class="fas fa-arrow-circle-right steps-icon rounded-circle">--</i>
+               </div>
+            </div>
+            <!-- Step 3 -->
+            <div *ngIf="steps==3">
+               <div class="steps">
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="selected-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="non-step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="non-step rounded-circle">
+
+                     </div>
+                  </div>
+               </div>
+               <div class="steps">
+                  <i (click)="stepsfunction(0)" class="fas fa-arrow-circle-left steps-icon rounded-circle">--</i>
+                  <i (click)="continue(1)" class="fas fa-arrow-circle-right steps-icon rounded-circle">--</i>
+               </div>
+            </div>
+            <!-- Step 4 -->
+            <div *ngIf="steps==4">
+               <div class="steps">
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="selected-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="non-step rounded-circle">
+
+                     </div>
+                  </div>
+               </div>
+               <div class="steps">
+                  <i (click)="stepsfunction(0)" class="fas fa-arrow-circle-left steps-icon rounded-circle">--</i>
+                  <i (click)="continue(1)" class="fas fa-arrow-circle-right steps-icon rounded-circle">--</i>
+               </div>
+            </div>
+            <!-- Step 5 -->
+            <div *ngIf="steps==5">
+               <div class="steps">
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="over-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="step rounded-circle">
+
+                     </div>
+                  </div>
+                  <div class="selected-step rounded-circle d-flex justify-content-center align-items-center ml-5">
+                     <div class="step rounded-circle">
+
+                     </div>
+                  </div>
+               </div>
+               <div class="steps">
+                  <i (click)="stepsfunction(0)" class="fas fa-arrow-circle-left steps-icon rounded-circle">--</i>
+                  <i (click)="stepsfunction(1)"
+                     class="fas fa-arrow-circle-right steps-icon-disabled rounded-circle">--</i>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+</ng-container>
+
+
+<ng-container id="ValidarRegister" *ngIf="Option == 2">
+
+   <div class="limiter">
+      <div class="container-login100">
+         <div class="wrap-login100">
+            <!-- Titulo Registro -->
+            <span class="login100-form-title">
+               Validar Registro
+            </span>
+            <!-- Formulario registro -->
+            <form class="login100-form pb-4 pl-5 pr-5" [formGroup]="RegisterForm">
+               <!-- Step 1 -->
+               <div >
+                  <!-- Subtitulo -->
+                  <span class="login100-form-title2">
+                     Validacion Correcta
+                  </span>
+
+                  <div class="form-group mb-3">
+                     <p  id="ValidacionCuenta">
+                        Validacion De Cuenta
+                     </p>
+                  </div>
+
+               </div>
+              </form>
+         </div>
+      </div>
+   </div>
+
+</ng-container>
+<app-barra-inferior></app-barra-inferior>

@@ -5,9 +5,67 @@
      Fecha Ultima Edicion:
     30/07/2020
  -->
+<app-barra-superior></app-barra-superior>
+<ng-container id="Login">
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <!-- Titulo Inicio sesion -->
+        <span class="login100-form-title">
+          INICIO DE SESIÓN
+        </span>
 
-<ng-container id="Login"></ng-container>
+        <!-- Inicio sesion -->
+        <form class="login100-form p-5" [formGroup]="loginForm" (ngSubmit)="Loguearse()">
 
-<ng-container id="Registrar"></ng-container>
+          <!-- Campo Correo Electronico -->
+          <div class="form-group">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">@</span>
+              </div>
+              <input (input)="validarCorreoElectronico()" formControlName="CorreoElectronico" [class]="{'form-control': true, 'is-invalid': mensajesErrores.CorreoElectronico ? true : false, 'is-valid': mensajesErrores.CorreoElectronico == null ? true : false}" type="email" placeholder="Correo Electrónico">
+              <!-- Errores Correo Electronico -->
+              <div class="invalid-feedback">{{ mensajesErrores.CorreoElectronico }}</div>
+            </div>
+          </div>
 
-<ng-container id="RecuperarContraseña"></ng-container>
+          <!-- Campo Contraseña -->
+          <div class="form-group">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon2"><i class="fas fa-lock"></i></span>
+              </div>
+              <input (input)="validarContrasena()" formControlName="Contrasena" [class]="{'form-control': true, 'is-invalid': mensajesErrores.Contrasena ? true : false, 'is-valid': mensajesErrores.Contrasena == null ? true : false}" type="password" placeholder="Contraseña">
+              <!-- Errores Correo Electronico -->
+              <div class="invalid-feedback">{{ mensajesErrores.Contrasena }}</div>
+            </div>
+          </div>
+
+          <!-- Enlace olvidaste contraseña -->
+          <div class="mb-3">
+            <button [routerLink]="['/RecuperarContraseña']" type="button"
+              class="txt2 bg-transparent border-0">¿Olvidaste tu
+              contraseña?</button>
+          </div>
+
+          <!-- Botones Iniciar sesion y Registrarse -->
+          <div class="container-login100-form-btn">
+            <button type="submit" class="login100-form-btn">
+              Iniciar Sesión
+            </button>
+          </div>
+          <div class="container-login100-form-btn">
+            ó
+          </div>
+          <div class="container-login100-form-btn">
+            <button [routerLink]="['/Registro']" class="login100-form-btn2">
+              Registrate
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<app-barra-inferior></app-barra-inferior>

@@ -1,11 +1,21 @@
-<!-- Autor:
-     Ronaldo Carlos Rodriguez Perez
-     Ultima Edicion Por:
-     Ronaldo Carlos Rodriguez Perez
-     Fecha Ultima Edicion:
-    30/07/2020
- -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light  " style="font-size: 20px; -webkit-box-shadow: 0px 0px 30px 8px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 30px 8px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 30px 8px rgba(0,0,0,0.75);">
+   <a class="navbar-brand" href="Inicio">Logo</a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+</button>
+ 
+   <div class="collapse navbar-collapse" id="navbarSupportedContent" >
 
+     <ul class="navbar-nav mr-auto">
 
+       <li class="nav-item" *ngFor="let Funciones of ListFuncionTipoUsuarios">
+         <a class="nav-link" *ngIf="Funciones.Nombre != 'Cierra la Sesión' "   href="{{Funciones.Nombre}}">{{Funciones.Nombre}}</a>
+         <a class="nav-link" *ngIf="Funciones.Nombre == 'Cierra la Sesión' "  href="" (click)="CerrarSesion()" >{{Funciones.Nombre}}</a>
+       </li>
 
-<ng-container id="BarraSuperior"></ng-container>
+     </ul>
+
+   </div>
+ </nav>
