@@ -10,7 +10,7 @@ import { ComunidadComponent } from './componentes/comunidad/comunidad.component'
 import { MirarVideoComponent } from "./componentes/mirar-video/mirar-video.component";
 import { EditarperfilComponent } from './componentes/editarperfil/editarperfil.component';
 import {EditarusuarioComponent} from './componentes/editarusuario/editarusuario.component';
-
+import {CrearCursoComponent  } from "./componentes/crear-curso/crear-curso.component";
 
 const routes: Routes = [
   {
@@ -60,8 +60,11 @@ const routes: Routes = [
     path: 'Buscador',
     component: CategoriasComponent
   },
- 
-  
+  {
+    path:'CrearVideo',
+    component:CrearCursoComponent
+
+  },
   {
     path: 'EditarUsuario',
     component: EditarusuarioComponent

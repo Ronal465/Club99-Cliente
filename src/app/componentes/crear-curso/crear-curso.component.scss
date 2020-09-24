@@ -1,0 +1,105 @@
+.SeccionCreate , .CursoEdit {
+    width: 90%;
+    height: 90vh;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 75% 25%;
+    grid-template-columns:  75% 25%;
+    -ms-grid-rows: 100%; 
+    grid-template-rows: 100%; 
+    border: 2px solid blue;
+    margin-left: 5%;
+    margin-top: 5vh;
+}
+
+.Contenido  {
+    width: 90%;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 100%; 
+    grid-template-columns: 100%; 
+    -ms-grid-rows: 20% 20% 20% 40%; 
+    grid-template-rows: 20% 20% 20% 40%; 
+    border: 2px solid blue;
+    margin-left: 5%;
+
+}
+
+.ImagenCurso  {
+    height: 100%;
+    width: 100%;
+
+}
+
+.Imagen {
+    height: 100%;
+    width: 100%;
+
+}
+
+.CursoCreate  {
+    width: 90%;
+    height: 90vh;
+    margin-left: 5%;
+    margin-top: 5vh;
+}
+
+.CursoSinTerminar{
+    width: 90%;
+    height: 90vh;
+    margin-left: 5%;
+    margin-top: 5vh;
+
+}
+
+.CursoT{
+    width: 100%;
+    height: 20%;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 20% 80%;
+    grid-template-columns:  20% 80%;
+    -ms-grid-rows: 100%; 
+    grid-template-rows: 100%; 
+    border: 2px solid tomato;
+}
+
+.UploadImagenCurso{
+
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 20% 80%;
+    grid-template-columns:  20% 80%;
+    -ms-grid-rows: 100%; 
+    grid-template-rows: 100%; 
+    border: 2px solid black;
+}
+
+
+
+.InputSeccion {
+    width: 50%;
+    margin-left: 5%;
+
+}
+
+.Upload{
+    width: 80%;
+    margin-left: 10%;
+}
+
+
+
+.ContainerSeccion{
+
+    width: 100%;
+    height: 10vh;
+    border: 2px solid black ;
+
+}
+
+.BotonSeccion{
+
+    text-align: right;
+    margin-top: -1vh;
+}

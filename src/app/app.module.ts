@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 
+
 import { BarraSuperiorComponent } from './componentes/barra-superior/barra-superior.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
@@ -27,6 +28,11 @@ import {MatSelectModule} from '@angular/material/select';
 import { EditarperfilComponent } from './componentes/editarperfil/editarperfil.component';
 import {MatButtonModule} from '@angular/material/button';
 import { EditarusuarioComponent } from './componentes/editarusuario/editarusuario.component';
+import { CrearCursoComponent } from './componentes/crear-curso/crear-curso.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -39,6 +45,7 @@ import { EditarusuarioComponent } from './componentes/editarusuario/editarusuari
     RegistroComponent,
     CategoriasComponent,
     ComunidadComponent,
+    
 
 
     EditarperfilComponent,
@@ -49,7 +56,8 @@ import { EditarusuarioComponent } from './componentes/editarusuario/editarusuari
 
     BarraInferiorComponent,
     MirarVideoComponent,
-    EditarperfilComponent
+    EditarperfilComponent,
+    CrearCursoComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +71,11 @@ import { EditarusuarioComponent } from './componentes/editarusuario/editarusuari
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressBarModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatCardModule
 
   ],
   providers: [],
