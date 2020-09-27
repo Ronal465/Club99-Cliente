@@ -33,6 +33,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
+
+
+
 
 @NgModule({
   declarations: [
@@ -75,7 +79,8 @@ import {MatCardModule} from '@angular/material/card';
     MatProgressBarModule,
     MatIconModule,
     MatToolbarModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule
 
   ],
   providers: [],
