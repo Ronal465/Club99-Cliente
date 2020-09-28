@@ -34,6 +34,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -80,7 +81,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatIconModule,
     MatToolbarModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule
 
   ],
   providers: [],
