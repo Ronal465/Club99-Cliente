@@ -3,7 +3,7 @@ import { HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { CrearCursoService } from "../../servicios/crear-curso.service";
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { JWTService } from "../../servicios/jwt.service";
 import { ActivatedRoute,Router } from '@angular/router';
 

@@ -26,6 +26,10 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'Inicia Ya',
+    component: LoginComponent
+  },
+  {
     path: 'RecuperarContraseña',
     component: RecuperarContrasenaComponent
   },

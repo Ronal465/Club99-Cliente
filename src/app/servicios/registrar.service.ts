@@ -42,6 +42,44 @@ export class RegistrarService {
     return this.http.post(`${this.ApiURL}/Login/Registrar`,TokenRegister);
 
   }
+  PostCrearProfesor(Profesor): Observable<any> {
+
+    return this.http.post(`${this.ApiURL}/Crear/Profesor/`,Profesor);
+
+  }
+
+  PostExperienciaProfesor(Experiencia): Observable<any> {
+
+    return this.http.post(`${this.ApiURL}/Crear/Experiencia/`,Experiencia);
+
+  }
+
+  PostActualizarUsuario(Usuario): Observable<any> {
+
+    return this.http.post(`${this.ApiURL}/Actualizar/Usuario/`,Usuario);
+
+  }
+  PostActualizarUsuarioSeguridadSocial(SeguridadSocial): Observable<any> {
+
+    return this.http.post(`${this.ApiURL}/Actualizar/Usuario/SeguridadSocial/`,SeguridadSocial);
+
+  }
+  PostActualizarUsuarioExclusividad(Exclusividad): Observable<any> {
+
+    return this.http.post(`${this.ApiURL}/Actualizar/Usuario/Exclusividad/`,Exclusividad);
+
+  }
+  PostActualizarUsuarioUbicacion(Ubicacion): Observable<any> {
+
+    return this.http.post(`${this.ApiURL}/Actualizar/Usuario/Ubicacion/`,Ubicacion);
+
+  }
+  PostActualizarUsuarioContrasena(Contrasena): Observable<any> {
+
+    return this.http.post(`${this.ApiURL}/Cambiar/Contrasena/`,Contrasena);
+
+  }
+
 
 
 }

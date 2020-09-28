@@ -45,7 +45,10 @@ export class CrearCursoService {
     return this.http.post(`${this.ApiURL}/Upload/img`, formData,{ reportProgress:true,
                                                                        observe: 'events'});
   }
-
+  SubirimgProfesor(formData){
+    return this.http.post(`${this.ApiURL}/Upload/img/profesor`, formData,{ reportProgress:true,
+                                                                       observe: 'events'});
+  }
   
 }
 
