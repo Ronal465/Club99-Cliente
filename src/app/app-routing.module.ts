@@ -69,7 +69,7 @@ const routes: Routes = [
     component: InfoCursoComponent
   },
   {
-    path: 'MisCursos',
+    path: 'Mis Cursos',
     component: MisCursosComponent
   },
 

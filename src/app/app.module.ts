@@ -39,6 +39,7 @@ import { InfoCursoComponent } from './componentes/info-curso/info-curso.componen
 import { MisCursosComponent } from './componentes/mis-cursos/mis-cursos.component';
 import { FuncionesProfesorComponent } from './compponentes/funciones-profesor/funciones-profesor.component';
 import { FiltroMisCursosPipe } from './Pipes/filtro-mis-cursos.pipe';
+import { FiltroUsuariosPipe } from './pipes/filtro-usuarios.pipe';
 
 
 
@@ -70,7 +71,8 @@ import { FiltroMisCursosPipe } from './Pipes/filtro-mis-cursos.pipe';
     InfoCursoComponent,
     MisCursosComponent,
     FuncionesProfesorComponent,
-    FiltroMisCursosPipe
+    FiltroMisCursosPipe,
+    FiltroUsuariosPipe
   ],
   imports: [
     BrowserModule,

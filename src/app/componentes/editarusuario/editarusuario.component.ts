@@ -54,6 +54,7 @@ export class EditarusuarioComponent implements OnInit {
   DesExperienciaP = new FormControl('', Validators.required);
 
 
+
   hide = true;
   TiposIdentificacion = [];
   TipoProfesiones = [];
@@ -74,9 +75,50 @@ export class EditarusuarioComponent implements OnInit {
   SeguridadSocialUsuario;
   ExclusividadUsuario;
 
-
-
-
+  //BuscarUsuarios
+  ListaUsuarios = [
+    {
+      Apellidos: "Carlos Rodriguez",
+      Contrasena: "$2a$10$hNgsptL/.XAWLDNYVKjQa.jOhMQGkMAtG9g3h0OMEpEcAE.vHk5OC",
+      CorreoElectronico: "ronaldo.rodriguez@correounivalle.edu.co",
+      FechaCreacion: "2000-08-24T05:00:00.000Z",
+      FechaNacimiento: "2000-08-24T05:00:00.000Z",
+      Nombres: "Profesor Carlos",
+      NumeroIdentificacion: "1193472364",
+      Telefono: "3165620718",
+      idClasificacionEtnica: 1,
+      idEstadoValidacion: 1,
+      idNivelAcademico: 1,
+      idProfesion: 1,
+      idTipoGenero: 1,
+      idTipoIdentificacion: 1,
+      idTipoPromotor: 1,
+      idTipoUsuario: 3,
+      idUsuario: 2
+    },
+    {
+      Apellidos: "Carlos Rodriguez",
+      Contrasena: "$2a$10$hNgsptL/.XAWLDNYVKjQa.jOhMQGkMAtG9g3h0OMEpEcAE.vHk5OC",
+      CorreoElectronico: "ronaldo.rodriguez@correounivalle.edu.co",
+      FechaCreacion: "2000-08-24T05:00:00.000Z",
+      FechaNacimiento: "2000-08-24T05:00:00.000Z",
+      Nombres: "Profesor Carlos",
+      NumeroIdentificacion: "1193472364",
+      Telefono: "3165620718",
+      idClasificacionEtnica: 1,
+      idEstadoValidacion: 1,
+      idNivelAcademico: 1,
+      idProfesion: 1,
+      idTipoGenero: 1,
+      idTipoIdentificacion: 1,
+      idTipoPromotor: 1,
+      idTipoUsuario: 3,
+      idUsuario: 2
+    },
+    
+  ];
+  BuscarUsuario = new FormControl('', Validators.required);
+  Opcion = 1;
 
 
 
@@ -86,7 +128,7 @@ export class EditarusuarioComponent implements OnInit {
   ngOnInit(): void {
 
     this.LlenasCampos();
-    this.llenarDatosUsuario();
+
   }
 
   LlenasCampos() {
@@ -192,13 +234,14 @@ export class EditarusuarioComponent implements OnInit {
 
 
   }
-  llenarDatosUsuario() {
+  llenarDatosUsuario(Usuario) {
 
-    var idUsuario = 2;
+    var idUsuario = Usuario.idUsuario;
 
     this.ListasFormulariosService.GetUsaurio(idUsuario).subscribe(
       res => {
         this.Usuario = res;
+        console.log(this.Usuario);
         this.Nombres.setValue(res.Nombres);
         this.Apellidos.setValue(res.Apellidos);
         this.FechaNacimiento.setValue(res.FechaNacimiento);
@@ -281,6 +324,8 @@ export class EditarusuarioComponent implements OnInit {
 
       }
     )
+
+    this.Opcion = 2;
 
   }
   getErrorMessageCorreo() {
