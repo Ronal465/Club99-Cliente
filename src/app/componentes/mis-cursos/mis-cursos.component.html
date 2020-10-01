@@ -1,5 +1,5 @@
 <app-barra-superior></app-barra-superior>
-<blockquote class="blockquote text-center">
+<blockquote class="blockquote text-center" style="padding-top: 3%;">
     &nbsp;&nbsp;&nbsp;&nbsp;
     <strong><h1 > Mis Cursos </h1> </strong>
 
@@ -20,7 +20,7 @@
 <div class="container" style="padding-bottom: 5%;">
 
 
-    <div class="card-deck ">
+    <div class="card-deck  row row-cols-1 row-cols-md-2">
         <div class="card text-center shadow-lg p-3 mb-1 bg-white rounded" style="width: 18rem;" *ngFor="let Curso of ListaCursos | filtroMisCursos:BuscarCurso.value ">
             <img src="{{Curso.Curso.LinkImagen}}" style="height: 130px; width:200px ;
             display:block;
