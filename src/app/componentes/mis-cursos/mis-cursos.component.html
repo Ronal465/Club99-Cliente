@@ -23,8 +23,7 @@
 
 
     <div class="card-deck ">
-        <div class="card text-center shadow-lg p-3 mb-1 bg-white rounded" style="width: 18rem;"
-            *ngFor="let Curso of ListaCursos | filtroMisCursos:BuscarCurso.value ">
+        <div class="card text-center shadow-lg p-3 mb-1 bg-white rounded col-md-4" style="width: 18rem;" *ngFor="let Curso of ListaCursos | filtroMisCursos:BuscarCurso.value ">
             <img src="{{Curso.Curso.LinkImagen}}" style="height: 130px; width:200px ;display:block;margin:auto;">
             <div class="card-body">
                 <h5 class="card-title">
@@ -39,8 +38,7 @@
                     <p>Autor Curso: {{Curso.Profesor.Nombres}} {{Curso.Profesor.Apellidos}} </p>
                 </li>
                 <li class="list-group-item">
-                    <div class="FiltroCurso" *ngFor="let Filtro of Curso.NombresFiltro"
-                        style="border: black 2px solid;">
+                    <div class="FiltroCurso" *ngFor="let Filtro of Curso.NombresFiltro" style="border: black 2px solid;">
                         <p>Nombre Filtro : {{Filtro.Nombre}} </p>
                     </div>
                 </li>
