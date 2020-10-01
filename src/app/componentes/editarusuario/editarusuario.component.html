@@ -1,8 +1,8 @@
 <app-barra-superior></app-barra-superior>
- 
-<ng-container *ngIf="Opcion==1" >
 
-    <form class="example-form">
+<ng-container *ngIf="Opcion==1">
+    <form class="example-form" style="padding-left: 43%;
+    padding-top: 5%;">
         <mat-form-field>
             <mat-label>Buscador</mat-label>
             <input [formControl]="BuscarUsuario" matInput placeholder="Buscador">
@@ -11,20 +11,39 @@
                                         </mat-error> -->
         </mat-form-field>
     </form>
+    <div class="container hadow-lg p-3 mb-1 bg-white rounded">
+        <table class="table table-striped table-dark ">
+            <thead>
+                <tr>
+
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Identifiacion</th>
+                    <th scope="col">Accion</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let Usuario of ListaUsuarios | filtroUsuarios:BuscarUsuario.value ">
+                    <th scope="row " *ngFor="let Usuario of ListaUsuarios | filtroUsuarios:BuscarUsuario.value "> {{Usuario.Nombres}} </th>
+                    <td> {{Usuario.NumeroIdentificacion}}</td>
+                    <td> <button button type="button" (click)="llenarDatosUsuario(Usuario)" class="btn btn-warning text-white">Editar Usuario</button>
+                    </td>
 
 
-    <div class="Empleados">
-        <div class="Empleado"    *ngFor="let Usuario of ListaUsuarios | filtroUsuarios:BuscarUsuario.value ">
-          Nombre:  {{Usuario.Nombres}}
-          Identificacion: {{Usuario.NumeroIdentificacion}}
-            <button button type="button" (click)="llenarDatosUsuario(Usuario)"  class="btn btn-warning text-white">Editar Usuario</button>
-        </div>
+                </tr>
+
+            </tbody>
+        </table>
     </div>
+
+
+
+
 
 </ng-container>
 
 
-<ng-container *ngIf="Opcion==2"  >
+<ng-container *ngIf="Opcion==2">
 
     <div class="container register">
         <div class="row">
@@ -32,21 +51,18 @@
                 <img src="https://www.flaticon.com/svg/static/icons/svg/2919/2919600.svg" alt="usuario" />
                 <h1>Bienvenido</h1>
                 <h1>Editar Perfil</h1>
-    
+
             </div>
             <div class="col-md-9 register-right">
                 <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                            aria-controls="home" aria-selected="true">Pagina 1</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Pagina 1</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                            aria-controls="profile" aria-selected="false">Pagina 2</a>
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Pagina 2</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#TipoUsu" role="tab"
-                            aria-controls="TipoUsu" aria-selected="false">Pagina 3</a>
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#TipoUsu" role="tab" aria-controls="TipoUsu" aria-selected="false">Pagina 3</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -71,8 +87,7 @@
                                     <form class="example-form">
                                         <mat-form-field>
                                             <mat-label>Apellidos</mat-label>
-                                            <input [formControl]="Apellidos" matInput placeholder="Apellidos Usuario"
-                                                required>
+                                            <input [formControl]="Apellidos" matInput placeholder="Apellidos Usuario" required>
                                             <mat-error *ngIf="Apellidos.invalid">
                                                 {{getErrorMessageApellido()}}
                                             </mat-error>
@@ -83,9 +98,7 @@
                                 <div class="form-group">
                                     <mat-form-field appearance="fill">
                                         <mat-label>Fecha Nacimiento</mat-label>
-                                        <input matInput [formControl]="FechaNacimiento" [matDatepicker]="picker"
-                                            (dateInput)="FechaNacimiento.hasError('required')"
-                                            (dateChange)="FechaNacimiento.hasError('required')">
+                                        <input matInput [formControl]="FechaNacimiento" [matDatepicker]="picker" (dateInput)="FechaNacimiento.hasError('required')" (dateChange)="FechaNacimiento.hasError('required')">
                                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                         <mat-datepicker #picker></mat-datepicker>
                                         <mat-error *ngIf="FechaNacimiento.hasError('required')">
@@ -100,8 +113,7 @@
                                             <mat-label>Tipo Identifiacion</mat-label>
                                             <mat-select [formControl]="TipoIdentifiacion" required>
                                                 <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of TiposIdentificacion"
-                                                    [value]="Tipo.idTipoIdentificacion">
+                                                <mat-option *ngFor="let Tipo of TiposIdentificacion" [value]="Tipo.idTipoIdentificacion">
                                                     {{Tipo.Nombre}}
                                                 </mat-option>
                                             </mat-select>
@@ -116,15 +128,14 @@
                                     <form class="example-form">
                                         <mat-form-field>
                                             <mat-label>Identificacion</mat-label>
-                                            <input [formControl]="Identificacion" matInput
-                                                placeholder="Identificacion Usuario" required>
+                                            <input [formControl]="Identificacion" matInput placeholder="Identificacion Usuario" required>
                                             <mat-error *ngIf="Identificacion.invalid">
                                                 {{getErrorMessageIdentificacion()}}
                                             </mat-error>
                                         </mat-form-field>
                                     </form>
                                 </div>
-    
+
                             </div>
                             <div class="col-md-6">
                                 <!-- Profesion -->
@@ -138,9 +149,9 @@
                                                     {{Tipo.Nombre}}
                                                 </mat-option>
                                             </mat-select>
-                                            <mat-error *ngIf="TipoProfesion.hasError('required')">Porfavor escoga una
-                                                Profesion</mat-error>
-    
+                                            <mat-error *ngIf="TipoProfesion.hasError('required')">Porfavor escoga una Profesion
+                                            </mat-error>
+
                                         </mat-form-field>
                                     </form>
                                 </div>
@@ -149,8 +160,7 @@
                                     <form class="example-form">
                                         <mat-form-field>
                                             <mat-label>Telefono</mat-label>
-                                            <input [formControl]="Telefono" matInput placeholder="Telefono Usuario"
-                                                required>
+                                            <input [formControl]="Telefono" matInput placeholder="Telefono Usuario" required>
                                             <mat-error *ngIf="Telefono.invalid">
                                                 {{getErrorMessageTelefono()}}
                                             </mat-error>
@@ -164,15 +174,14 @@
                                             <mat-label>Tipo Seguridad Social</mat-label>
                                             <mat-select [formControl]="TipoSeguridadSocial" required>
                                                 <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of TiposSeguridadSocial"
-                                                    [value]="Tipo.idTipoSeguridadSocial">
+                                                <mat-option *ngFor="let Tipo of TiposSeguridadSocial" [value]="Tipo.idTipoSeguridadSocial">
                                                     {{Tipo.Nombre}}
                                                 </mat-option>
                                             </mat-select>
                                             <mat-error *ngIf="TipoSeguridadSocial.hasError('required')">
                                                 Ingrese un tipo seguridad social
                                             </mat-error>
-    
+
                                         </mat-form-field>
                                     </form>
                                 </div>
@@ -181,8 +190,7 @@
                                     <form class="example-form">
                                         <mat-form-field>
                                             <mat-label>Descripcion Seguridad Social</mat-label>
-                                            <input [formControl]="DescripcionSeguridadSocial" matInput
-                                                placeholder="Descripcion Seguridad Social" required>
+                                            <input [formControl]="DescripcionSeguridadSocial" matInput placeholder="Descripcion Seguridad Social" required>
                                             <mat-error *ngIf="DescripcionSeguridadSocial.hasError('required')">
                                                 Ingrese la Descripcion Seguridad Social
                                             </mat-error>
@@ -196,15 +204,14 @@
                                             <mat-label>Tipo Etnia</mat-label>
                                             <mat-select [formControl]="TipoEtnia" required>
                                                 <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of TiposEtnia"
-                                                    [value]="Tipo.idClasificacionEtnica">
+                                                <mat-option *ngFor="let Tipo of TiposEtnia" [value]="Tipo.idClasificacionEtnica">
                                                     {{Tipo.Nombre}}
                                                 </mat-option>
                                             </mat-select>
                                             <mat-error *ngIf="TipoEtnia.hasError('required')">
                                                 Porfavor escoga una tipo de Etnia Social
                                             </mat-error>
-    
+
                                         </mat-form-field>
                                     </form>
                                 </div>
@@ -226,19 +233,18 @@
                                             <mat-label>Genero</mat-label>
                                             <mat-select [formControl]="Genero" required>
                                                 <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Genero of TiposGeneros"
-                                                    [value]="Genero.idTipoGenero">
+                                                <mat-option *ngFor="let Genero of TiposGeneros" [value]="Genero.idTipoGenero">
                                                     {{Genero.Nombre}}
                                                 </mat-option>
                                             </mat-select>
                                             <mat-error *ngIf="Genero.hasError('required')">
                                                 Porfavor escoga una tipo de genero
                                             </mat-error>
-    
+
                                         </mat-form-field>
                                     </form>
                                 </div>
-    
+
                                 <!-- Email -->
                                 <div class="form-group">
                                     <mat-form-field appearance="fill">
@@ -254,15 +260,14 @@
                                             <mat-label>Tipo Exclusividad</mat-label>
                                             <mat-select [formControl]="TipoExclusividad" required>
                                                 <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of TiposExclusividad"
-                                                    [value]="Tipo.idTipoExclusividad">
+                                                <mat-option *ngFor="let Tipo of TiposExclusividad" [value]="Tipo.idTipoExclusividad">
                                                     {{Tipo.Nombre}}
                                                 </mat-option>
                                             </mat-select>
                                             <mat-error *ngIf="TipoExclusividad.hasError('required')">
                                                 Ingrese Un Tipo Esclusividad
                                             </mat-error>
-    
+
                                         </mat-form-field>
                                     </form>
                                 </div>
@@ -273,15 +278,14 @@
                                             <mat-label>Tipo Promotor</mat-label>
                                             <mat-select [formControl]="TipoPromotor" required>
                                                 <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of TiposPromotor"
-                                                    [value]="Tipo.idTipoPromotor">
+                                                <mat-option *ngFor="let Tipo of TiposPromotor" [value]="Tipo.idTipoPromotor">
                                                     {{Tipo.Nombre}}
                                                 </mat-option>
                                             </mat-select>
                                             <mat-error *ngIf="TipoPromotor.hasError('required')">
                                                 Ingrese Un Tipo Promotor
                                             </mat-error>
-    
+
                                         </mat-form-field>
                                     </form>
                                 </div>
@@ -292,19 +296,18 @@
                                             <mat-label>Tipo Estado Validacion</mat-label>
                                             <mat-select [formControl]="TipoEstadoValidacion" required>
                                                 <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of TiposEstadoValidacion"
-                                                    [value]="Tipo.idEstadoValidacion">
+                                                <mat-option *ngFor="let Tipo of TiposEstadoValidacion" [value]="Tipo.idEstadoValidacion">
                                                     {{Tipo.Nombre}}
                                                 </mat-option>
                                             </mat-select>
                                             <mat-error *ngIf="TipoEstadoValidacion.hasError('required')">
                                                 Ingrese Un Tipo estado validacion
                                             </mat-error>
-    
+
                                         </mat-form-field>
                                     </form>
                                 </div>
-    
+
                             </div>
                             <div class="col-md-6">
                                 <!-- Tipo Nivel Academico -->
@@ -314,26 +317,24 @@
                                             <mat-label>Niveles Academicos</mat-label>
                                             <mat-select [formControl]="NiveleAcademicos" required>
                                                 <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of NivelesAcademicos"
-                                                    [value]="Tipo.idNivelAcademico">
+                                                <mat-option *ngFor="let Tipo of NivelesAcademicos" [value]="Tipo.idNivelAcademico">
                                                     {{Tipo.Nombre}}
                                                 </mat-option>
                                             </mat-select>
                                             <mat-error *ngIf="NiveleAcademicos.hasError('required')">
                                                 Ingrese un nivele Academicos
                                             </mat-error>
-    
+
                                         </mat-form-field>
                                     </form>
                                 </div>
-    
+
                                 <!-- Tipo Pais -->
                                 <div class="form-group">
                                     <form class="example-form">
                                         <mat-form-field appearance="fill">
                                             <mat-label>Paises</mat-label>
-                                            <mat-select [formControl]="Pais" required
-                                                (selectionChange)="ActualizarDepartamentos()">
+                                            <mat-select [formControl]="Pais" required (selectionChange)="ActualizarDepartamentos()">
                                                 <mat-option>--</mat-option>
                                                 <mat-option *ngFor="let Tipo of Paises" [value]="Tipo.idPais">
                                                     {{Tipo.Nombre}}
@@ -342,7 +343,7 @@
                                             <mat-error *ngIf="Pais.hasError('required')">
                                                 Ingrese Pais
                                             </mat-error>
-    
+
                                         </mat-form-field>
                                     </form>
                                 </div>
@@ -351,18 +352,16 @@
                                     <form class="example-form">
                                         <mat-form-field appearance="fill">
                                             <mat-label>Departamentos</mat-label>
-                                            <mat-select [formControl]="Departamento" required
-                                                (selectionChange)="ActualizarCiudades()">
+                                            <mat-select [formControl]="Departamento" required (selectionChange)="ActualizarCiudades()">
                                                 <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of Departamentos"
-                                                    [value]="Tipo.idDepartamento">
+                                                <mat-option *ngFor="let Tipo of Departamentos" [value]="Tipo.idDepartamento">
                                                     {{Tipo.Nombre}}
                                                 </mat-option>
                                             </mat-select>
                                             <mat-error *ngIf="Departamento.hasError('required')">
                                                 Ingrese un departamento
                                             </mat-error>
-    
+
                                         </mat-form-field>
                                     </form>
                                 </div>
@@ -380,7 +379,7 @@
                                             <mat-error *ngIf="Ciudad.hasError('required')">
                                                 Ingrese una Ciudad
                                             </mat-error>
-    
+
                                         </mat-form-field>
                                     </form>
                                 </div>
@@ -389,10 +388,8 @@
                                     <form class="example-form">
                                         <mat-form-field>
                                             <mat-label>Direccion</mat-label>
-                                            <input [formControl]="Direccion" matInput placeholder="Direccion Usuario"
-                                                required>
-                                            <mat-error *ngIf="Direccion.hasError('required')">Ingrese la direccion del
-                                                usuario
+                                            <input [formControl]="Direccion" matInput placeholder="Direccion Usuario" required>
+                                            <mat-error *ngIf="Direccion.hasError('required')">Ingrese la direccion del usuario
                                             </mat-error>
                                         </mat-form-field>
                                     </form>
@@ -422,7 +419,7 @@
                                             <mat-error *ngIf="TipoUsuario.hasError('required')">
                                                 Ingrese Un Tipo Usuario
                                             </mat-error>
-    
+
                                         </mat-form-field>
                                     </form>
                                 </div>
@@ -438,52 +435,48 @@
                                             </ul>
                                         </mat-card-content>
                                         <mat-card-actions style="text-align: center;">
-    
+
                                             <button mat-button color="black" (click)="onClickimg()">
                                                 <mat-icon>file_upload</mat-icon>
                                                 Subir Multimedia
                                             </button>
-    
+
                                         </mat-card-actions>
                                     </mat-card>
                                     <mat-error *ngIf="!ValidarIP">
                                         Subir imagen del curso
                                     </mat-error>
-                                    <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple"
-                                        accept="image/*" style="display:none;" />
+                                    <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" style="display:none;" />
                                 </div>
                                 <div id="TextAreatSeccion" *ngIf="TipoUsuario.value == 3">
                                     <form class="example-form">
                                         <mat-form-field style="width:100%;">
                                             <mat-label>Biografia</mat-label>
-                                            <textarea style="resize: none;" [formControl]="Biografia" matInput
-                                                placeholder="Ingrese aqui la descripcion del curso" required></textarea>
+                                            <textarea style="resize: none;" [formControl]="Biografia" matInput placeholder="Ingrese aqui la descripcion del curso" required></textarea>
                                             <mat-error *ngIf="Biografia.hasError('required')">
                                                 Ingrese la Biografia
                                             </mat-error>
-    
+
                                         </mat-form-field>
                                     </form>
                                 </div>
                             </div>
                             <div class="col">
-    
+
                                 <mat-form-field *ngIf="TipoUsuario.value == 3">
                                     <mat-label>Nombre Experiencia Profesor</mat-label>
-                                    <input [formControl]="DesExperienciaP" matInput placeholder="Experencia Profesor"
-                                        required>
+                                    <input [formControl]="DesExperienciaP" matInput placeholder="Experencia Profesor" required>
                                     <mat-error *ngIf="DesExperienciaP.hasError('required')">
                                         Ingrese El Nombre de la experencia del profesor
                                     </mat-error>
                                 </mat-form-field>
-    
-                                <button mat-raised-button color="primary" *ngIf="TipoUsuario.value == 3"
-                                    (click)="AgregarExperencia()">
+
+                                <button mat-raised-button color="primary" *ngIf="TipoUsuario.value == 3" (click)="AgregarExperencia()">
                                     <mat-icon>add_task</mat-icon>
                                     Agregar Experencia
                                 </button>
-    
-    
+
+
                                 <button mat-raised-button color="primary" (click)="ActualizarTipoUsuario()">
                                     <mat-icon>update</mat-icon>
                                     Actualizar Datos
@@ -498,8 +491,8 @@
                                         </button>
                                     </div>
                                 </div>
-    
-    
+
+
                             </div>
                         </div>
                     </div>

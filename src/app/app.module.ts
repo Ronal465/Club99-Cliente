@@ -40,6 +40,8 @@ import { MisCursosComponent } from './componentes/mis-cursos/mis-cursos.componen
 import { FuncionesProfesorComponent } from './compponentes/funciones-profesor/funciones-profesor.component';
 import { FiltroMisCursosPipe } from './Pipes/filtro-mis-cursos.pipe';
 import { FiltroUsuariosPipe } from './pipes/filtro-usuarios.pipe';
+import {MatTableModule} from '@angular/material/table';
+
 
 
 
@@ -92,7 +94,8 @@ import { FiltroUsuariosPipe } from './pipes/filtro-usuarios.pipe';
     MatToolbarModule,
     MatCardModule,
     MatTabsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTableModule
 
   ],
   providers: [],
