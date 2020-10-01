@@ -11,6 +11,8 @@ import { MirarVideoComponent } from "./componentes/mirar-video/mirar-video.compo
 import { EditarperfilComponent } from './componentes/editarperfil/editarperfil.component';
 import {EditarusuarioComponent} from './componentes/editarusuario/editarusuario.component';
 import {CrearCursoComponent  } from "./componentes/crear-curso/crear-curso.component";
+import { InfoCursoComponent } from "./componentes/info-curso/info-curso.component";
+
 
 const routes: Routes = [
   {
@@ -59,6 +61,9 @@ const routes: Routes = [
   {
     path: 'Comunidad',
     component: ComunidadComponent
+  },{
+    path: 'InfoCurso',
+    component: InfoCursoComponent
   },
   {
     path: 'Buscador',

@@ -194,7 +194,7 @@ export class EditarusuarioComponent implements OnInit {
   }
   llenarDatosUsuario() {
 
-    var idUsuario = 3;
+    var idUsuario = 2;
 
     this.ListasFormulariosService.GetUsaurio(idUsuario).subscribe(
       res => {

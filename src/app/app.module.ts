@@ -35,6 +35,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { InfoCursoComponent } from './componentes/info-curso/info-curso.component';
 
 
 
@@ -62,7 +63,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     BarraInferiorComponent,
     MirarVideoComponent,
     EditarperfilComponent,
-    CrearCursoComponent
+    CrearCursoComponent,
+    InfoCursoComponent
   ],
   imports: [
     BrowserModule,

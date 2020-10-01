@@ -39,6 +39,9 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private Router: Router) { }
 
   ngOnInit() {
+
+
+
   }
 
   // Validacion del campo Correo Electronico
