@@ -1,20 +1,29 @@
 <app-barra-superior></app-barra-superior>
+<p>
+
+</p>
+<h1 class="alert-heading text-center" style="padding: top 40px ;"><strong>Crear Curso</strong> </h1>
 
 <ng-container *ngIf="Opcion ==  0">
 
 
 
-    <div class="CursoSinTerminar">
+    <div class="CursoSinTerminar ">
 
-        <div class="CursoT" *ngFor="let Curso of ListaCursosSinTerminar">
+        <div class="CursoT shadow-lg p-1 mb-5 bg-white rounded" *ngFor="let Curso of ListaCursosSinTerminar">
 
             <div class="ImagenCurso">
                 <img class="Imagen" src="{{Curso.LinkImagen}}">
             </div>
+
             <div class="CCurso">
-                {{Curso.Nombre}}
-                <div class="example-button-row">
-                    <button mat-raised-button color="primary" (click)="EditarCurso(Curso)">Seguir Editando</button>
+                <h2 class="text-left" style="padding-top: 5px;
+                padding-left: 35px;
+                padding-right:10px ;"><strong>Nombre curso:</strong> {{Curso.Nombre}} </h2>
+                <div class="example-button-row" style="padding-left: 30px;">
+
+                    <button type="button" class="btn btn-warning" (click)="EditarCurso(Curso)">Seguir Editando</button>
+
                 </div>
             </div>
 
@@ -29,12 +38,16 @@
 </ng-container>
 <ng-container *ngIf="Opcion ==  1">
 
-    <div class="CursoCreate">
 
-        <div class="ContenidoCurso" style="border: 2px solid blue;">
-            <div class="InputSeccion">
-                <form class="example-form" style="margin-top: 5%;">
-                    <mat-form-field style="width:100%;">
+
+
+    <div class="ContenidoCurso" style="border: 2px solid blue;">
+
+        <div class="InputSeccion">
+            <div class="CursoCreate ">
+
+                <form class="example-form" style="margin-top: 10%;">
+                    <mat-form-field style="width:100%; align-content: center;">
                         <mat-label>Nombre de Curso</mat-label>
                         <input [formControl]="NombreCurso" matInput placeholder="{{Curso.Nombre}}" required>
                         <mat-error *ngIf="NombreSeccion.invalid">Ingrese el nombre de la seccion
@@ -65,15 +78,13 @@
                 </mat-card>
                 <mat-error *ngIf="!ValidarIC">Subir imagen del curso
                 </mat-error>
-                <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*"
-                    style="display:none;" />
+                <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" style="display:none;" />
             </div>
             <div id="TextAreatSeccion">
                 <form class="example-form">
                     <mat-form-field style="width:100%;">
                         <mat-label>Descipcion de la seccion</mat-label>
-                        <textarea style="resize: none;" [formControl]="DescripcionCurso" matInput
-                            placeholder="Ingrese aqui la descripcion del curso" required></textarea>
+                        <textarea style="resize: none;" [formControl]="DescripcionCurso" matInput placeholder="Ingrese aqui la descripcion del curso" required></textarea>
                         <mat-error *ngIf="DescripcionCurso.hasError('required')">Ingrese la descripcion del curso
                         </mat-error>
 
@@ -93,100 +104,123 @@
 
 </ng-container>
 <ng-container *ngIf="Opcion == 2">
-
-    <div class="CursoEdit">
-
-        <div class="ContenidoCurso" style="border: 2px solid blue;">
-            <div class="InputSeccion">
-                <form class="example-form" style="margin-top: 5%;">
-                    <mat-form-field style="width:100%;">
-                        <mat-label>Nuevo nombre de curso</mat-label>
-                        <input [formControl]="NombreCurso" matInput placeholder="{{Curso.Nombre}}" required>
-                        <mat-error *ngIf="NombreSeccion.hasError('required')">Ingrese el nuevo nombre del curso
-                         </mat-error>
-                    </mat-form-field>
-                </form>
-            </div>
-            <div class="UploadImagenCurso">
-                <div class="ImagenCurso">
-                    <img class="Imagen" src="{{Curso.LinkImagen}}">
-                </div>
-                <div class="Upload">
-                    <mat-card style="width: 100%;height: 100%; ">
-                        <mat-card-content>
-                            <ul>
-                                <li *ngFor="let file of files">
-                                    <mat-progress-bar [value]="file.progress"></mat-progress-bar>
-                                    <span id="file-label">
-                                    </span>
-                                </li>
-                            </ul>
-                        </mat-card-content>
-                        <mat-card-actions style="text-align: center;">
-    
-                            <button mat-button color="black" (click)="onClickimg()">
-                                <mat-icon>file_upload</mat-icon>
-                                Subir Multimedia
-                            </button>
-    
-                        </mat-card-actions>
-                    </mat-card>
-                    <mat-error *ngIf="!ValidarIC">Subir imagen del curso
-                    </mat-error>
-                    <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*"
-                        style="display:none;" />
-                </div>
-            </div>
-            <div id="TextAreatSeccion">
-                <form class="example-form">
-                    <mat-form-field style="width:100%;">
-                        <mat-label>Nueva descripcion del curso</mat-label>
-                        <textarea style="resize: none;" [formControl]="DescripcionCurso" matInput
-                            placeholder="{{Curso.Descripcion}}" required></textarea>
-                        <mat-error *ngIf="DescripcionSeccion.hasError('required')">Ingrese la nueva descripcion del curso
-                        </mat-error>
-
-                    </mat-form-field>
-                </form>
-            </div>
-            <button mat-raised-button color="accent" (click)="EditarInfoCurso()">Guardar Cambios</button>
-        </div>
-
-        <div class="Derecha">
-
-
-            <div class="DatoSecciones" *ngFor="let Seccion of Secciones">
-
-                <div class="ContainerSeccion">
-                    <div class="NombreSeccion">
-                        {{Seccion.Nombre}}
+    <div class="container" style="padding-bottom: 5%;">
+        <div class="row ">
+            <div class="col shadow-lg p-1 mb-5 bg-white rounded">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <form class="example-form" style="margin-top: 5%;">
+                            <mat-form-field style="width:100%;">
+                                <mat-label><strong>nombre de curso</strong> </mat-label>
+                                <input [formControl]="NombreCurso" matInput placeholder="{{Curso.Nombre}}" required>
+                                <mat-error *ngIf="NombreSeccion.hasError('required')">Ingrese el nuevo nombre del curso
+                                </mat-error>
+                            </mat-form-field>
+                        </form>
                     </div>
-                    <div class="BotonSeccion">
-                        <button (click)="CambiarSeccion(Seccion)" mat-mini-fab style="background: tomato;">
-                            <mat-icon>input</mat-icon>
-                        </button>
+                    <div class="card-body">
+                        <div class="UploadImagenCurso">
+                            <div class="ImagenCurso">
+                                <img class="Imagen" src="{{Curso.LinkImagen}}">
+                            </div>
+                            <div class="Upload">
+                                <mat-card style="width: 100%;height: 100%; ">
+                                    <mat-card-content>
+                                        <ul>
+                                            <li *ngFor="let file of files">
+                                                <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+                                                <span id="file-label">
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </mat-card-content>
+                                    <mat-card-actions style="text-align: center;">
+
+                                        <button mat-button color="black" (click)="onClickimg()">
+                                            <mat-icon>file_upload</mat-icon>
+                                            Subir Multimedia
+                                        </button>
+
+                                    </mat-card-actions>
+                                </mat-card>
+                                <mat-error *ngIf="!ValidarIC">Subir imagen del curso
+                                </mat-error>
+                                <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" style="display:none;" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <div class="ContenidoCurso">
+                            <div class="InputSeccion">
+
+                            </div>
+
+                            <div id="TextAreatSeccion">
+                                <form class="example-form">
+                                    <mat-form-field style="width:100%;">
+                                        <mat-label>Nueva descripcion del curso</mat-label>
+                                        <textarea style="resize: none;" [formControl]="DescripcionCurso" matInput placeholder="{{Curso.Descripcion}}" required></textarea>
+                                        <mat-error *ngIf="DescripcionSeccion.hasError('required')">Ingrese la nueva descripcion del curso
+                                        </mat-error>
+
+                                    </mat-form-field>
+                                </form>
+                            </div>
+                            <button type="button" class="btn btn-warning" (click)="EditarInfoCurso()">
+                                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggc3R5bGU9ImZpbGw6IzcyQTNGQzsiIGQ9Ik01MDcuNjA2LDg0LjM5NGwtODAtODBDNDI0Ljc5MywxLjU4MSw0MjAuOTc4LDAsNDE3LDBIMTVDNi43MTYsMCwwLDYuNzE2LDAsMTV2NDgyDQoJYzAsOC4yODQsNi43MTYsMTUsMTUsMTVoNDgyYzguMjg0LDAsMTUtNi43MTYsMTUtMTVWOTVDNTEyLDkxLjAyMiw1MTAuNDE5LDg3LjIwNyw1MDcuNjA2LDg0LjM5NHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiMyODkyRkM7IiBkPSJNNTA3LjYwNiw4NC4zOTRsLTgwLTgwQzQyNC43OTMsMS41ODEsNDIwLjk3OCwwLDQxNywwSDI1NnY1MTJoMjQxYzguMjg0LDAsMTUtNi43MTYsMTUtMTVWOTUNCglDNTEyLDkxLjAyMiw1MTAuNDE5LDg3LjIwNyw1MDcuNjA2LDg0LjM5NHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGOUY5Rjk7IiBkPSJNNDA2LDI0MkgxMDZjLTguMjg0LDAtMTUsNi43MTYtMTUsMTV2MjU1aDMzMFYyNTdDNDIxLDI0OC43MTYsNDE0LjI4NCwyNDIsNDA2LDI0MnoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNERkU0RUE7IiBkPSJNNDIxLDI1N2MwLTguMjg0LTYuNzE2LTE1LTE1LTE1SDI1NnYyNzBoMTY1VjI1N3oiLz4NCjxnPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQUQ1NTc7IiBkPSJNMzQ2LDQ1MkgxNjZjLTguMjg0LDAtMTUtNi43MTYtMTUtMTVzNi43MTYtMTUsMTUtMTVoMTgwYzguMjg0LDAsMTUsNi43MTYsMTUsMTUNCgkJUzM1NC4yODQsNDUyLDM0Niw0NTJ6Ii8+DQoJPHBhdGggc3R5bGU9ImZpbGw6I0ZBRDU1NzsiIGQ9Ik0zNDYsMzMySDE2NmMtOC4yODQsMC0xNS02LjcxNi0xNS0xNXM2LjcxNi0xNSwxNS0xNWgxODBjOC4yODQsMCwxNSw2LjcxNiwxNSwxNQ0KCQlTMzU0LjI4NCwzMzIsMzQ2LDMzMnoiLz4NCgk8cGF0aCBzdHlsZT0iZmlsbDojRkFENTU3OyIgZD0iTTM0NiwzOTJIMTY2Yy04LjI4NCwwLTE1LTYuNzE2LTE1LTE1czYuNzE2LTE1LDE1LTE1aDE4MGM4LjI4NCwwLDE1LDYuNzE2LDE1LDE1DQoJCVMzNTQuMjg0LDM5MiwzNDYsMzkyeiIvPg0KPC9nPg0KPHBhdGggc3R5bGU9ImZpbGw6IzU0NThFQTsiIGQ9Ik0zNjEsMEg5MXYxNDVjMCw4LjI4NCw2LjcxNiwxNSwxNSwxNWgyNDBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVYweiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6IzM1NDVFMzsiIGQ9Ik0yNTYsMHYxNjBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVYwSDI1NnoiLz4NCjxnPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQ0IxMkI7IiBkPSJNMzQ2LDQyMmgtOTB2MzBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVMzNTQuMjg0LDQyMiwzNDYsNDIyeiIvPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQ0IxMkI7IiBkPSJNMzQ2LDMwMmgtOTB2MzBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVMzNTQuMjg0LDMwMiwzNDYsMzAyeiIvPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQ0IxMkI7IiBkPSJNMzQ2LDM2MmgtOTB2MzBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVMzNTQuMjg0LDM2MiwzNDYsMzYyeiIvPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPC9zdmc+DQo=" 
+                                style="height:20px;"/>  Guardar Cambios</button>
+
+                        </div>
                     </div>
                 </div>
-
             </div>
-            <div class="DatoSecciones" >
-
-                <div class="ContainerSeccion">
-                    <div class="NombreSeccion">
-                        Agregar una Nueva seccion
+            <div class="col shadow-lg p-1 mb-5 bg-white rounded">
+                <div class="card text-center">
+                    <div class="card-header" style="padding-bottom: 48px;">
+                        <h1><strong>Crear una nueva seccion</strong></h1>
                     </div>
-                    <div class="BotonSeccion">
-                        <button (click)="Opcion = 3" mat-mini-fab style="background: tomato;">
-                            <mat-icon>add</mat-icon>
-                        </button>
+                    <div class="card-body" style="padding-bottom: 60px;">
+                        <div class="DatoSecciones" *ngFor="let Seccion of Secciones">
+
+                            <div class="ContainerSeccion">
+                                <div class="NombreSeccion">
+                                    {{Seccion.Nombre}}
+                                </div>
+                                <div class="BotonSeccion">
+                                    <button (click)="CambiarSeccion(Seccion)" mat-mini-fab style="background: tomato;">
+                                        <mat-icon>input</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="DatoSecciones">
+
+                            <div class="ContainerSeccion">
+                                <div class="NombreSeccion">
+
+                                </div>
+                                <div class="BotonSeccion">
+                                    <button (click)="Opcion = 3" mat-mini-fab style="background: tomato;">
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted" style="padding-bottom: 48px;
+                    padding-top: 48px;">
+                        <button mat-raised-button color="accent">Accent</button>
                     </div>
                 </div>
 
-            </div>
 
-            <button mat-raised-button color="accent" >Accent</button>
+
+            </div>
         </div>
     </div>
+
 
 
 
@@ -242,15 +276,13 @@
                 </mat-card>
                 <mat-error *ngIf="!ValidarFC">Subir imagen del curso
                 </mat-error>
-                <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple"
-                    accept="video/*" style="display:none;" />
+                <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="video/*" style="display:none;" />
             </div>
             <div id="TextAreatSeccion">
                 <form class="example-form">
                     <mat-form-field style="width:100%;">
                         <mat-label>Descipcion de la seccion</mat-label>
-                        <textarea style="resize: none;" [formControl]="DescripcionSeccion" matInput
-                            placeholder="Ingrese aqui la descripcion de la seccion" required></textarea>
+                        <textarea style="resize: none;" [formControl]="DescripcionSeccion" matInput placeholder="Ingrese aqui la descripcion de la seccion" required></textarea>
                         <mat-error *ngIf="DescripcionSeccion.hasError('required')">Ingrese la descripcion de la seccion
                         </mat-error>
 
@@ -267,7 +299,7 @@
                         Editar Curso
                     </div>
                     <div class="BotonSeccion">
-                        <button mat-mini-fab  (click)="Opcion = 2"  style="background: tomato;">
+                        <button mat-mini-fab (click)="Opcion = 2" style="background: tomato;">
                             <mat-icon>input</mat-icon>
                         </button>
                     </div>
@@ -289,7 +321,7 @@
 
             </div>
 
-            <button mat-raised-button color="accent" >Accent</button>
+            <button mat-raised-button color="accent">Accent</button>
         </div>
     </div>
 
@@ -344,22 +376,20 @@
                         </button>
 
                     </mat-card-actions>
-                </mat-card><input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple"
-                    accept="video/*" style="display:none;" />
+                </mat-card><input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="video/*" style="display:none;" />
             </div>
             <div id="TextAreatSeccion">
                 <form class="example-form">
                     <mat-form-field style="width:100%;">
                         <mat-label>Nueva descipcion de la seccion</mat-label>
-                        <textarea style="resize: none;" [formControl]="DescripcionSeccion" matInput
-                            placeholder="Ingrese aqui la descripcion de la seccion" required></textarea>
+                        <textarea style="resize: none;" [formControl]="DescripcionSeccion" matInput placeholder="Ingrese aqui la descripcion de la seccion" required></textarea>
                         <mat-error *ngIf="DescripcionSeccion.hasError('required')">Ingrese la nueva descripcion de la seccion
                         </mat-error>
 
                     </mat-form-field>
                 </form>
             </div>
-            <button mat-raised-button color="accent" (click)="EditarInfoSeccion()"   >Accent</button>
+            <button mat-raised-button color="accent" (click)="EditarInfoSeccion()">Accent</button>
         </div>
 
         <div class="Derecha">
@@ -391,7 +421,7 @@
 
             </div>
 
-            <button mat-raised-button color="accent" >Accent</button>
+            <button mat-raised-button color="accent">Accent</button>
         </div>
     </div>
 
