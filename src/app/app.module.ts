@@ -36,6 +36,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { InfoCursoComponent } from './componentes/info-curso/info-curso.component';
+import { MisCursosComponent } from './componentes/mis-cursos/mis-cursos.component';
+import { FuncionesProfesorComponent } from './compponentes/funciones-profesor/funciones-profesor.component';
+import { FiltroMisCursosPipe } from './Pipes/filtro-mis-cursos.pipe';
 
 
 
@@ -64,7 +67,10 @@ import { InfoCursoComponent } from './componentes/info-curso/info-curso.componen
     MirarVideoComponent,
     EditarperfilComponent,
     CrearCursoComponent,
-    InfoCursoComponent
+    InfoCursoComponent,
+    MisCursosComponent,
+    FuncionesProfesorComponent,
+    FiltroMisCursosPipe
   ],
   imports: [
     BrowserModule,

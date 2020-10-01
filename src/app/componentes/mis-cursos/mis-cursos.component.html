@@ -1,0 +1,34 @@
+<form class="example-form">
+    <mat-form-field>
+        <mat-label>Buscador</mat-label>
+        <input [formControl]="BuscarCurso" matInput placeholder="Buscador">
+        <!-- <mat-error *ngIf="Direccion.hasError('required')">Ingrese la direccion del
+                                            usuario
+                                        </mat-error> -->
+    </mat-form-field>
+</form>
+
+
+<div class="Cursos" style="border: 2px solid tomato;"
+    *ngFor="let Curso of ListaCursos | filtroMisCursos:BuscarCurso.value ">
+
+    <img src="{{Curso.Curso.LinkImagen}}" style="height: 130px; width:200px ">
+
+    <p>Nombre Curso: {{Curso.Curso.Nombre}} </p>
+
+    <p>Descripcion Curso: {{Curso.Curso.Descripcion}} </p>
+
+    <p>Autor Curso: {{Curso.Profesor.Nombres}} {{Curso.Profesor.Apellidos}} </p>
+
+    <div class="FiltrosCurso">
+
+        <div class="FiltroCurso" *ngFor="let Filtro of Curso.NombresFiltro" style="border: black 2px solid;">
+            <p>Nombre Filtro : {{Filtro.Nombre}} </p>
+        </div>
+
+        <button mat-raised-button color="primary">MirarCUrso</button>
+
+
+    </div>
+
+</div>

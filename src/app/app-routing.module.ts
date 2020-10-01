@@ -9,9 +9,11 @@ import { CategoriasComponent } from "./componentes/categorias/categorias.compone
 import { ComunidadComponent } from './componentes/comunidad/comunidad.component';
 import { MirarVideoComponent } from "./componentes/mirar-video/mirar-video.component";
 import { EditarperfilComponent } from './componentes/editarperfil/editarperfil.component';
-import {EditarusuarioComponent} from './componentes/editarusuario/editarusuario.component';
-import {CrearCursoComponent  } from "./componentes/crear-curso/crear-curso.component";
+import { EditarusuarioComponent } from './componentes/editarusuario/editarusuario.component';
+import { CrearCursoComponent } from "./componentes/crear-curso/crear-curso.component";
 import { InfoCursoComponent } from "./componentes/info-curso/info-curso.component";
+import { MisCursosComponent } from "./componentes/mis-cursos/mis-cursos.component";
+
 
 
 const routes: Routes = [
@@ -19,8 +21,8 @@ const routes: Routes = [
     path: '',
     redirectTo: '/Inicio',
     pathMatch: 'full'
-  },{
-    path:'MirarVideo',
+  }, {
+    path: 'MirarVideo',
     component: MirarVideoComponent
   },
   {
@@ -50,7 +52,7 @@ const routes: Routes = [
   {
     path: 'ValidacionCorreoRegistro/:TokenRegister',
     component: RegistroComponent
-  },{
+  }, {
     path: 'RecuperarContrasena/:TokenRecuperar',
     component: RecuperarContrasenaComponent
   },
@@ -61,25 +63,31 @@ const routes: Routes = [
   {
     path: 'Comunidad',
     component: ComunidadComponent
-  },{
+  },
+  {
     path: 'InfoCurso',
     component: InfoCursoComponent
   },
+  {
+    path: 'MisCursos',
+    component: MisCursosComponent
+  },
+
   {
     path: 'Buscador',
     component: CategoriasComponent
   },
   {
-    path:'CrearVideo',
-    component:CrearCursoComponent
+    path: 'CrearVideo',
+    component: CrearCursoComponent
 
   },
   {
     path: 'EditarUsuario',
     component: EditarusuarioComponent
   },
- 
-  
+
+
   {
     path: 'Editarperfil',
     component: EditarperfilComponent
