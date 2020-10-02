@@ -1,8 +1,8 @@
 <app-barra-superior></app-barra-superior>
-
+<h1 class="alert-heading text-center" style="padding-top:3% ;"><strong>Buscar usuario</strong> </h1>
 <ng-container *ngIf="Opcion==1">
     <form class="example-form" style="padding-left: 43%;
-    padding-top: 5%;">
+    padding-top: 2%;">
         <mat-form-field>
             <mat-label>Buscador</mat-label>
             <input [formControl]="BuscarUsuario" matInput placeholder="Buscador">
@@ -11,8 +11,8 @@
                                         </mat-error> -->
         </mat-form-field>
     </form>
-    <div class="container hadow-lg p-3 mb-1 bg-white rounded">
-        <table class="table table-striped table-dark ">
+    <div class="container hadow-lg p-3 mb-1 bg-white rounded" style="padding-bottom: 5%;">
+        <table class="table table-striped table-dark " style="padding-bottom: 5%;">
             <thead>
                 <tr>
 
@@ -47,13 +47,13 @@
 
     <div class="container register">
         <div class="row">
-            <div class="col-md-3 register-left">
+            <div class="col-md-1 register-left" style="padding-bottom: 5%;">
                 <img src="https://www.flaticon.com/svg/static/icons/svg/2919/2919600.svg" alt="usuario" />
                 <h1>Bienvenido</h1>
-                <h1>Editar Perfil</h1>
+                <h1>Editar Usuario</h1>
 
             </div>
-            <div class="col-md-9 register-right">
+            <div class="col-md-11 register-right">
                 <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Pagina 1</a>
@@ -67,7 +67,7 @@
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h1 class="register-heading">Informacion del usuario</h1>
+
                         <div class="row register-form">
                             <div class="col-md-6">
                                 <!-- Nombre -->
@@ -223,7 +223,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <h1 class="register-heading">Informacion del usuario</h1>
+                        <h1 class="register-heading" style="padding-top: 6%;"></h1>
                         <div class="row register-form">
                             <div class="col-md-6">
                                 <!-- Tipo Genero -->
@@ -402,9 +402,9 @@
                         </div>
                     </div>
                     <div class="tab-pane fade show" id="TipoUsu" role="tabpanel" aria-labelledby="TipoUsu-tab">
-                        <h1 class="register-heading">Informacion del usuario</h1>
-                        <div class="row ">
-                            <div class="col">
+
+                        <div class="row register-form">
+                            <div class="col-md-6">
                                 <!-- Tipo Tipo Usuario -->
                                 <div class="form-group">
                                     <form class="example-form">
@@ -424,7 +424,7 @@
                                     </form>
                                 </div>
                                 <div class="Upload" *ngIf="TipoUsuario.value == 3">
-                                    <mat-card style="width: 100%;height: 100%; ">
+                                    <mat-card style="width: 100%; height: 100%; ">
                                         <mat-card-content>
                                             <ul>
                                                 <li *ngFor="let file of files">
@@ -501,3 +501,5 @@
         </div>
     </div>
 </ng-container>
+
+<app-barra-inferior></app-barra-inferior>
