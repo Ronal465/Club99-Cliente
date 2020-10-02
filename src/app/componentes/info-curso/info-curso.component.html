@@ -1,55 +1,88 @@
+<app-barra-superior></app-barra-superior>
 <ng-container>
+    <div class="container " style="
+    padding-top: 5%;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-bottom: 5%;">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;" style="display: block;
+        margin: auto;
+        width: 60%;">
 
-    <img 
-    src="{{Curso.Curso.LinkImagen}}"
-    style="height: 130px; width:200px ">
+            <h2 class="card-title text-center" style="display: block;
+            margin: auto;">
+                <strong>Informacion del Curso</strong>
+            </h2>
+            <img src="{{Curso.Curso.LinkImagen}}" style="height: 50%; width:50% ;
+            display: block;
+            margin: auto;">
+            <div class="card-body">
+                <h3 class="card-title">
+                    <strong>{{Curso.Curso.Nombre}}</strong>
+                </h3>
+                <p class="card-text">{{Curso.Curso.Descripcion}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <p><strong>Autor Curso:</strong> {{Curso.Profesor.Nombres}} {{Curso.Profesor.Apellidos}} </p>
+                </li>
+                <li class="list-group-item">
+                    <div class="SeccionCurso" *ngFor="let seccion of SeccionesCurso" style="border: rgb(255, 215, 85) 2px solid;">
+                        <p><strong>Seccion :</strong> {{seccion.Nombre}} </p>
+                        <p><strong>Seccion :</strong> {{seccion.Numero}} </p>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="FiltroCurso" *ngFor="let Filtro of Curso.NombresFiltro">
+                        <p><strong>Filtro :</strong> {{Filtro.Nombre}} </p>
+                    </div>
+                </li>
+            </ul>
+            <div class="card-body">
 
+                <button type="button" class="btn btn-warning text-white" *ngIf="Logueado" color="primary">Añadir a favoritos</button>
 
-    <p>Nombre Curso: {{Curso.Curso.Nombre}} </p>
-
-    <p>Descripcion Curso: {{Curso.Curso.Descripcion}} </p>
-
-    <p>Autor Curso: {{Curso.Profesor.Nombres}}  {{Curso.Profesor.Apellidos}} </p>
-
-
-    <div class="SeccionesCurso">
-
-        <div class="SeccionCurso" *ngFor="let seccion of SeccionesCurso" style="border: black 2px solid;" >
-            <p>Nombre Seccion : {{seccion.Nombre}} </p>
-            <p>Numero Seccion : {{seccion.Numero}} </p>
-        </div>
-
-    </div>
-
-
-    <div class="FiltrosCurso">
-
-        <div class="FiltroCurso" *ngFor="let Filtro of Curso.NombresFiltro" style="border: black 2px solid;" >
-            <p>Nombre Filtro : {{Filtro.Nombre}} </p>
-        </div>
-
-    </div>
-
-
-
-
-    <button mat-raised-button *ngIf="Logueado" color="primary">Añadir a favoritos</button>
-
-    <form *ngIf="Logueado" > 
-        <p class="clasificacion">
-          <input id="radio1" type="radio" name="estrellas" value="5"><!--
-          --><label for="radio1">★</label><!--
-          --><input id="radio2" type="radio" name="estrellas" value="4"><!--
-          --><label for="radio2">★</label><!--
-          --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-          --><label for="radio3">★</label><!--
-          --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-          --><label for="radio4">★</label><!--
-          --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+                <form *ngIf="Logueado">
+                    <p class="clasificacion">
+                        <input id="radio1" type="radio" name="estrellas" value="5">
+                        <!--
+          --><label for="radio1">★</label>
+                        <!--
+          --><input id="radio2" type="radio" name="estrellas" value="4">
+                        <!--
+          --><label for="radio2">★</label>
+                        <!--
+          --><input id="radio3" type="radio" name="estrellas" value="3">
+                        <!--
+          --><label for="radio3">★</label>
+                        <!--
+          --><input id="radio4" type="radio" name="estrellas" value="2">
+                        <!--
+          --><label for="radio4">★</label>
+                        <!--
+          --><input id="radio5" type="radio" name="estrellas" value="1">
+                        <!--
           --><label for="radio5">★</label>
-        </p>
-      </form>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </ng-container>
-
-
+<app-barra-inferior></app-barra-inferior>
