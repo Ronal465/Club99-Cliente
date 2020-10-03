@@ -128,6 +128,7 @@ export class EditarusuarioComponent implements OnInit {
   ngOnInit(): void {
 
     this.LlenasCampos();
+    this.ObtenerUsuarios();
 
   }
 
@@ -238,6 +239,7 @@ export class EditarusuarioComponent implements OnInit {
 
     var idUsuario = Usuario.idUsuario;
 
+    
     this.ListasFormulariosService.GetUsaurio(idUsuario).subscribe(
       res => {
         this.Usuario = res;
@@ -328,6 +330,21 @@ export class EditarusuarioComponent implements OnInit {
     this.Opcion = 2;
 
   }
+
+  ObtenerUsuarios(){
+    var TokenLogin = localStorage.getItem('TokenLogin');
+    this.ListasFormulariosService.GetListUsuarios({TokenLogin :TokenLogin}).subscribe(
+      res=>{
+
+        this.ListaUsuarios = res;
+
+      },
+      err=>{
+
+      }
+    )
+  }
+
   getErrorMessageCorreo() {
     if (this.Correo.hasError('required')) {
       return 'Ingrese un correo electronico';

@@ -134,4 +134,19 @@ export class ListasFormulariosService {
 
   }
 
+  GetListUsuarios(TokenLogin): Observable<any> {
+
+    return this.http.post(`${this.ApiURL}/list/Usuarios`,TokenLogin);
+
+  }
+  GetIdUsuario(TokenLogin): Observable<any> {
+
+    return this.http.post(`${this.ApiURL}/Get/Usuario`,{TokenLogin:TokenLogin});
+
+  }
+  
+ 
+                
+
+
 }

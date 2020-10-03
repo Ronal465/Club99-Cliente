@@ -24,10 +24,6 @@ export class ListarCursosService {
 
   constructor(private http : HttpClient) { }
   
-
-    
-
-
     GetCursosGratis() : Observable<any>{
      
       return this.http.get(`${this.ApiURL}/Inicio/List/Cursos`);
@@ -43,7 +39,6 @@ export class ListarCursosService {
       return this.http.post(`${this.ApiURL}/Inicio/List/Cursos/Exclusivo`,TokenLogin);
   
     } 
-
     ConsultProfesor(curso) : Observable<any>{
      
       return this.http.post(`${this.ApiURL}/Inicio/Get/Profesor`,curso);

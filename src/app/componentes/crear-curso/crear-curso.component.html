@@ -4,6 +4,7 @@
 </p>
 <h1 class="alert-heading text-center" style="padding: top 40px ;"><strong>Crear Curso</strong> </h1>
 
+<!-- Inicio -->
 <ng-container *ngIf="Opcion ==  0">
 
 
@@ -29,6 +30,11 @@
 
         </div>
 
+        <button mat-button color="black" (click)="Opcion = 1">
+            <mat-icon>add</mat-icon>
+            Crear Curso
+        </button>
+
     </div>
 
 
@@ -36,73 +42,74 @@
 
 
 </ng-container>
+<!-- Crear Curso -->
 <ng-container *ngIf="Opcion ==  1">
 
 
 
 
-    <div class="ContenidoCurso" style="border: 2px solid blue;">
 
-        <div class="InputSeccion">
-            <div class="CursoCreate ">
 
-                <form class="example-form" style="margin-top: 10%;">
-                    <mat-form-field style="width:100%; align-content: center;">
-                        <mat-label>Nombre de Curso</mat-label>
-                        <input [formControl]="NombreCurso" matInput placeholder="{{Curso.Nombre}}" required>
-                        <mat-error *ngIf="NombreSeccion.invalid">Ingrese el nombre de la seccion
-                        </mat-error>
+    <form class="example-form" style="margin-top: 10%;">
+        <mat-form-field style="width:100%; align-content: center;">
+            <mat-label>Nombre de Curso</mat-label>
+            <input [formControl]="NombreCurso" matInput placeholder="{{Curso.Nombre}}" required>
+            <mat-error *ngIf="NombreSeccion.invalid">Ingrese el nombre de la seccion
+            </mat-error>
 
-                    </mat-form-field>
-                </form>
-            </div>
-            <div class="Upload">
-                <mat-card style="width: 100%;height: 100%; ">
-                    <mat-card-content>
-                        <ul>
-                            <li *ngFor="let file of files">
-                                <mat-progress-bar [value]="file.progress"></mat-progress-bar>
-                                <span id="file-label">
-                                </span>
-                            </li>
-                        </ul>
-                    </mat-card-content>
-                    <mat-card-actions style="text-align: center;">
+        </mat-form-field>
+    </form>
 
-                        <button mat-button color="black" (click)="onClickimg()">
-                            <mat-icon>file_upload</mat-icon>
-                            Subir Multimedia
-                        </button>
+    <div class="Upload">
+        <mat-card style="width: 100%;height: 100%; ">
+            <mat-card-content>
+                <ul>
+                    <li *ngFor="let file of files">
+                        <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+                        <span id="file-label">
+                        </span>
+                    </li>
+                </ul>
+            </mat-card-content>
+            <mat-card-actions style="text-align: center;">
 
-                    </mat-card-actions>
-                </mat-card>
-                <mat-error *ngIf="!ValidarIC">Subir imagen del curso
-                </mat-error>
-                <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" style="display:none;" />
-            </div>
-            <div id="TextAreatSeccion">
-                <form class="example-form">
-                    <mat-form-field style="width:100%;">
-                        <mat-label>Descipcion de la seccion</mat-label>
-                        <textarea style="resize: none;" [formControl]="DescripcionCurso" matInput placeholder="Ingrese aqui la descripcion del curso" required></textarea>
-                        <mat-error *ngIf="DescripcionCurso.hasError('required')">Ingrese la descripcion del curso
-                        </mat-error>
-
-                    </mat-form-field>
-                </form>
-            </div>
-            <div class="BotonCreate">
-                <button (click)="CrearCurso()" mat-raised-button style="background: tomato;">
-                    <mat-icon>add</mat-icon>
+                <button mat-button color="black" (click)="onClickimg()">
+                    <mat-icon>file_upload</mat-icon>
+                    Subir Multimedia
                 </button>
-            </div>
-        </div>
 
+            </mat-card-actions>
+        </mat-card>
+        <mat-error *ngIf="!ValidarIC">Subir imagen del curso
+        </mat-error>
+        <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*"
+            style="display:none;" />
+    </div>
+
+    <form class="example-form">
+        <mat-form-field style="width:100%;">
+            <mat-label>Descipcion de la seccion</mat-label>
+            <textarea style="resize: none;" [formControl]="DescripcionCurso" matInput
+                placeholder="Ingrese aqui la descripcion del curso" required></textarea>
+            <mat-error *ngIf="DescripcionCurso.hasError('required')">Ingrese la descripcion del curso
+            </mat-error>
+
+        </mat-form-field>
+    </form>
+
+    <div class="BotonCreate">
+        <button (click)="CrearCurso()" mat-raised-button style="background: tomato;">
+            <mat-icon>add</mat-icon>
+        </button>
     </div>
 
 
 
+
+
+
 </ng-container>
+<!-- Editar Curso -->
 <ng-container *ngIf="Opcion == 2">
     <div class="container" style="padding-bottom: 5%;">
         <div class="row ">
@@ -145,7 +152,8 @@
                                 </mat-card>
                                 <mat-error *ngIf="!ValidarIC">Subir imagen del curso
                                 </mat-error>
-                                <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" style="display:none;" />
+                                <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple"
+                                    accept="image/*" style="display:none;" />
                             </div>
                         </div>
                     </div>
@@ -159,16 +167,18 @@
                                 <form class="example-form">
                                     <mat-form-field style="width:100%;">
                                         <mat-label>Nueva descripcion del curso</mat-label>
-                                        <textarea style="resize: none;" [formControl]="DescripcionCurso" matInput placeholder="{{Curso.Descripcion}}" required></textarea>
-                                        <mat-error *ngIf="DescripcionSeccion.hasError('required')">Ingrese la nueva descripcion del curso
+                                        <textarea style="resize: none;" [formControl]="DescripcionCurso" matInput
+                                            placeholder="{{Curso.Descripcion}}" required></textarea>
+                                        <mat-error *ngIf="DescripcionSeccion.hasError('required')">Ingrese la nueva
+                                            descripcion del curso
                                         </mat-error>
 
                                     </mat-form-field>
                                 </form>
                             </div>
                             <button type="button" class="btn btn-warning" (click)="EditarInfoCurso()">
-                                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggc3R5bGU9ImZpbGw6IzcyQTNGQzsiIGQ9Ik01MDcuNjA2LDg0LjM5NGwtODAtODBDNDI0Ljc5MywxLjU4MSw0MjAuOTc4LDAsNDE3LDBIMTVDNi43MTYsMCwwLDYuNzE2LDAsMTV2NDgyDQoJYzAsOC4yODQsNi43MTYsMTUsMTUsMTVoNDgyYzguMjg0LDAsMTUtNi43MTYsMTUtMTVWOTVDNTEyLDkxLjAyMiw1MTAuNDE5LDg3LjIwNyw1MDcuNjA2LDg0LjM5NHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiMyODkyRkM7IiBkPSJNNTA3LjYwNiw4NC4zOTRsLTgwLTgwQzQyNC43OTMsMS41ODEsNDIwLjk3OCwwLDQxNywwSDI1NnY1MTJoMjQxYzguMjg0LDAsMTUtNi43MTYsMTUtMTVWOTUNCglDNTEyLDkxLjAyMiw1MTAuNDE5LDg3LjIwNyw1MDcuNjA2LDg0LjM5NHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGOUY5Rjk7IiBkPSJNNDA2LDI0MkgxMDZjLTguMjg0LDAtMTUsNi43MTYtMTUsMTV2MjU1aDMzMFYyNTdDNDIxLDI0OC43MTYsNDE0LjI4NCwyNDIsNDA2LDI0MnoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNERkU0RUE7IiBkPSJNNDIxLDI1N2MwLTguMjg0LTYuNzE2LTE1LTE1LTE1SDI1NnYyNzBoMTY1VjI1N3oiLz4NCjxnPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQUQ1NTc7IiBkPSJNMzQ2LDQ1MkgxNjZjLTguMjg0LDAtMTUtNi43MTYtMTUtMTVzNi43MTYtMTUsMTUtMTVoMTgwYzguMjg0LDAsMTUsNi43MTYsMTUsMTUNCgkJUzM1NC4yODQsNDUyLDM0Niw0NTJ6Ii8+DQoJPHBhdGggc3R5bGU9ImZpbGw6I0ZBRDU1NzsiIGQ9Ik0zNDYsMzMySDE2NmMtOC4yODQsMC0xNS02LjcxNi0xNS0xNXM2LjcxNi0xNSwxNS0xNWgxODBjOC4yODQsMCwxNSw2LjcxNiwxNSwxNQ0KCQlTMzU0LjI4NCwzMzIsMzQ2LDMzMnoiLz4NCgk8cGF0aCBzdHlsZT0iZmlsbDojRkFENTU3OyIgZD0iTTM0NiwzOTJIMTY2Yy04LjI4NCwwLTE1LTYuNzE2LTE1LTE1czYuNzE2LTE1LDE1LTE1aDE4MGM4LjI4NCwwLDE1LDYuNzE2LDE1LDE1DQoJCVMzNTQuMjg0LDM5MiwzNDYsMzkyeiIvPg0KPC9nPg0KPHBhdGggc3R5bGU9ImZpbGw6IzU0NThFQTsiIGQ9Ik0zNjEsMEg5MXYxNDVjMCw4LjI4NCw2LjcxNiwxNSwxNSwxNWgyNDBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVYweiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6IzM1NDVFMzsiIGQ9Ik0yNTYsMHYxNjBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVYwSDI1NnoiLz4NCjxnPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQ0IxMkI7IiBkPSJNMzQ2LDQyMmgtOTB2MzBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVMzNTQuMjg0LDQyMiwzNDYsNDIyeiIvPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQ0IxMkI7IiBkPSJNMzQ2LDMwMmgtOTB2MzBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVMzNTQuMjg0LDMwMiwzNDYsMzAyeiIvPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQ0IxMkI7IiBkPSJNMzQ2LDM2MmgtOTB2MzBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVMzNTQuMjg0LDM2MiwzNDYsMzYyeiIvPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPC9zdmc+DQo=" 
-                                style="height:20px;"/>  Guardar Cambios</button>
+                                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggc3R5bGU9ImZpbGw6IzcyQTNGQzsiIGQ9Ik01MDcuNjA2LDg0LjM5NGwtODAtODBDNDI0Ljc5MywxLjU4MSw0MjAuOTc4LDAsNDE3LDBIMTVDNi43MTYsMCwwLDYuNzE2LDAsMTV2NDgyDQoJYzAsOC4yODQsNi43MTYsMTUsMTUsMTVoNDgyYzguMjg0LDAsMTUtNi43MTYsMTUtMTVWOTVDNTEyLDkxLjAyMiw1MTAuNDE5LDg3LjIwNyw1MDcuNjA2LDg0LjM5NHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiMyODkyRkM7IiBkPSJNNTA3LjYwNiw4NC4zOTRsLTgwLTgwQzQyNC43OTMsMS41ODEsNDIwLjk3OCwwLDQxNywwSDI1NnY1MTJoMjQxYzguMjg0LDAsMTUtNi43MTYsMTUtMTVWOTUNCglDNTEyLDkxLjAyMiw1MTAuNDE5LDg3LjIwNyw1MDcuNjA2LDg0LjM5NHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGOUY5Rjk7IiBkPSJNNDA2LDI0MkgxMDZjLTguMjg0LDAtMTUsNi43MTYtMTUsMTV2MjU1aDMzMFYyNTdDNDIxLDI0OC43MTYsNDE0LjI4NCwyNDIsNDA2LDI0MnoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNERkU0RUE7IiBkPSJNNDIxLDI1N2MwLTguMjg0LTYuNzE2LTE1LTE1LTE1SDI1NnYyNzBoMTY1VjI1N3oiLz4NCjxnPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQUQ1NTc7IiBkPSJNMzQ2LDQ1MkgxNjZjLTguMjg0LDAtMTUtNi43MTYtMTUtMTVzNi43MTYtMTUsMTUtMTVoMTgwYzguMjg0LDAsMTUsNi43MTYsMTUsMTUNCgkJUzM1NC4yODQsNDUyLDM0Niw0NTJ6Ii8+DQoJPHBhdGggc3R5bGU9ImZpbGw6I0ZBRDU1NzsiIGQ9Ik0zNDYsMzMySDE2NmMtOC4yODQsMC0xNS02LjcxNi0xNS0xNXM2LjcxNi0xNSwxNS0xNWgxODBjOC4yODQsMCwxNSw2LjcxNiwxNSwxNQ0KCQlTMzU0LjI4NCwzMzIsMzQ2LDMzMnoiLz4NCgk8cGF0aCBzdHlsZT0iZmlsbDojRkFENTU3OyIgZD0iTTM0NiwzOTJIMTY2Yy04LjI4NCwwLTE1LTYuNzE2LTE1LTE1czYuNzE2LTE1LDE1LTE1aDE4MGM4LjI4NCwwLDE1LDYuNzE2LDE1LDE1DQoJCVMzNTQuMjg0LDM5MiwzNDYsMzkyeiIvPg0KPC9nPg0KPHBhdGggc3R5bGU9ImZpbGw6IzU0NThFQTsiIGQ9Ik0zNjEsMEg5MXYxNDVjMCw4LjI4NCw2LjcxNiwxNSwxNSwxNWgyNDBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVYweiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6IzM1NDVFMzsiIGQ9Ik0yNTYsMHYxNjBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVYwSDI1NnoiLz4NCjxnPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQ0IxMkI7IiBkPSJNMzQ2LDQyMmgtOTB2MzBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVMzNTQuMjg0LDQyMiwzNDYsNDIyeiIvPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQ0IxMkI7IiBkPSJNMzQ2LDMwMmgtOTB2MzBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVMzNTQuMjg0LDMwMiwzNDYsMzAyeiIvPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQ0IxMkI7IiBkPSJNMzQ2LDM2MmgtOTB2MzBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVMzNTQuMjg0LDM2MiwzNDYsMzYyeiIvPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPC9zdmc+DQo="
+                                    style="height:20px;" /> Guardar Cambios</button>
 
                         </div>
                     </div>
@@ -177,7 +187,7 @@
             <div class="col shadow-lg p-1 mb-5 bg-white rounded">
                 <div class="card text-center">
                     <div class="card-header" style="padding-bottom: 48px;">
-                        <h1><strong>Crear una nueva seccion</strong></h1>
+                        <h1><strong>Secciones</strong></h1>
                     </div>
                     <div class="card-body" style="padding-bottom: 60px;">
                         <div class="DatoSecciones" *ngFor="let Seccion of Secciones">
@@ -198,10 +208,29 @@
 
                             <div class="ContainerSeccion">
                                 <div class="NombreSeccion">
-
+                                    <p>Crear Seccion</p>
                                 </div>
                                 <div class="BotonSeccion">
                                     <button (click)="Opcion = 3" mat-mini-fab style="background: tomato;">
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-header" style="padding-bottom: 48px;">
+                        <h1><strong>Filtros</strong></h1>
+                    </div>
+                    <div class="card-body" style="padding-bottom: 60px;">
+                        <div class="DatoSecciones">
+
+                            <div class="ContainerSeccion">
+                                <div class="NombreSeccion">
+                                    <p>Editar Filtros</p>
+                                </div>
+                                <div class="BotonSeccion">
+                                    <button (click)="Opcion = 5" mat-mini-fab style="background: tomato;">
                                         <mat-icon>add</mat-icon>
                                     </button>
                                 </div>
@@ -225,6 +254,7 @@
 
 
 </ng-container>
+<!-- Crear Seccion -->
 <ng-container *ngIf="Opcion == 3">
 
     <div class="container" style="padding-bottom: 5%;">
@@ -236,8 +266,10 @@
                             <form class="example-form" style="margin-top: 5%;">
                                 <mat-form-field style="width:100%;">
                                     <mat-label>Nombre de la seccion</mat-label>
-                                    <input [formControl]="NombreSeccion" matInput placeholder="Introduccion A Angular II" required>
-                                    <mat-error *ngIf="NombreSeccion.hasError('required')">Ingrese el nombre de la seccion
+                                    <input [formControl]="NombreSeccion" matInput
+                                        placeholder="Introduccion A Angular II" required>
+                                    <mat-error *ngIf="NombreSeccion.hasError('required')">Ingrese el nombre de la
+                                        seccion
                                     </mat-error>
 
                                 </mat-form-field>
@@ -254,11 +286,13 @@
                                             <mat-label>Tipo multimedia</mat-label>
                                             <mat-select [formControl]="TipoArchivoM" required>
                                                 <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of TiposMultimedia" [value]="Tipo.idTipoArchivoMultimedia">
+                                                <mat-option *ngFor="let Tipo of TiposMultimedia"
+                                                    [value]="Tipo.idTipoArchivoMultimedia">
                                                     {{Tipo.TipoArchivoMultimedia}}
                                                 </mat-option>
                                             </mat-select>
-                                            <mat-error *ngIf="TipoArchivoM.hasError('required')">Porfavor escoga un tipo multimedia</mat-error>
+                                            <mat-error *ngIf="TipoArchivoM.hasError('required')">Porfavor escoga un tipo
+                                                multimedia</mat-error>
 
                                         </mat-form-field>
                                     </div>
@@ -286,7 +320,8 @@
                                         </mat-card>
                                         <mat-error *ngIf="!ValidarFC">Subir imagen del curso
                                         </mat-error>
-                                        <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="video/*" style="display:none;" />
+                                        <input type="file" #fileUpload id="fileUpload" name="fileUpload"
+                                            multiple="multiple" accept="video/*" style="display:none;" />
                                     </div>
                                 </div>
                             </div>
@@ -295,8 +330,10 @@
                             <form class="example-form">
                                 <mat-form-field style="width:100%;">
                                     <mat-label>Descipcion de la seccion</mat-label>
-                                    <textarea style="resize: none;" [formControl]="DescripcionSeccion" matInput placeholder="Ingrese aqui la descripcion de la seccion" required></textarea>
-                                    <mat-error *ngIf="DescripcionSeccion.hasError('required')">Ingrese la descripcion de la seccion
+                                    <textarea style="resize: none;" [formControl]="DescripcionSeccion" matInput
+                                        placeholder="Ingrese aqui la descripcion de la seccion" required></textarea>
+                                    <mat-error *ngIf="DescripcionSeccion.hasError('required')">Ingrese la descripcion de
+                                        la seccion
                                     </mat-error>
 
                                 </mat-form-field>
@@ -304,7 +341,8 @@
                         </div>
                     </div>
                     <div class="card-footer text-muted">
-                        <button type="button" class="btn btn-warning" (click)="CrearNuevaSeccion()">Crear Nueva Seccion</button>
+                        <button type="button" class="btn btn-warning" (click)="CrearNuevaSeccion()">Crear Nueva
+                            Seccion</button>
                     </div>
                 </div>
             </div>
@@ -346,6 +384,7 @@
 
 
 </ng-container>
+<!-- Editar Seccion -->
 <ng-container *ngIf="Opcion == 4">
     <div class="container" style="padding-bottom: 5%;">
         <div class="row">
@@ -355,8 +394,10 @@
                         <form class="example-form" style="margin-top: 5%;">
                             <mat-form-field style="width:100%;">
                                 <mat-label>Nuevo nombre de la seccion</mat-label>
-                                <input [formControl]="NombreSeccion" matInput placeholder="Introduccion A Angular II" required>
-                                <mat-error *ngIf="NombreSeccion.hasError('required')">Ingrese nuevo el nombre de la seccion
+                                <input [formControl]="NombreSeccion" matInput placeholder="Introduccion A Angular II"
+                                    required>
+                                <mat-error *ngIf="NombreSeccion.hasError('required')">Ingrese nuevo el nombre de la
+                                    seccion
                                 </mat-error>
 
                             </mat-form-field>
@@ -371,11 +412,13 @@
                                             <mat-label>Tipo multimedia</mat-label>
                                             <mat-select [formControl]="TipoArchivoM" required>
                                                 <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of TiposMultimedia" [value]="Tipo.idTipoArchivoMultimedia">
+                                                <mat-option *ngFor="let Tipo of TiposMultimedia"
+                                                    [value]="Tipo.idTipoArchivoMultimedia">
                                                     {{Tipo.TipoArchivoMultimedia}}
                                                 </mat-option>
                                             </mat-select>
-                                            <mat-error *ngIf="TipoArchivoM.hasError('required')">Porfavor escoga un tipo multimedia</mat-error>
+                                            <mat-error *ngIf="TipoArchivoM.hasError('required')">Porfavor escoga un tipo
+                                                multimedia</mat-error>
 
                                         </mat-form-field>
                                     </div>
@@ -388,19 +431,20 @@
                                                     <li *ngFor="let file of files">
                                                         <mat-progress-bar [value]="file.progress"></mat-progress-bar>
                                                         <span id="file-label">
-                                                    </span>
+                                                        </span>
                                                     </li>
                                                 </ul>
                                             </mat-card-content>
                                             <mat-card-actions style="text-align: center;">
 
                                                 <button mat-button color="black" (click)="onClick()">
-                                                <mat-icon>file_upload</mat-icon>
-                                                Subir Multimedia
-                                            </button>
+                                                    <mat-icon>file_upload</mat-icon>
+                                                    Subir Multimedia
+                                                </button>
 
                                             </mat-card-actions>
-                                        </mat-card><input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="video/*" style="display:none;" />
+                                        </mat-card><input type="file" #fileUpload id="fileUpload" name="fileUpload"
+                                            multiple="multiple" accept="video/*" style="display:none;" />
                                     </div>
 
 
@@ -410,16 +454,19 @@
                         <form class="example-form">
                             <mat-form-field style="width:100%;">
                                 <mat-label>Nueva descipcion de la seccion</mat-label>
-                                <textarea style="resize: none;" [formControl]="DescripcionSeccion" matInput placeholder="Ingrese aqui la descripcion de la seccion" required></textarea>
-                                <mat-error *ngIf="DescripcionSeccion.hasError('required')">Ingrese la nueva descripcion de la seccion
+                                <textarea style="resize: none;" [formControl]="DescripcionSeccion" matInput
+                                    placeholder="Ingrese aqui la descripcion de la seccion" required></textarea>
+                                <mat-error *ngIf="DescripcionSeccion.hasError('required')">Ingrese la nueva descripcion
+                                    de la seccion
                                 </mat-error>
 
                             </mat-form-field>
                         </form>
                     </div>
                     <div class="card-footer text-muted">
-                        <button type="button" class="btn btn-warning" (click)="EditarInfoSeccion()"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggc3R5bGU9ImZpbGw6IzcyQTNGQzsiIGQ9Ik01MDcuNjA2LDg0LjM5NGwtODAtODBDNDI0Ljc5MywxLjU4MSw0MjAuOTc4LDAsNDE3LDBIMTVDNi43MTYsMCwwLDYuNzE2LDAsMTV2NDgyDQoJYzAsOC4yODQsNi43MTYsMTUsMTUsMTVoNDgyYzguMjg0LDAsMTUtNi43MTYsMTUtMTVWOTVDNTEyLDkxLjAyMiw1MTAuNDE5LDg3LjIwNyw1MDcuNjA2LDg0LjM5NHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiMyODkyRkM7IiBkPSJNNTA3LjYwNiw4NC4zOTRsLTgwLTgwQzQyNC43OTMsMS41ODEsNDIwLjk3OCwwLDQxNywwSDI1NnY1MTJoMjQxYzguMjg0LDAsMTUtNi43MTYsMTUtMTVWOTUNCglDNTEyLDkxLjAyMiw1MTAuNDE5LDg3LjIwNyw1MDcuNjA2LDg0LjM5NHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGOUY5Rjk7IiBkPSJNNDA2LDI0MkgxMDZjLTguMjg0LDAtMTUsNi43MTYtMTUsMTV2MjU1aDMzMFYyNTdDNDIxLDI0OC43MTYsNDE0LjI4NCwyNDIsNDA2LDI0MnoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNERkU0RUE7IiBkPSJNNDIxLDI1N2MwLTguMjg0LTYuNzE2LTE1LTE1LTE1SDI1NnYyNzBoMTY1VjI1N3oiLz4NCjxnPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQUQ1NTc7IiBkPSJNMzQ2LDQ1MkgxNjZjLTguMjg0LDAtMTUtNi43MTYtMTUtMTVzNi43MTYtMTUsMTUtMTVoMTgwYzguMjg0LDAsMTUsNi43MTYsMTUsMTUNCgkJUzM1NC4yODQsNDUyLDM0Niw0NTJ6Ii8+DQoJPHBhdGggc3R5bGU9ImZpbGw6I0ZBRDU1NzsiIGQ9Ik0zNDYsMzMySDE2NmMtOC4yODQsMC0xNS02LjcxNi0xNS0xNXM2LjcxNi0xNSwxNS0xNWgxODBjOC4yODQsMCwxNSw2LjcxNiwxNSwxNQ0KCQlTMzU0LjI4NCwzMzIsMzQ2LDMzMnoiLz4NCgk8cGF0aCBzdHlsZT0iZmlsbDojRkFENTU3OyIgZD0iTTM0NiwzOTJIMTY2Yy04LjI4NCwwLTE1LTYuNzE2LTE1LTE1czYuNzE2LTE1LDE1LTE1aDE4MGM4LjI4NCwwLDE1LDYuNzE2LDE1LDE1DQoJCVMzNTQuMjg0LDM5MiwzNDYsMzkyeiIvPg0KPC9nPg0KPHBhdGggc3R5bGU9ImZpbGw6IzU0NThFQTsiIGQ9Ik0zNjEsMEg5MXYxNDVjMCw4LjI4NCw2LjcxNiwxNSwxNSwxNWgyNDBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVYweiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6IzM1NDVFMzsiIGQ9Ik0yNTYsMHYxNjBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVYwSDI1NnoiLz4NCjxnPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQ0IxMkI7IiBkPSJNMzQ2LDQyMmgtOTB2MzBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVMzNTQuMjg0LDQyMiwzNDYsNDIyeiIvPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQ0IxMkI7IiBkPSJNMzQ2LDMwMmgtOTB2MzBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVMzNTQuMjg0LDMwMiwzNDYsMzAyeiIvPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQ0IxMkI7IiBkPSJNMzQ2LDM2MmgtOTB2MzBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVMzNTQuMjg0LDM2MiwzNDYsMzYyeiIvPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPC9zdmc+DQo=" 
-                                style="height:20px;"/>  Guardar Cambios</button>
+                        <button type="button" class="btn btn-warning" (click)="EditarInfoSeccion()"><img
+                                src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggc3R5bGU9ImZpbGw6IzcyQTNGQzsiIGQ9Ik01MDcuNjA2LDg0LjM5NGwtODAtODBDNDI0Ljc5MywxLjU4MSw0MjAuOTc4LDAsNDE3LDBIMTVDNi43MTYsMCwwLDYuNzE2LDAsMTV2NDgyDQoJYzAsOC4yODQsNi43MTYsMTUsMTUsMTVoNDgyYzguMjg0LDAsMTUtNi43MTYsMTUtMTVWOTVDNTEyLDkxLjAyMiw1MTAuNDE5LDg3LjIwNyw1MDcuNjA2LDg0LjM5NHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiMyODkyRkM7IiBkPSJNNTA3LjYwNiw4NC4zOTRsLTgwLTgwQzQyNC43OTMsMS41ODEsNDIwLjk3OCwwLDQxNywwSDI1NnY1MTJoMjQxYzguMjg0LDAsMTUtNi43MTYsMTUtMTVWOTUNCglDNTEyLDkxLjAyMiw1MTAuNDE5LDg3LjIwNyw1MDcuNjA2LDg0LjM5NHoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNGOUY5Rjk7IiBkPSJNNDA2LDI0MkgxMDZjLTguMjg0LDAtMTUsNi43MTYtMTUsMTV2MjU1aDMzMFYyNTdDNDIxLDI0OC43MTYsNDE0LjI4NCwyNDIsNDA2LDI0MnoiLz4NCjxwYXRoIHN0eWxlPSJmaWxsOiNERkU0RUE7IiBkPSJNNDIxLDI1N2MwLTguMjg0LTYuNzE2LTE1LTE1LTE1SDI1NnYyNzBoMTY1VjI1N3oiLz4NCjxnPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQUQ1NTc7IiBkPSJNMzQ2LDQ1MkgxNjZjLTguMjg0LDAtMTUtNi43MTYtMTUtMTVzNi43MTYtMTUsMTUtMTVoMTgwYzguMjg0LDAsMTUsNi43MTYsMTUsMTUNCgkJUzM1NC4yODQsNDUyLDM0Niw0NTJ6Ii8+DQoJPHBhdGggc3R5bGU9ImZpbGw6I0ZBRDU1NzsiIGQ9Ik0zNDYsMzMySDE2NmMtOC4yODQsMC0xNS02LjcxNi0xNS0xNXM2LjcxNi0xNSwxNS0xNWgxODBjOC4yODQsMCwxNSw2LjcxNiwxNSwxNQ0KCQlTMzU0LjI4NCwzMzIsMzQ2LDMzMnoiLz4NCgk8cGF0aCBzdHlsZT0iZmlsbDojRkFENTU3OyIgZD0iTTM0NiwzOTJIMTY2Yy04LjI4NCwwLTE1LTYuNzE2LTE1LTE1czYuNzE2LTE1LDE1LTE1aDE4MGM4LjI4NCwwLDE1LDYuNzE2LDE1LDE1DQoJCVMzNTQuMjg0LDM5MiwzNDYsMzkyeiIvPg0KPC9nPg0KPHBhdGggc3R5bGU9ImZpbGw6IzU0NThFQTsiIGQ9Ik0zNjEsMEg5MXYxNDVjMCw4LjI4NCw2LjcxNiwxNSwxNSwxNWgyNDBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVYweiIvPg0KPHBhdGggc3R5bGU9ImZpbGw6IzM1NDVFMzsiIGQ9Ik0yNTYsMHYxNjBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVYwSDI1NnoiLz4NCjxnPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQ0IxMkI7IiBkPSJNMzQ2LDQyMmgtOTB2MzBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVMzNTQuMjg0LDQyMiwzNDYsNDIyeiIvPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQ0IxMkI7IiBkPSJNMzQ2LDMwMmgtOTB2MzBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVMzNTQuMjg0LDMwMiwzNDYsMzAyeiIvPg0KCTxwYXRoIHN0eWxlPSJmaWxsOiNGQ0IxMkI7IiBkPSJNMzQ2LDM2MmgtOTB2MzBoOTBjOC4yODQsMCwxNS02LjcxNiwxNS0xNVMzNTQuMjg0LDM2MiwzNDYsMzYyeiIvPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPC9zdmc+DQo="
+                                style="height:20px;" /> Guardar Cambios</button>
                     </div>
                 </div>
             </div>
@@ -461,4 +508,54 @@
 
 
 </ng-container>
+
+<ng-container *ngIf="Opcion == 5">
+    <mat-form-field appearance="fill">
+        <mat-select [formControl]="FiltroExEscogido">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let Exclusivo of ListasFiltrosExclusivos" [value]="Exclusivo.idTipoExclusividad">
+                {{Exclusivo.Nombre}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="black" (click)="AgregarFiltroExclusivo()" >
+        <mat-icon>add</mat-icon>
+        Añadir Filtro Exclusivo
+    </button>
+    <mat-form-field appearance="fill">
+        <mat-select [formControl]="FiltroEtEscogido">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let Etnico of ListasFiltrosEtnicoss" [value]="Etnico.idClasificacionEtnica">
+                {{Etnico.Nombre}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="black" (click)="AgregarFiltroEtnico()" >
+        <mat-icon>add</mat-icon>
+        Añadir Filtro Etnico
+    </button>
+
+
+    <div class="Filtros" style="border:2px solid blue" >
+
+
+        <div *ngFor="let Exclusivo of FiltrosExclusivos">
+            <button mat-button color="black" (click)="EliminarFiltroExclusivo(Exclusivo)" > 
+                <mat-icon>clear</mat-icon>
+                {{Exclusivo.Nombre}}
+            </button>
+        </div>
+        <div *ngFor="let Etnicos of FiltrosEtnicoss" >
+            <button mat-button color="black" (click)="EliminarFiltroEtnicos(Etnicos)" >
+                <mat-icon>clear</mat-icon>
+                {{Etnicos.Nombre}}
+            </button>
+        </div>
+
+    </div>
+
+
+</ng-container>
+
 <app-barra-inferior></app-barra-inferior>

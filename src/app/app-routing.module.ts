@@ -86,12 +86,15 @@ const routes: Routes = [
     path: 'EditarUsuario',
     component: EditarusuarioComponent
   },
-
-
   {
-    path: 'Editarperfil',
+    path: 'Mi Perfil',
     component: EditarperfilComponent
   },
+  {
+    path: 'Gestion Usuarios',
+    component: EditarusuarioComponent
+  },
+
   {
     path: '**',
     component: InicioComponent

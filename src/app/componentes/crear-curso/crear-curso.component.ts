@@ -5,8 +5,9 @@ import { catchError, map } from 'rxjs/operators';
 import { CrearCursoService } from "../../servicios/crear-curso.service";
 import { FormControl, Validators } from '@angular/forms';
 import { JWTService } from "../../servicios/jwt.service";
-import { ActivatedRoute,Router } from '@angular/router';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { ListarCursosService } from "../../servicios/listar-cursos.service";
+import { ListasFormulariosService } from "../../servicios/listas-formularios.service";
 
 @Component({
   selector: 'app-crear-curso',
@@ -22,17 +23,17 @@ export class CrearCursoComponent implements OnInit {
   //Seccion
   TipoArchivoM = new FormControl('', Validators.required);
   selectFormControl = new FormControl('', Validators.required);
-  NombreSeccion  = new FormControl('', Validators.required);
-  DescripcionSeccion  = new FormControl('', Validators.required);
+  NombreSeccion = new FormControl('', Validators.required);
+  DescripcionSeccion = new FormControl('', Validators.required);
 
   //Curso
   NombreCurso = new FormControl('', Validators.required);
   DescripcionCurso = new FormControl('', Validators.required);
-  idProfesorCurso  = new FormControl('', Validators.required);
+  idProfesorCurso = new FormControl('', Validators.required);
   LinkImagenCurso = "";
   ValidarIC = true;
 
-  TiposMultimedia =[
+  TiposMultimedia = [
     {
       idTipoArchivoMultimedia: 1,
       TipoArchivoMultimedia: "Video/mp4",
@@ -49,10 +50,10 @@ export class CrearCursoComponent implements OnInit {
 
   Opcion = 0;
 
-  Secciones=[
+  Secciones = [
     {
       idSeccionCurso: 1,
-      Nombre : "Introduccion A Angular",
+      Nombre: "Introduccion A Angular",
       Numero: 1,
       LinkMultimedia: "",
       idTipoArchivoMultimedia: 1,
@@ -61,67 +62,90 @@ export class CrearCursoComponent implements OnInit {
     }
   ]
 
-  Curso ={
-    idCurso:null,
+  Curso = {
+    idCurso: null,
     Nombre: "Nombre De Curso",
-    Descripcion:"",
-    LinkImagen:"",
-    idProfesor:0,
-    Valoracion:'4.0',
+    Descripcion: "",
+    LinkImagen: "",
+    idProfesor: 0,
+    Valoracion: '4.0',
     idEstadoCurso: 1
 
   }
 
-  SeccionCreate=    {
+  SeccionCreate = {
     idSeccionCurso: null,
-    Nombre : "",
+    Nombre: "",
     Numero: 0,
     LinkMultimedia: "",
     idTipoArchivoMultimedia: 0,
     idCurso: 0,
     Contenido: ""
   }
+  FiltroExEscogido = new FormControl('', null);
+  FiltroEtEscogido= new FormControl('', null);
 
+  FiltrosExclusivos = [];
+  FiltrosEtnicoss = [];
   ValidarFC = false;
   LinkSeccion = "";
+  TokenProfesor = "";
 
-  TokenProfesor= "";
+  ListasFiltrosExclusivos = [];
+  ListasFiltrosEtnicoss = [];
 
-  constructor(private CrearCursoService: CrearCursoService,private JWTService :JWTService,
-              private Router : Router , private ActivatedRoute: ActivatedRoute) { }
+
+
+
+  constructor(private CrearCursoService: CrearCursoService, private JWTService: JWTService,
+    private Router: Router, private ActivatedRoute: ActivatedRoute, private ListarCursosService: ListarCursosService,
+    private ListasFormulariosService:ListasFormulariosService) { }
 
   ngOnInit(): void {
 
     this.ValidarProfesor();
-    
-    if(this.Opcion == 0){
-      this.CursosSinTerinar();
-    }
+    this.LlenarFiltros();
+    this.CursosSinTerinar();
+ 
 
   }
-  CursosSinTerinar(){
-    this.CrearCursoService.GetListCursos().subscribe(
+  LlenarFiltros(){
+    this.ListasFormulariosService.GetListaExclusividad().subscribe(
       res=>{
+        this.ListasFiltrosExclusivos = res;
+      }
+    );
+    this.ListasFormulariosService.GetListaClasificacionEtnica().subscribe(
+      res=>{
+        this.ListasFiltrosEtnicoss = res;
+        console.log(this.ListasFiltrosEtnicoss);
+      }
+    );
+
+  }
+  CursosSinTerinar() {
+    this.CrearCursoService.GetListCursos().subscribe(
+      res => {
         this.ListaCursosSinTerminar = res;
         console.log(res);
       },
-      err=>{
+      err => {
 
       }
     )
   }
-  ValidarProfesor(){
+  ValidarProfesor() {
     var TokenLogin = localStorage.getItem('TokenLogin');
     this.TokenProfesor = TokenLogin;
     this.JWTService.PostValidarLoginBarraSuperior(TokenLogin).subscribe(
-      res=>{
-        if(res.Estado == "Correcto" && res.idTipoUsuario == 3 ){
-        }else{
+      res => {
+        if (res.Estado == "Correcto" && res.idTipoUsuario == 3) {
+        } else {
           alert("Fallo Login");
           this.Router.navigateByUrl('/Inicio');
         }
 
-      },err =>{
+      }, err => {
 
       }
     )
@@ -147,7 +171,7 @@ export class CrearCursoComponent implements OnInit {
       })).subscribe((event: any) => {
         if (typeof (event) === 'object') {
           this.LinkSeccion = event.body.link;
-          
+
           this.ValidarFC = true;
           console.log(event.body);
         }
@@ -212,41 +236,41 @@ export class CrearCursoComponent implements OnInit {
     });
 
   }
-  CambiarSeccion(Seccion){
-    
+  CambiarSeccion(Seccion) {
+
     this.SeccionCreate = Seccion;
     this.Opcion = 4;
-    this.NombreSeccion.setValue(this.SeccionCreate.Nombre); 
-    this.TipoArchivoM.setValue(this.SeccionCreate.idTipoArchivoMultimedia); 
-    this.LinkSeccion = this.SeccionCreate.LinkMultimedia; 
-    this.DescripcionSeccion.setValue(this.SeccionCreate.Contenido); 
+    this.NombreSeccion.setValue(this.SeccionCreate.Nombre);
+    this.TipoArchivoM.setValue(this.SeccionCreate.idTipoArchivoMultimedia);
+    this.LinkSeccion = this.SeccionCreate.LinkMultimedia;
+    this.DescripcionSeccion.setValue(this.SeccionCreate.Contenido);
 
 
   }
-  CrearCurso(){
-    
+  CrearCurso() {
+
     this.NombreCurso.markAsTouched();
     this.DescripcionCurso.markAsTouched();
 
-    if(this.LinkImagenCurso == ""){
+    if (this.LinkImagenCurso == "") {
       this.ValidarIC = false;
-    }else{
+    } else {
       this.ValidarIC = true;
     }
 
 
-    if(!this.NombreCurso.hasError('required') && !this.DescripcionCurso.hasError('required') && this.ValidarIC){
-      
+    if (!this.NombreCurso.hasError('required') && !this.DescripcionCurso.hasError('required') && this.ValidarIC) {
+
       this.Curso.Descripcion = this.DescripcionCurso.value;
       this.Curso.Nombre = this.NombreCurso.value;
-      
+
 
       this.CrearCursoService.PostCrearCurso({ TokenLogin: this.TokenProfesor, Curso: this.Curso }).subscribe(
-        res=>{
+        res => {
           console.log(res);
           alert("Bueno");
         },
-        err=>{
+        err => {
           console.log(err);
           alert("Malo");
         }
@@ -256,14 +280,18 @@ export class CrearCursoComponent implements OnInit {
 
 
   }
-  EditarCurso(curso){
-    this.Curso= curso;
+  EditarCurso(curso) {
+    this.Curso = curso;
+    this.GetFiltrosCurso(curso);
+    console.log(this.FiltrosEtnicoss);
+    console.log(this.FiltrosExclusivos);
     
-    this.NombreCurso.setValue(this.Curso.Nombre); 
-    this.LinkImagenCurso = this.Curso.LinkImagen; 
-    this.DescripcionCurso.setValue(this.Curso.Descripcion); 
 
-    
+    this.NombreCurso.setValue(this.Curso.Nombre);
+    this.LinkImagenCurso = this.Curso.LinkImagen;
+    this.DescripcionCurso.setValue(this.Curso.Descripcion);
+
+
     this.Opcion = 2;
 
 
@@ -271,32 +299,32 @@ export class CrearCursoComponent implements OnInit {
     this.ActualizarSeccionesCurso(curso.idCurso);
 
   }
-  ActualizarSeccionesCurso(idCurso){
+  ActualizarSeccionesCurso(idCurso) {
     this.CrearCursoService.GetListSeccioness(idCurso).subscribe(
-      res=>{
+      res => {
 
         this.Secciones = res;
 
       },
-      err=>{
+      err => {
 
       }
     )
   }
-  CrearNuevaSeccion(){
+  CrearNuevaSeccion() {
     this.NombreSeccion.markAsTouched();
     this.DescripcionSeccion.markAsTouched();
     this.TipoArchivoM.markAllAsTouched();
 
-    if(this.LinkSeccion == ""){
+    if (this.LinkSeccion == "") {
       this.ValidarFC = false;
-    }else{
+    } else {
       this.ValidarFC = true;
     }
-    
 
-    if(!this.NombreSeccion.hasError('required') && !this.TipoArchivoM.hasError('required') && !this.DescripcionSeccion.hasError('required') && this.ValidarFC){
-      
+
+    if (!this.NombreSeccion.hasError('required') && !this.TipoArchivoM.hasError('required') && !this.DescripcionSeccion.hasError('required') && this.ValidarFC) {
+
       this.SeccionCreate.Contenido = this.DescripcionSeccion.value;
       this.SeccionCreate.Nombre = this.NombreSeccion.value;
       this.SeccionCreate.LinkMultimedia = this.LinkSeccion;
@@ -306,11 +334,11 @@ export class CrearCursoComponent implements OnInit {
 
 
       this.CrearCursoService.PostCrearSeccion(this.SeccionCreate).subscribe(
-        res=>{
+        res => {
           alert("Seccion Creada");
           this.Opcion = 0;
         },
-        err=>{
+        err => {
           console.log(err);
           alert("Malo");
         }
@@ -319,53 +347,53 @@ export class CrearCursoComponent implements OnInit {
     }
 
   }
-  EditarInfoCurso(){
+  EditarInfoCurso() {
 
     this.NombreCurso.markAsTouched();
     this.DescripcionCurso.markAsTouched();
 
-    if(this.LinkImagenCurso == ""){
+    if (this.LinkImagenCurso == "") {
       this.ValidarIC = false;
-    }else{
+    } else {
       this.ValidarIC = true;
     }
 
 
-    if(!this.NombreCurso.hasError('required') && !this.DescripcionCurso.hasError('required') && this.ValidarIC){
-      
+    if (!this.NombreCurso.hasError('required') && !this.DescripcionCurso.hasError('required') && this.ValidarIC) {
+
       this.Curso.LinkImagen = this.LinkImagenCurso;
       this.Curso.Descripcion = this.DescripcionCurso.value;
       this.Curso.Nombre = this.NombreCurso.value;
-      
+
 
       this.CrearCursoService.PutEditarCurso(this.Curso).subscribe(
-        res=>{
+        res => {
           console.log(res);
         },
-        err=>{
-  
+        err => {
+
         }
       )
 
     }
 
-   
+
 
   }
-  EditarInfoSeccion(){
+  EditarInfoSeccion() {
     this.NombreSeccion.markAsTouched();
     this.DescripcionSeccion.markAsTouched();
     this.TipoArchivoM.markAllAsTouched();
 
-    if(this.LinkSeccion == ""){
+    if (this.LinkSeccion == "") {
       this.ValidarFC = false;
-    }else{
+    } else {
       this.ValidarFC = true;
     }
-    
 
-    if(!this.NombreSeccion.hasError('required') && !this.TipoArchivoM.hasError('required') && !this.DescripcionSeccion.hasError('required') && this.ValidarFC){
-      
+
+    if (!this.NombreSeccion.hasError('required') && !this.TipoArchivoM.hasError('required') && !this.DescripcionSeccion.hasError('required') && this.ValidarFC) {
+
       this.SeccionCreate.Contenido = this.DescripcionSeccion.value;
       this.SeccionCreate.Nombre = this.NombreSeccion.value;
       this.SeccionCreate.LinkMultimedia = this.LinkSeccion;
@@ -375,11 +403,11 @@ export class CrearCursoComponent implements OnInit {
 
 
       this.CrearCursoService.PutEditarSeccion(this.SeccionCreate).subscribe(
-        res=>{
+        res => {
           alert("Seccion Editada");
           this.Opcion = 0;
         },
-        err=>{
+        err => {
           console.log(err);
           alert("Malo");
         }
@@ -387,6 +415,114 @@ export class CrearCursoComponent implements OnInit {
 
     }
 
+  }
+  GetFiltrosCurso(Curso) {
+    this.ListarCursosService.ConsultFiltros(Curso).subscribe(
+      res => {
+       
+        res.forEach(element => {
+
+          if (element.idTipoFiltro == 1) {
+
+          } else if (element.idTipoFiltro == 2) {
+            var FiltrosE = [];
+              this.ListasFiltrosExclusivos.forEach(element2 => {
+                                
+                if(element.idFiltro == element2.idTipoExclusividad){
+                  this.FiltrosExclusivos.push({
+                    idTipoExclusividad: element.idFiltro,
+                    Nombre: element2.Nombre
+                  });
+                }else{
+                  FiltrosE.push(element2);
+                }
+
+              });
+              
+              console.log(FiltrosE);
+              this.ListasFiltrosExclusivos = FiltrosE;
+
+           
+
+          } else if (element.idTipoFiltro == 3) {
+
+            var FiltrosE = [];
+            
+            this.ListasFiltrosEtnicoss.forEach(element2 =>{
+
+              
+              if(element.idFiltro == element2.idClasificacionEtnica){
+
+
+                this.FiltrosEtnicoss.push({
+                  idClasificacionEtnica: element.idFiltro,
+                  Nombre: element2.Nombre
+                });
+    
+              }else{
+                FiltrosE.push(element2);
+
+              }
+
+
+            });
+            this.ListasFiltrosEtnicoss = FiltrosE;
+            
+
+
+          }
+
+
+        });
+
+      },
+      err => {
+
+      }
+
+
+    )
+
+  }
+  EliminarFiltroExclusivo(Exclusivo){
+
+   
+    var NuevaLista = [];
+
+    this.FiltrosExclusivos.forEach(Element=>{
+
+      if(Element != Exclusivo){
+        NuevaLista.push(Element);
+      }
+
+    });
+
+    this.FiltrosExclusivos = NuevaLista;
+    this.ListasFiltrosExclusivos.push(Exclusivo);
+
+  }
+  EliminarFiltroEtnicos(Etnico){
+
+   
+    var NuevaLista = [];
+
+    this.FiltrosEtnicoss.forEach(Element=>{
+
+      if(Element != Etnico){
+        NuevaLista.push(Element);
+      }
+
+    });
+
+    this.FiltrosEtnicoss = NuevaLista;
+    this.ListasFiltrosEtnicoss.push(Etnico);
+
+  }
+  AgregarFiltroExclusivo(){
+
+  }
+  AgregarFiltroEtnico(){
+    
   }
 
 }

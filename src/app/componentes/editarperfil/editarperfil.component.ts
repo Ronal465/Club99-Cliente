@@ -73,7 +73,7 @@ export class EditarperfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.LlenasCampos();
-    this.llenarDatosUsuario();
+    this.RellenarUsuario();
   }
 
   LlenasCampos() {
@@ -179,9 +179,9 @@ export class EditarperfilComponent implements OnInit {
 
 
   }
-  llenarDatosUsuario() {
+  llenarDatosUsuario(idUsuario) {
 
-    var idUsuario = 3;
+
 
     this.ListasFormulariosService.GetUsaurio(idUsuario).subscribe(
       res => {
@@ -270,7 +270,23 @@ export class EditarperfilComponent implements OnInit {
     )
 
   }
+  RellenarUsuario(){
 
+    var TokenLogin = localStorage.getItem('TokenLogin');
+
+
+
+    this.ListasFormulariosService.GetIdUsuario(TokenLogin).subscribe(
+      res=>{
+        
+        var idUsuario = res.idUsuario;
+        
+        this.llenarDatosUsuario(idUsuario);
+
+      }
+    )
+
+  }
   getErrorMessageCorreo() {
     if (this.Correo.hasError('required')) {
       return 'Ingrese un correo electronico';
@@ -289,8 +305,6 @@ export class EditarperfilComponent implements OnInit {
       }
     }
   }
-
-
   getErrorMessageNombre() {
     if (this.Nombres.hasError('required')) {
       return 'Ingrese una Nombre';
@@ -329,7 +343,6 @@ export class EditarperfilComponent implements OnInit {
   ActualizarInfo2(){
 
   }
-
   ActualizarDepartamentos() {
     console.log("Hola");
     this.ListasFormulariosService.GetListaDepartamentos(this.Pais.value).subscribe(
@@ -362,7 +375,6 @@ export class EditarperfilComponent implements OnInit {
     )
 
   }
-
   ActualizarContrasena(){
 
     if(this.Contrasena.valid){
