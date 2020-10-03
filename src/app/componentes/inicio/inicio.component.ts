@@ -73,10 +73,8 @@ export class InicioComponent implements OnInit {
                     res3 => {
 
                       var FiltrosCurso = res3;
-
-
                       var Nombres = [];
-
+                      
                       FiltrosCurso.forEach(element2 => {
 
                         this.ListarCursosService.ConsultFiltroNombre(element2).

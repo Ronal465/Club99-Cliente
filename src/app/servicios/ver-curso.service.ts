@@ -37,8 +37,22 @@ export class VerCursoService {
   CrearPreguntasCurso(Pregunta): Observable<any> {
     return this.http.post(`${this.ApiURL}/VerCurso/Crear/Preguntas`, Pregunta);
   }
+  ValidarCursoAsignado(TokenLogin): Observable<any> {
+    return this.http.post(`${this.ApiURL}/InfoCurso/Validar/Curso`, TokenLogin);
+  }
+  AgregarCursoFavoritos(TokenLogin): Observable<any> {
+    return this.http.post(`${this.ApiURL}/Agregar/Curso/Favoritos`, TokenLogin);
+  }
 
-
+ QuitarCursoFavoritos(TokenLogin): Observable<any> {
+    return this.http.post(`${this.ApiURL}/Quitar/Curso/Favoritos`, TokenLogin);
+  }
+  GetPreguntasProfesor(TokenLogin): Observable<any> {
+    return this.http.post(`${this.ApiURL}/Get/Preguntas/Favoritos`, TokenLogin);
+  }
+  ResponderPreguntasProfesor(Pregunta): Observable<any> {
+    return this.http.post(`${this.ApiURL}/Update/Preguntas/Favoritos`, Pregunta);
+  }
 
 }
 

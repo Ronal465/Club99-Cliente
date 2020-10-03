@@ -40,8 +40,12 @@
             </ul>
             <div class="card-body">
 
-                <button type="button" class="btn btn-warning text-white" *ngIf="Logueado" color="primary">Añadir a favoritos</button>
+                <div class="butoon"  *ngIf="Logueado">
+                    <button type="button" class="btn btn-warning text-white" *ngIf="AregarCurso"  color="primary" (click)="QuitarCurso()"  >Quitar de Favoritos</button>
+                    <button type="button" class="btn btn-warning text-white" *ngIf="!AregarCurso"  color="primary" (click)="AgregarCurso()"  >Añadir a favoritos</button>
 
+                </div>
+        
                 <form *ngIf="Logueado">
                     <p class="clasificacion">
                         <input id="radio1" type="radio" name="estrellas" value="5">

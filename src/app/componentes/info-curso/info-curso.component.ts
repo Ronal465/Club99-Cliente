@@ -56,6 +56,7 @@ export class InfoCursoComponent implements OnInit {
   Logueado = true;
   TokenLogin;
   idCurso;
+  AregarCurso=false;
 
   FiltroCursoExclusivos = [];
   FiltroCursoEtnicos = [];
@@ -82,6 +83,7 @@ export class InfoCursoComponent implements OnInit {
 
           this.Curso = res.Curso;
           this.BuscarFiltros();
+          this.ValidarCursoAsignado();
           if(res.Estado == "Fallo"){
             this.Logueado = false;
           }else{
@@ -172,9 +174,6 @@ export class InfoCursoComponent implements OnInit {
                     
                     });
 
-                    console.log(this.FiltroCursoExclusivos);
-                    console.log(this.FiltroCursoEtnicos);
-                  
               });
 
 
@@ -192,7 +191,50 @@ export class InfoCursoComponent implements OnInit {
 
   }
   
+  ValidarCursoAsignado(){
+
+    this.VerCursoService.ValidarCursoAsignado({TokenLogin:this.TokenLogin, idCurso:this.idCurso}).subscribe(
+      res=>{
+
+        if(res.Estado == "Asignado"){
+          this.AregarCurso = true;
+        }
+
+      },
+      err=>{
+
+      }
+    )
+
+  }
+
+  QuitarCurso(){
+
+    this.VerCursoService.QuitarCursoFavoritos({TokenLogin:this.TokenLogin, idCurso:this.idCurso}).subscribe(
+      res=>{
+          this.AregarCurso = false;
+      },
+      err=>{
+
+      }
+      )
+    
+
+  }
+
+  AgregarCurso(){
 
 
-  
+    this.VerCursoService.AgregarCursoFavoritos({TokenLogin:this.TokenLogin, idCurso:this.idCurso}).subscribe(
+      res=>{
+          this.AregarCurso = true;
+      },
+      err=>{
+
+      }
+      )
+    
+
+  }
+
 }
