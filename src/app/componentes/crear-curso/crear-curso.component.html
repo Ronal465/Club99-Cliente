@@ -240,7 +240,7 @@
                     </div>
                     <div class="card-footer text-muted" style="padding-bottom: 48px;
                     padding-top: 48px;">
-                        <button mat-raised-button color="accent">Accent</button>
+                        <button mat-raised-button color="accent" (click)="ValidarCrearCursoFinal()"  >  Guardar Curso</button>
                     </div>
                 </div>
 
@@ -367,7 +367,7 @@
                             {{Seccion.Nombre}}
                         </div>
                         <div class="BotonSeccion">
-                            <button (click)="CambiarSeccion(Seccion.Numero)" mat-mini-fab style="background: tomato;">
+                            <button (click)="CambiarSeccion(Seccion)" mat-mini-fab style="background: tomato;">
                                 <mat-icon>input</mat-icon>
                             </button>
                         </div>
@@ -375,7 +375,7 @@
 
                 </div>
 
-                <button mat-raised-button color="accent">Accent</button>
+                <button mat-raised-button color="accent"  (click)="Opcion = 2"  >Volver</button>
             </div>
         </div>
     </div>
@@ -477,7 +477,7 @@
                             Editar Curso
                         </div>
                         <div class="BotonSeccion">
-                            <button mat-mini-fab style="background: tomato;">
+                            <button mat-mini-fab (click)="Opcion = 2" style="background: tomato;">
                                 <mat-icon>input</mat-icon>
                             </button>
                         </div>
@@ -491,7 +491,7 @@
                             {{Seccion.Nombre}}
                         </div>
                         <div class="BotonSeccion">
-                            <button (click)="CambiarSeccion(Seccion.Numero)" mat-mini-fab style="background: tomato;">
+                            <button (click)="CambiarSeccion(Seccion)" mat-mini-fab style="background: tomato;">
                                 <mat-icon>input</mat-icon>
                             </button>
                         </div>
@@ -499,7 +499,7 @@
 
                 </div>
 
-                <button mat-raised-button color="accent">Accent</button>
+                <button mat-raised-button color="accent"  (click)="Opcion = 2"  >Volver</button>
             </div>
         </div>
     </div>
@@ -508,52 +508,95 @@
 
 
 </ng-container>
-
+<!-- Editar Filtros -->
 <ng-container *ngIf="Opcion == 5">
-    <mat-form-field appearance="fill">
-        <mat-select [formControl]="FiltroExEscogido">
-            <mat-option>--</mat-option>
-            <mat-option *ngFor="let Exclusivo of ListasFiltrosExclusivos" [value]="Exclusivo.idTipoExclusividad">
-                {{Exclusivo.Nombre}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-    <button mat-raised-button color="black" (click)="AgregarFiltroExclusivo()" >
-        <mat-icon>add</mat-icon>
-        Añadir Filtro Exclusivo
-    </button>
-    <mat-form-field appearance="fill">
-        <mat-select [formControl]="FiltroEtEscogido">
-            <mat-option>--</mat-option>
-            <mat-option *ngFor="let Etnico of ListasFiltrosEtnicoss" [value]="Etnico.idClasificacionEtnica">
-                {{Etnico.Nombre}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
 
-    <button mat-raised-button color="black" (click)="AgregarFiltroEtnico()" >
-        <mat-icon>add</mat-icon>
-        Añadir Filtro Etnico
-    </button>
+    <div class="row">
+        <div class="col">
 
-
-    <div class="Filtros" style="border:2px solid blue" >
-
-
-        <div *ngFor="let Exclusivo of FiltrosExclusivos">
-            <button mat-button color="black" (click)="EliminarFiltroExclusivo(Exclusivo)" > 
-                <mat-icon>clear</mat-icon>
-                {{Exclusivo.Nombre}}
+            <mat-form-field appearance="fill">
+                <mat-select [formControl]="FiltroExEscogido">
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let Exclusivo of ListasFiltrosExclusivos" [value]="Exclusivo.idTipoExclusividad">
+                        {{Exclusivo.Nombre}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-raised-button color="black" (click)="AgregarFiltroExclusivo()">
+                <mat-icon>add</mat-icon>
+                Añadir Filtro Exclusivo
+            </button>
+            <mat-form-field appearance="fill">
+                <mat-select [formControl]="FiltroEtEscogido">
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let Etnico of ListasFiltrosEtnicoss" [value]="Etnico.idClasificacionEtnica">
+                        {{Etnico.Nombre}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        
+            <button mat-raised-button color="black" (click)="AgregarFiltroEtnico()">
+                <mat-icon>add</mat-icon>
+                Añadir Filtro Etnico
+            </button>
+        
+            <div class="Filtros" style="border:2px solid blue">
+        
+        
+                <div *ngFor="let Exclusivo of FiltrosExclusivos">
+                    <button mat-button color="black" (click)="EliminarFiltroExclusivo(Exclusivo)">
+                        <mat-icon>clear</mat-icon>
+                        {{Exclusivo.Nombre}}
+                    </button>
+                </div>
+                <div *ngFor="let Etnicos of FiltrosEtnicoss">
+                    <button mat-button color="black" (click)="EliminarFiltroEtnicos(Etnicos)">
+                        <mat-icon>clear</mat-icon>
+                        {{Etnicos.Nombre}}
+                    </button>
+                </div>
+        
+            </div>
+            <button mat-raised-button color="black" (click)="GuardarFiltros()">
+                Guardar Filtros
             </button>
         </div>
-        <div *ngFor="let Etnicos of FiltrosEtnicoss" >
-            <button mat-button color="black" (click)="EliminarFiltroEtnicos(Etnicos)" >
-                <mat-icon>clear</mat-icon>
-                {{Etnicos.Nombre}}
-            </button>
+        <div class="col">
+            <div class="DatosCurso">
+                <div class="ContainerSeccion">
+                    <div class="NombreSeccion">
+                        Editar Curso
+                    </div>
+                    <div class="BotonSeccion">
+                        <button mat-mini-fab (click)="Opcion = 2" style="background: tomato;">
+                            <mat-icon>input</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="DatoSecciones" *ngFor="let Seccion of Secciones">
+    
+                <div class="ContainerSeccion">
+                    <div class="NombreSeccion">
+                        {{Seccion.Nombre}}
+                    </div>
+                    <div class="BotonSeccion">
+                        <button (click)="CambiarSeccion(Seccion.Numero)" mat-mini-fab style="background: tomato;">
+                            <mat-icon>input</mat-icon>
+                        </button>
+                    </div>
+                </div>
+    
+            </div>
+    
+            <button mat-raised-button color="accent"  (click)="Opcion = 2"  >Volver</button>
         </div>
-
+    
     </div>
+
+
+
 
 
 </ng-container>

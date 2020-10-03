@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, elementAt, map } from 'rxjs/operators';
 import { CrearCursoService } from "../../servicios/crear-curso.service";
 import { FormControl, Validators } from '@angular/forms';
 import { JWTService } from "../../servicios/jwt.service";
@@ -83,7 +83,7 @@ export class CrearCursoComponent implements OnInit {
     Contenido: ""
   }
   FiltroExEscogido = new FormControl('', null);
-  FiltroEtEscogido= new FormControl('', null);
+  FiltroEtEscogido = new FormControl('', null);
 
   FiltrosExclusivos = [];
   FiltrosEtnicoss = [];
@@ -99,24 +99,24 @@ export class CrearCursoComponent implements OnInit {
 
   constructor(private CrearCursoService: CrearCursoService, private JWTService: JWTService,
     private Router: Router, private ActivatedRoute: ActivatedRoute, private ListarCursosService: ListarCursosService,
-    private ListasFormulariosService:ListasFormulariosService) { }
+    private ListasFormulariosService: ListasFormulariosService) { }
 
   ngOnInit(): void {
 
     this.ValidarProfesor();
     this.LlenarFiltros();
     this.CursosSinTerinar();
- 
+
 
   }
-  LlenarFiltros(){
+  LlenarFiltros() {
     this.ListasFormulariosService.GetListaExclusividad().subscribe(
-      res=>{
+      res => {
         this.ListasFiltrosExclusivos = res;
       }
     );
     this.ListasFormulariosService.GetListaClasificacionEtnica().subscribe(
-      res=>{
+      res => {
         this.ListasFiltrosEtnicoss = res;
         console.log(this.ListasFiltrosEtnicoss);
       }
@@ -124,7 +124,7 @@ export class CrearCursoComponent implements OnInit {
 
   }
   CursosSinTerinar() {
-    this.CrearCursoService.GetListCursos().subscribe(
+    this.CrearCursoService.GetListCursos({TokenLogin: this.TokenProfesor}).subscribe(
       res => {
         this.ListaCursosSinTerminar = res;
         console.log(res);
@@ -285,7 +285,7 @@ export class CrearCursoComponent implements OnInit {
     this.GetFiltrosCurso(curso);
     console.log(this.FiltrosEtnicoss);
     console.log(this.FiltrosExclusivos);
-    
+
 
     this.NombreCurso.setValue(this.Curso.Nombre);
     this.LinkImagenCurso = this.Curso.LinkImagen;
@@ -419,47 +419,47 @@ export class CrearCursoComponent implements OnInit {
   GetFiltrosCurso(Curso) {
     this.ListarCursosService.ConsultFiltros(Curso).subscribe(
       res => {
-       
+
         res.forEach(element => {
 
           if (element.idTipoFiltro == 1) {
 
           } else if (element.idTipoFiltro == 2) {
             var FiltrosE = [];
-              this.ListasFiltrosExclusivos.forEach(element2 => {
-                                
-                if(element.idFiltro == element2.idTipoExclusividad){
-                  this.FiltrosExclusivos.push({
-                    idTipoExclusividad: element.idFiltro,
-                    Nombre: element2.Nombre
-                  });
-                }else{
-                  FiltrosE.push(element2);
-                }
+            this.ListasFiltrosExclusivos.forEach(element2 => {
 
-              });
-              
-              console.log(FiltrosE);
-              this.ListasFiltrosExclusivos = FiltrosE;
+              if (element.idFiltro == element2.idTipoExclusividad) {
+                this.FiltrosExclusivos.push({
+                  idTipoExclusividad: element.idFiltro,
+                  Nombre: element2.Nombre
+                });
+              } else {
+                FiltrosE.push(element2);
+              }
 
-           
+            });
+
+            console.log(FiltrosE);
+            this.ListasFiltrosExclusivos = FiltrosE;
+
+
 
           } else if (element.idTipoFiltro == 3) {
 
             var FiltrosE = [];
-            
-            this.ListasFiltrosEtnicoss.forEach(element2 =>{
 
-              
-              if(element.idFiltro == element2.idClasificacionEtnica){
+            this.ListasFiltrosEtnicoss.forEach(element2 => {
+
+
+              if (element.idFiltro == element2.idClasificacionEtnica) {
 
 
                 this.FiltrosEtnicoss.push({
                   idClasificacionEtnica: element.idFiltro,
                   Nombre: element2.Nombre
                 });
-    
-              }else{
+
+              } else {
                 FiltrosE.push(element2);
 
               }
@@ -467,7 +467,7 @@ export class CrearCursoComponent implements OnInit {
 
             });
             this.ListasFiltrosEtnicoss = FiltrosE;
-            
+
 
 
           }
@@ -484,14 +484,14 @@ export class CrearCursoComponent implements OnInit {
     )
 
   }
-  EliminarFiltroExclusivo(Exclusivo){
+  EliminarFiltroExclusivo(Exclusivo) {
 
-   
+
     var NuevaLista = [];
 
-    this.FiltrosExclusivos.forEach(Element=>{
+    this.FiltrosExclusivos.forEach(Element => {
 
-      if(Element != Exclusivo){
+      if (Element != Exclusivo) {
         NuevaLista.push(Element);
       }
 
@@ -501,14 +501,14 @@ export class CrearCursoComponent implements OnInit {
     this.ListasFiltrosExclusivos.push(Exclusivo);
 
   }
-  EliminarFiltroEtnicos(Etnico){
+  EliminarFiltroEtnicos(Etnico) {
 
-   
+
     var NuevaLista = [];
 
-    this.FiltrosEtnicoss.forEach(Element=>{
+    this.FiltrosEtnicoss.forEach(Element => {
 
-      if(Element != Etnico){
+      if (Element != Etnico) {
         NuevaLista.push(Element);
       }
 
@@ -518,11 +518,156 @@ export class CrearCursoComponent implements OnInit {
     this.ListasFiltrosEtnicoss.push(Etnico);
 
   }
-  AgregarFiltroExclusivo(){
+  AgregarFiltroExclusivo() {
+
+    var NuevaLista = [];
+
+    this.FiltrosExclusivos.forEach(element => {
+
+      NuevaLista.push(element);
+    });
+
+    this.ListasFiltrosExclusivos.forEach(Element => {
+
+      if (Element.idTipoExclusividad == this.FiltroExEscogido.value) {
+        console.log(Element);
+        this.FiltrosExclusivos=[Element];
+
+      } else {
+        NuevaLista.push(Element);
+      }
+
+    });
+
+    this.ListasFiltrosExclusivos = NuevaLista;
 
   }
-  AgregarFiltroEtnico(){
-    
+  AgregarFiltroEtnico() {
+    var NuevaLista = [];
+
+
+
+    this.ListasFiltrosEtnicoss.forEach(Element => {
+
+      if (Element.idClasificacionEtnica == this.FiltroEtEscogido.value) {
+
+        this.FiltrosEtnicoss = [Element];
+
+      } else {
+        NuevaLista.push(Element);
+      }
+
+    });
+
+    this.ListasFiltrosEtnicoss = NuevaLista;
+
+
+
   }
+  GuardarFiltros() {
+
+
+    this.CrearCursoService.PostEliminarFiltrosCurso({ TokenLogin: this.TokenProfesor, idCurso: this.Curso.idCurso }).subscribe(
+      res => {
+        console.log(res);
+        alert("Bueno");
+
+        this.FiltrosExclusivos.forEach(element => {
+
+          this.CrearCursoService.PostCrearFiltrosCurso({
+    
+            TokenLogin: this.TokenProfesor,
+            Filtro: {
+              idFiltroCurso: null,
+              idTipoFiltro: 2,
+              idCurso: this.Curso.idCurso,
+              idFiltro: element.idTipoExclusividad
+            }
+          }).subscribe(
+            res => {
+              console.log("Correcto");
+            }
+          )
+    
+        })
+    
+    
+    
+        this.FiltrosEtnicoss.forEach(element => {
+    
+          this.CrearCursoService.PostCrearFiltrosCurso({
+    
+            TokenLogin: this.TokenProfesor,
+            Filtro: {
+              idFiltroCurso: null,
+              idTipoFiltro: 3,
+              idCurso: this.Curso.idCurso,
+              idFiltro: element.idClasificacionEtnica
+            }
+          }).subscribe(
+            res => {
+              console.log("Correcto");
+            }
+          )
+    
+        })
+    
+    
+
+      },
+      err => {
+        console.log(err);
+        alert("Malo");
+      }
+    )
+
+
+
+  }
+
+  ValidarCrearCursoFinal(){
+
+
+
+
+
+    if(this.Secciones.length == 0){
+      alert("Debe crear una seccion primero ");
+
+    
+    }else{
+
+      if(this.FiltrosEtnicoss.length == 0 && this.FiltrosExclusivos.length == 0 ){
+        alert("Debe agregar un filtro primero");
+      
+      }else{
+        alert("eNRTA");
+        this.CrearCursoService.PostCrearCursoCompleto({idCurso: this.Curso.idCurso}).subscribe(
+          res=>{
+            alert("Curso Completado");
+            this.CursosSinTerinar();
+            this.Opcion = 0;
+          },
+          err=>{
+            alert("Error al crear el curso");
+          }
+        );
+      }
+
+    }
+
+   
+
+  
+ 
+
+      
+
+    
+
+
+  }
+
+
 
 }

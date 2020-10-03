@@ -17,7 +17,7 @@ import { Observable } from "rxjs";
 export class CrearCursoService {
   ApiURL = "http://localhost:3000/api";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {} 
 
   PostCrearCurso(Curso): Observable<any> {
     return this.http.post(`${this.ApiURL}/Crear/Curso`, Curso);
@@ -31,8 +31,8 @@ export class CrearCursoService {
   PutEditarSeccion(Seccion): Observable<any> {
     return this.http.put(`${this.ApiURL}/Editar/Seccion`, Seccion);
   }
-  GetListCursos(): Observable<any> {
-    return this.http.get(`${this.ApiURL}/List/Cursos`);
+  GetListCursos(TokenProfesor): Observable<any> {
+    return this.http.post(`${this.ApiURL}/List/Cursos`,TokenProfesor);
   }
   GetListSeccioness(idCurso): Observable<any> {
     return this.http.get(`${this.ApiURL}/List/Secciones/${idCurso}`);
@@ -49,7 +49,23 @@ export class CrearCursoService {
     return this.http.post(`${this.ApiURL}/Upload/img/profesor`, formData,{ reportProgress:true,
                                                                        observe: 'events'});
   }
+  PostEliminarFiltrosCurso(Curso): Observable<any> {
+    return this.http.post(`${this.ApiURL}/Eliminar/Filtos`, Curso);
+  }
+
+  PostCrearFiltrosCurso(Json): Observable<any> {
+    return this.http.post(`${this.ApiURL}/Create/Filtos`, Json);
+  }
+
+  PostCrearCursoCompleto(idCurso): Observable<any> {
+    return this.http.post(`${this.ApiURL}/CambiarEstado/Curso`, idCurso);
+  }
+
+
+
+
   
+
 }
 
 
