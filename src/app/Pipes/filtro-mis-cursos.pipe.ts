@@ -10,7 +10,7 @@ export class FiltroMisCursosPipe implements PipeTransform {
     const resultadoBusqueda = [];
    
       for(const Curso of value){
-        if(Curso.Curso.Nombre.indexOf(arg) > -1){
+        if(Curso.Nombre.indexOf(arg) > -1){
           resultadoBusqueda.push(Curso);
         }
       }

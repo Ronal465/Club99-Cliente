@@ -41,6 +41,8 @@ import { FuncionesProfesorComponent } from './compponentes/funciones-profesor/fu
 import { FiltroMisCursosPipe } from './Pipes/filtro-mis-cursos.pipe';
 import { FiltroUsuariosPipe } from './pipes/filtro-usuarios.pipe';
 import {MatTableModule} from '@angular/material/table';
+import { ResponderPreguntasComponent } from './componentes/responder-preguntas/responder-preguntas.component';
+import { FuncionesAdministradorComponent } from './componentes/funciones-administrador/funciones-administrador.component';
 
 
 
@@ -74,7 +76,9 @@ import {MatTableModule} from '@angular/material/table';
     MisCursosComponent,
     FuncionesProfesorComponent,
     FiltroMisCursosPipe,
-    FiltroUsuariosPipe
+    FiltroUsuariosPipe,
+    ResponderPreguntasComponent,
+    FuncionesAdministradorComponent
   ],
   imports: [
     BrowserModule,

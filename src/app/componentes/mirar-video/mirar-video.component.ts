@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { VerCursoService } from "../../servicios/ver-curso.service";
+import { CrearCursoService } from "../../servicios/crear-curso.service";
 
 @Component({
   selector: 'app-mirar-video',
@@ -8,65 +11,78 @@ import { Component, OnInit } from '@angular/core';
 export class MirarVideoComponent implements OnInit {
 
 
-  Curso: any = [
-    {
-      idCurso: 0,
-      Nombre: "Angular Curso",
-      Descripcion: "Descripcion1",
-      LinkImagen: "LinkImagen1",
-      Valoracion: "Valoracion1"
-    },
-    {
-      idUsuario: 0,
-      Nombre: "NombreProfesor1"
-    },
-    [{
-      idTipoFiltro: 0,
-      idFiltro: 0,
-      Nombre: "nombre Filtro"
-    }]
-  ];
+  Curso = {
+    Descripcion: "a",
+    LinkImagen: "",
+    Nombre: "a",
+    Valoracion: 0,
+    idCurso: 0,
+    idEstadoCurso: 0,
+    idProfesor: 0
+  }
 
   PorcentajeCurso: any = 20;
 
   Seccion = {
-    idSeccionCurso: 1,
-    Nombre: "Inico Angular",
+    idSeccionCurso: 0,
+    Nombre: "",
     LinkMultimedia: "",
-    idTipoArchivoMultimedia: 1,
+    idTipoArchivoMultimedia: 0,
     idCurso: 0,
-    Numero: 1,
-    Contenido: "Angular es un framework opensource desarrollado por Google para facilitar la creación y programación de aplicaciones web de una sola página, las webs SPA (Single Page Application).Angular separa completamente el frontend y el backend en la aplicación, evita escribir código repetitivo y mantiene todo más ordenado gracias a su patrón MVC (Modelo-Vista-Controlador) asegurando los desarrollos con rapidez, a la vez que posibilita modificaciones y actualizaciones.En una web SPA aunque la velocidad de carga puede resultar un poco lenta la primera vez que se abre, navegar después es totalmente instantáneo, ya que se ha cargado toda la página de golpe."
+    Numero: 0,
+    Contenido: ""
   }
 
-  Secciones = [
-    {
-      idSeccionCurso: 1,
-      Nombre: "Inicio Angular",
-      Numero: 1
-    },
-    {
-      idSeccionCurso: 2,
-      Nombre: "Angular Es Dios",
-      Numero: 2
-    }
-  ]
+  Secciones = [];
 
-  Profesor={
+  Profesor = {
     idProfesorCurso: 0,
     Nombre: "",
     biografia: "",
     LinkImagenProfesor: "https://www.elcolombiano.com/documents/10157/0/580x387/0c11/580d365/none/11101/PILJ/image_content_36371796_20200915164613.jpg",
   }
 
-  ListaCursosProfesor=[];
-  ListaExperienciaProfesor=[];
+  ListaCursosProfesor = [];
+  ListaExperienciaProfesor = [];
 
+  idCurso;
+  TokenLogin;
 
-  constructor() { }
+  constructor(private ActivatedRoute: ActivatedRoute, private Router: Router,
+    private VerCursoService: VerCursoService, private CrearCursoService: CrearCursoService) { }
 
   ngOnInit(): void {
-    this.ActualizarBarra();
+    this.TokenLogin = localStorage.getItem('TokenLogin');
+    this.idCurso = this.ActivatedRoute.snapshot.params.idCurso;
+
+    if (this.idCurso != null) {
+
+      this.VerCursoService.ObtenerCursoUsuario(this.TokenLogin, this.idCurso).subscribe(
+        res => {
+          this.Curso = res;
+          console.log(res);
+          console.log(this.Curso);
+
+          this.CrearCursoService.GetListSeccioness(this.idCurso).subscribe(
+            res2 => {
+              this.Secciones = res2;
+              this.Seccion = res2[0]
+            },
+            err => {
+
+            }
+          )
+
+        },
+        err => {
+
+        }
+      )
+
+    }
+
+
+
 
   }
 

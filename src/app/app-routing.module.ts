@@ -21,10 +21,7 @@ const routes: Routes = [
     path: '',
     redirectTo: '/Inicio',
     pathMatch: 'full'
-  }, {
-    path: 'MirarVideo',
-    component: MirarVideoComponent
-  },
+  }, 
   {
     path: 'Login',
     component: LoginComponent
@@ -52,7 +49,8 @@ const routes: Routes = [
   {
     path: 'ValidacionCorreoRegistro/:TokenRegister',
     component: RegistroComponent
-  }, {
+  },
+  {
     path: 'RecuperarContrasena/:TokenRecuperar',
     component: RecuperarContrasenaComponent
   },
@@ -78,7 +76,7 @@ const routes: Routes = [
     component: CategoriasComponent
   },
   {
-    path: 'CrearVideo',
+    path: 'CrearCurso',
     component: CrearCursoComponent
 
   },
@@ -93,8 +91,12 @@ const routes: Routes = [
   {
     path: 'Gestion Usuarios',
     component: EditarusuarioComponent
-  },
-
+  }
+  , {
+    path: 'MirarCurso/:idCurso',
+    component: MirarVideoComponent
+  }
+  ,
   {
     path: '**',
     component: InicioComponent

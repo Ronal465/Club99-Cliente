@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import {  VerCursoService} from "../../servicios/ver-curso.service";
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-mis-cursos',
   templateUrl: './mis-cursos.component.html',
@@ -14,110 +16,31 @@ export class MisCursosComponent implements OnInit {
 
 
 
-  ListaCursos = [
-    {
-      Curso: {
-        Descripcion: "El mejor lenguaje de todos I",
-        LinkImagen: "https://club99.s3.us-east-2.amazonaws.com/ImagenesCursos/online-course.png",
-        Nombre: "Angular",
-        Valoracion: 5,
-        idCurso: 1,
-        idEstadoCurso: 1,
-        idProfesor: 1
-      },
-      NombresFiltro: [{
-        Nombre: "Donador Nivel 2"
-      }],
-      Profesor: {
-        Apellidos: "Carlos Rodriguez",
-        Nombres: "Ronaldo Carlos",
-        idUsuario: 1
-      }
-    },
-    {
-      Curso: {
-        Descripcion: "El mejor lenguaje de todos I",
-        LinkImagen: "https://club99.s3.us-east-2.amazonaws.com/ImagenesCursos/online-course.png",
-        Nombre: "Real",
-        Valoracion: 5,
-        idCurso: 1,
-        idEstadoCurso: 1,
-        idProfesor: 1
-      },
-      NombresFiltro: [{
-        Nombre: "Donador Nivel 2"
-      }],
-      Profesor: {
-        Apellidos: "Carlos Rodriguez",
-        Nombres: "Ronaldo Carlos",
-        idUsuario: 1
-      }
-    },
-    {
-      Curso: {
-        Descripcion: "El mejor lenguaje de todos I",
-        LinkImagen: "https://club99.s3.us-east-2.amazonaws.com/ImagenesCursos/online-course.png",
-        Nombre: "Real",
-        Valoracion: 5,
-        idCurso: 1,
-        idEstadoCurso: 1,
-        idProfesor: 1
-      },
-      NombresFiltro: [{
-        Nombre: "Donador Nivel 2"
-      }],
-      Profesor: {
-        Apellidos: "Carlos Rodriguez",
-        Nombres: "Ronaldo Carlos",
-        idUsuario: 1
-      }
-    },
-    {
-      Curso: {
-        Descripcion: "El mejor lenguaje de todos I",
-        LinkImagen: "https://club99.s3.us-east-2.amazonaws.com/ImagenesCursos/online-course.png",
-        Nombre: "Real",
-        Valoracion: 5,
-        idCurso: 1,
-        idEstadoCurso: 1,
-        idProfesor: 1
-      },
-      NombresFiltro: [{
-        Nombre: "Donador Nivel 2"
-      }],
-      Profesor: {
-        Apellidos: "Carlos Rodriguez",
-        Nombres: "Ronaldo Carlos",
-        idUsuario: 1
-      }
-    },    {
-      Curso: {
-        Descripcion: "El mejor lenguaje de todos I",
-        LinkImagen: "https://club99.s3.us-east-2.amazonaws.com/ImagenesCursos/online-course.png",
-        Nombre: "Real",
-        Valoracion: 5,
-        idCurso: 1,
-        idEstadoCurso: 1,
-        idProfesor: 1
-      },
-      NombresFiltro: [{
-        Nombre: "Donador Nivel 2"
-      }],
-      Profesor: {
-        Apellidos: "Carlos Rodriguez",
-        Nombres: "Ronaldo Carlos",
-        idUsuario: 1
-      }
-    }
-    
-  ]
+  ListaCursos = [];
+
+  TokenLogin ;
 
 
-
-
-  constructor() { }
+  constructor(private VerCursoService:VerCursoService,private Router : Router) { }
 
   ngOnInit(): void {
-  }
+    this.TokenLogin = localStorage.getItem('TokenLogin');
+     this.ObtenerCursosUsuario();
+ 
+   }
+ 
+   ObtenerCursosUsuario(){
+       this.VerCursoService.GetListMisCursos(this.TokenLogin).subscribe(
+         res=>{
+           console.log(res);
+           this.ListaCursos = res;
+           console.log(this.ListaCursos)
+         }
+       )
+   }
+
+   MirarCurso(idCurso){
+    this.Router.navigateByUrl('/MirarCurso/' + idCurso );
+   }
 
 }
