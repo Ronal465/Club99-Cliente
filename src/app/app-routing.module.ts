@@ -13,6 +13,7 @@ import { EditarusuarioComponent } from './componentes/editarusuario/editarusuari
 import { CrearCursoComponent } from "./componentes/crear-curso/crear-curso.component";
 import { InfoCursoComponent } from "./componentes/info-curso/info-curso.component";
 import { MisCursosComponent } from "./componentes/mis-cursos/mis-cursos.component";
+import {ResponderPreguntasComponent } from "./componentes/responder-preguntas/responder-preguntas.component";
 
 
 
@@ -95,6 +96,10 @@ const routes: Routes = [
   , {
     path: 'MirarCurso/:idCurso',
     component: MirarVideoComponent
+  },
+  {
+    path: 'ResponderPreguntas',
+    component: ResponderPreguntasComponent
   }
   ,
   {
