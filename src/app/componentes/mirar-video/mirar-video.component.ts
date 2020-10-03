@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VerCursoService } from "../../servicios/ver-curso.service";
 import { CrearCursoService } from "../../servicios/crear-curso.service";
-
+import { FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-mirar-video',
   templateUrl: './mirar-video.component.html',
@@ -36,15 +36,23 @@ export class MirarVideoComponent implements OnInit {
   Secciones = [];
 
   Profesor = {
-    idProfesorCurso: 0,
-    Nombre: "",
+    Apellidos: "",
+    LinkImagenProfesor: "",
+    Nombres: "",
     biografia: "",
-    LinkImagenProfesor: "https://www.elcolombiano.com/documents/10157/0/580x387/0c11/580d365/none/11101/PILJ/image_content_36371796_20200915164613.jpg",
+    idProfesorCurso: 0,
+    idUsuario: 0,
   }
+
+  PreguntasSeccion=[
+
+  ]
+  Pregunta = new FormControl('', Validators.required);
+
+  
 
   ListaCursosProfesor = [];
   ListaExperienciaProfesor = [];
-
   idCurso;
   TokenLogin;
 
@@ -52,6 +60,13 @@ export class MirarVideoComponent implements OnInit {
     private VerCursoService: VerCursoService, private CrearCursoService: CrearCursoService) { }
 
   ngOnInit(): void {
+
+    this.ValidarYObtenerCursoUsuario();
+
+
+
+  }
+  ValidarYObtenerCursoUsuario() {
     this.TokenLogin = localStorage.getItem('TokenLogin');
     this.idCurso = this.ActivatedRoute.snapshot.params.idCurso;
 
@@ -59,37 +74,86 @@ export class MirarVideoComponent implements OnInit {
 
       this.VerCursoService.ObtenerCursoUsuario(this.TokenLogin, this.idCurso).subscribe(
         res => {
-          this.Curso = res;
-          console.log(res);
-          console.log(this.Curso);
+          this.Curso = res[0];
+
 
           this.CrearCursoService.GetListSeccioness(this.idCurso).subscribe(
             res2 => {
               this.Secciones = res2;
               this.Seccion = res2[0]
+              this.ObtenerPreguntas(this.Seccion.idSeccionCurso);
+
             },
             err => {
 
             }
           )
 
+            this.VerCursoService.ObtenerProfesorCurso(this.idCurso).subscribe(
+              res=>{
+
+                this.Profesor = res;
+             
+
+              },
+              err=>{
+
+              }
+            )
+
+
         },
         err => {
 
+            alert("Curso no asignado");
+      
+            this.Router.navigateByUrl('/Mis Cursos');
+         
         }
       )
 
     }
-
-
-
-
   }
-
   ActualizarBarra() {
     var Barra = document.getElementById("Profeso");
     Barra.style.width = "" + this.PorcentajeCurso + "%";
 
   }
+  VerPerfilProfesor(){
+  }
+  ObtenerPreguntas(idSeccion){
+    this.VerCursoService.ObtenerPreguntasCurso({idSeccionCurso:idSeccion}).subscribe(
+      res=>{
+        this.PreguntasSeccion = res;
+        console.log(res);
+      },
+      err=>{
+
+      }
+
+    )
+  }
+
+  CrearPregunta(){
+this.VerCursoService.CrearPreguntasCurso(
+    {
+      idPreguntasSeccion:null,
+      Pregunta: this.Pregunta.value ,
+      Respuesta:"",
+      idSeccionCurso: this.Seccion.idSeccionCurso,
+      TokenLogin:this.TokenLogin
+    }).subscribe(
+      res=>{ 
+
+        console.log("Hola");
+
+      },
+      err=>{
+
+      }
+    )
+
+  }
+
 
 }

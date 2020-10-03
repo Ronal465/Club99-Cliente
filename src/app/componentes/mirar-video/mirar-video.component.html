@@ -3,8 +3,8 @@
 <div class="Pantalla">
   <div class="Cabezera">
     <div class="Titulo">
-      <p id="NomreCurso"  > 
-        {{Curso.Nombre}} Go
+      <p id="NomreCurso">
+        {{Curso.Nombre}}
       </p>
     </div>
     <div class="Titulo2">
@@ -12,17 +12,17 @@
     </div>
     <div class="BarraProgreso">
       <div class="progress">
-        <div id="Profeso" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
-          aria-valuemax="100">{{PorcentajeCurso}}%</div>
+        <div id="Profeso" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
+          aria-valuemin="0" aria-valuemax="100">{{PorcentajeCurso}}%</div>
       </div>
     </div>
   </div>
   <div class="DataListSecciones">
-    <mat-form-field appearance="fill" >
-      <mat-label> {{Seccion.Numero}} {{Seccion.Nombre}} </mat-label >
-      <mat-select >
-        <mat-option  value="{{Seccion.idSeccionCurso}}" *ngFor="let Seccion of Secciones">
-          {{Seccion.Numero}} {{Seccion.Nombre}} 
+    <mat-form-field appearance="fill">
+      <mat-label> {{Seccion.Numero}} {{Seccion.Nombre}} </mat-label>
+      <mat-select>
+        <mat-option value="{{Seccion.idSeccionCurso}}" *ngFor="let Seccion of Secciones">
+          {{Seccion.Numero}} {{Seccion.Nombre}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -30,9 +30,7 @@
   <div class="ContenidoCurso">
     <div class="Video" *ngIf="Seccion.idTipoArchivoMultimedia == 1">
       <video controls>
-        <source
-          src="https://club99.s3.us-east-2.amazonaws.com/VideosCursos/%C2%BFQu%C3%A9+es+angular+y+para+que+sirve_.mp4"
-          type="video/mp4">
+        <source src="{{Seccion.LinkMultimedia}}" type="video/mp4">
       </video>
     </div>
     <div class="Descargable" *ngIf="Seccion.idTipoArchivoMultimedia == 2">
@@ -42,31 +40,52 @@
   </div>
   <div class="InfoCurso">
     <p>{{Seccion.Contenido}} </p>
-    
+
   </div>
   <div class="CuadriculaPreguntasProfesor">
-    <div class="ConatinerProfesor" >
+    <div class="ConatinerProfesor">
       <div class="ImagenProfesor">
- 
+
         <img src="{{Profesor.LinkImagenProfesor}}">
       </div>
       <div class="InfoProfesor">
-          <div class="NombreProfesor">
-            <h3>Profesor:</h3>
-          </div>
-          <div class="Experiencia">
-            <h3>Experencia:</h3>
-          </div>
-          <div class="CursoProfesor">
-            <h3>CursosProfesor:</h3>
-          </div>
+        <div class="NombreProfesor">
+          <h3>Profesor: {{Profesor.Nombres}} {{Profesor.Apellidos}}</h3>
+        </div>
+        <div class="Ver Perfil">
+          <button mat-raised-button color="primary" (click)="VerPerfilProfesor()">
+            <mat-icon>update</mat-icon>
+            Ver Perfil
+          </button>
+        </div>
       </div>
-    </div >
+    </div>
     <div class="PreguntasCurso">
 
     </div>
   </div>
+  <div class="Preguntas">
+    <div class="Pregunta" *ngFor="let Pregunta of PreguntasSeccion" style="border: 2px solid black;">
+      <div class="P">
+        Pregunta: {{Pregunta.Pregunta}}
+      </div>
+      <div>
+        Respuesta: {{Pregunta.Respuesta}}
+      </div>
+    </div>
+    <div class="Pregunta">
+      <mat-form-field>
+        <mat-label>Hacer una pregunta</mat-label>
+        <input [formControl]="Pregunta" matInput placeholder="Hacer Una Pregunta">
+       </mat-form-field>
+       <button mat-raised-button color="primary" (click)="CrearPregunta()">
+        <mat-icon>update</mat-icon>
+        Hacer Pregutna
+      </button>
 
+    </div>
+
+  </div>
 
 </div>
 

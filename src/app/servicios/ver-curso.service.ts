@@ -22,16 +22,23 @@ export class VerCursoService {
   GetListMisCursos(TokenLogin): Observable<any> {
     return this.http.post(`${this.ApiURL}/MisCuros/List/Cursos`, {TokenLogin:TokenLogin});
   }
-
-
   ObtenerCursoUsuario(TokenLogin,idCurso): Observable<any> {
     return this.http.post(`${this.ApiURL}/MisCuros/Get/Curso`, {TokenLogin:TokenLogin,idCurso:idCurso});
   }
+  ObtenerInfoCursoUsuario(TokenLogin,idCurso): Observable<any> {
+    return this.http.post(`${this.ApiURL}/MisCuros/Get/InfoCurso`, {TokenLogin:TokenLogin,idCurso:idCurso});
+  }
+  ObtenerProfesorCurso(idCurso): Observable<any> {
+    return this.http.post(`${this.ApiURL}/VerCurso/Get/Profesor`, {idCurso:idCurso});
+  }
+  ObtenerPreguntasCurso(idSeccion): Observable<any> {
+    return this.http.post(`${this.ApiURL}/VerCurso/Get/Preguntas`, idSeccion);
+  }
+  CrearPreguntasCurso(Pregunta): Observable<any> {
+    return this.http.post(`${this.ApiURL}/VerCurso/Crear/Preguntas`, Pregunta);
+  }
 
 
-
-
-  
 
 }
 

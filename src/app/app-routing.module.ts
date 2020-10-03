@@ -64,7 +64,7 @@ const routes: Routes = [
     component: ComunidadComponent
   },
   {
-    path: 'InfoCurso',
+    path: 'InfoCurso/:idCurso',
     component: InfoCursoComponent
   },
   {
@@ -108,7 +108,7 @@ const routes: Routes = [
   }
 
 
-];
+]; 
 
 
 @NgModule({
