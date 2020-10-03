@@ -1,359 +1,365 @@
 <app-barra-superior></app-barra-superior>
-<div class="container" style="padding-top:5% ;">
-    <div class="container register">
-        <div class="row">
-            <div class="col-md-3 register-left">
-                <img src="https://www.flaticon.com/svg/static/icons/svg/2919/2919600.svg" alt="usuario" />
-                <h1>Bienvenido</h1>
-                <h1>Editar Informacion Usuario</h1>
 
-            </div>
-            <div class="col-md-9 register-right">
-                <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Pagina 1</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Pagina 2</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="Contrasena-tab" data-toggle="tab" href="#Contrasena" role="tab" aria-controls="Contrasena" aria-selected="false">Pagina 2</a>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-
-                        <div class="row register-form">
-                            <div class="col-md-6">
-                                <!-- Nombre -->
-                                <div class="form-group">
-                                    <form class="example-form">
-                                        <mat-form-field>
-                                            <mat-label>Nombres</mat-label>
-                                            <input [formControl]="Nombres" matInput placeholder="Nombre Usuario" required>
-                                            <mat-error *ngIf="Nombres.invalid">
-                                                {{getErrorMessageNombre()}}
-                                            </mat-error>
-                                        </mat-form-field>
-                                    </form>
-                                </div>
-                                <!-- Apellidos -->
-                                <div class="form-group">
-                                    <form class="example-form">
-                                        <mat-form-field>
-                                            <mat-label>Apellidos</mat-label>
-                                            <input [formControl]="Apellidos" matInput placeholder="Apellidos Usuario" required>
-                                            <mat-error *ngIf="Apellidos.invalid">
-                                                {{getErrorMessageApellido()}}
-                                            </mat-error>
-                                        </mat-form-field>
-                                    </form>
-                                </div>
-                                <!-- Fecha Nacimiento -->
-                                <div class="form-group">
-                                    <mat-form-field appearance="fill">
-                                        <mat-label>Fecha Nacimiento</mat-label>
-                                        <input matInput [formControl]="FechaNacimiento" [matDatepicker]="picker" (dateInput)="FechaNacimiento.hasError('required')" (dateChange)="FechaNacimiento.hasError('required')">
-                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                        <mat-datepicker #picker></mat-datepicker>
-                                        <mat-error *ngIf="FechaNacimiento.hasError('required')">
-                                            Ingrese la fecha de nacimiento
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <!-- Tipo Identificacion -->
-                                <div class="form-group">
-                                    <form class="example-form">
-                                        <mat-form-field appearance="fill">
-                                            <mat-label>Tipo Identifiacion</mat-label>
-                                            <mat-select [formControl]="TipoIdentifiacion" disabled>
-                                                <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of TiposIdentificacion" [value]="Tipo.idTipoIdentificacion">
-                                                    {{Tipo.Nombre}}
-                                                </mat-option>
-                                            </mat-select>
-                                            <mat-error *ngIf="TipoIdentifiacion.hasError('required')">
-                                                Ingrese un tipo de identificacion
-                                            </mat-error>
-                                        </mat-form-field>
-                                    </form>
-                                </div>
-                                <!-- Identificacion -->
-                                <div class="form-group">
-                                    <form class="example-form">
-                                        <mat-form-field>
-                                            <mat-label>Identificacion</mat-label>
-                                            <input [formControl]="Identificacion" matInput disabled placeholder="Identificacion Usuario">
-                                            <mat-error *ngIf="Identificacion.invalid">
-                                                {{getErrorMessageIdentificacion()}}
-                                            </mat-error>
-                                        </mat-form-field>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <!-- Profesion -->
-                                <div class="form-group">
-                                    <form class="example-form">
-                                        <mat-form-field appearance="fill">
-                                            <mat-label>Profesion</mat-label>
-                                            <mat-select [formControl]="TipoProfesion" required>
-                                                <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of TipoProfesiones" [value]="Tipo.idProfesion">
-                                                    {{Tipo.Nombre}}
-                                                </mat-option>
-                                            </mat-select>
-                                            <mat-error *ngIf="TipoProfesion.hasError('required')">Porfavor escoga una Profesion
-                                            </mat-error>
-
-                                        </mat-form-field>
-                                    </form>
-                                </div>
-                                <!-- Telefono -->
-                                <div class="form-group">
-                                    <form class="example-form">
-                                        <mat-form-field>
-                                            <mat-label>Telefono</mat-label>
-                                            <input [formControl]="Telefono" matInput placeholder="Telefono Usuario" required>
-                                            <mat-error *ngIf="Telefono.invalid">
-                                                {{getErrorMessageTelefono()}}
-                                            </mat-error>
-                                        </mat-form-field>
-                                    </form>
-                                </div>
-                                <!-- Seguridad Social -->
-                                <div class="form-group">
-                                    <form class="example-form">
-                                        <mat-form-field appearance="fill">
-                                            <mat-label>Tipo Seguridad Social</mat-label>
-                                            <mat-select [formControl]="TipoSeguridadSocial" required>
-                                                <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of TiposSeguridadSocial" [value]="Tipo.idTipoSeguridadSocial">
-                                                    {{Tipo.Nombre}}
-                                                </mat-option>
-                                            </mat-select>
-                                            <mat-error *ngIf="TipoSeguridadSocial.hasError('required')">
-                                                Ingrese un tipo seguridad social
-                                            </mat-error>
-
-                                        </mat-form-field>
-                                    </form>
-                                </div>
-                                <!-- Descripcion Seguridad Social -->
-                                <div class="form-group">
-                                    <form class="example-form">
-                                        <mat-form-field>
-                                            <mat-label>Descripcion Seguridad Social</mat-label>
-                                            <input [formControl]="DescripcionSeguridadSocial" matInput placeholder="Descripcion Seguridad Social" required>
-                                            <mat-error *ngIf="DescripcionSeguridadSocial.hasError('required')">
-                                                Ingrese la Descripcion Seguridad Social
-                                            </mat-error>
-                                        </mat-form-field>
-                                    </form>
-                                </div>
-                                <!-- Etnia Social -->
-                                <div class="form-group">
-                                    <form class="example-form">
-                                        <mat-form-field appearance="fill">
-                                            <mat-label>Tipo Etnia</mat-label>
-                                            <mat-select [formControl]="TipoEtnia" disabled>
-                                                <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of TiposEtnia" [value]="Tipo.idClasificacionEtnica">
-                                                    {{Tipo.Nombre}}
-                                                </mat-option>
-                                            </mat-select>
-                                            <mat-error *ngIf="TipoEtnia.hasError('required')">
-                                                Porfavor escoga una tipo de Etnia Social
-                                            </mat-error>
-
-                                        </mat-form-field>
-                                    </form>
-                                </div>
-                                <button mat-raised-button color="primary" (click)="ActualizarInfo1()">
-                                    <mat-icon>update</mat-icon>
-                                    Actualizar Datos
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-
-                        <div class="row register-form" style="padding-bottom:11.3% ;">
-                            <div class="col-md-6">
-                                <!-- Tipo Genero -->
-                                <div class="form-group">
-                                    <form class="example-form">
-                                        <mat-form-field appearance="fill">
-                                            <mat-label>Genero</mat-label>
-                                            <mat-select [formControl]="Genero" required>
-                                                <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Genero of TiposGeneros" [value]="Genero.idTipoGenero">
-                                                    {{Genero.Nombre}}
-                                                </mat-option>
-                                            </mat-select>
-                                            <mat-error *ngIf="Genero.hasError('required')">
-                                                Porfavor escoga una tipo de genero
-                                            </mat-error>
-
-                                        </mat-form-field>
-                                    </form>
-                                </div>
-                                <!-- Email -->
-                                <div class="form-group">
-                                    <mat-form-field appearance="fill">
-                                        <mat-label>Correo Electronico</mat-label>
-                                        <input matInput placeholder="pat@example.com" [formControl]="Correo" required>
-                                        <mat-error *ngIf="Correo.invalid">{{getErrorMessageCorreo()}}</mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <!-- Tipo Promotor -->
-                                <div class="form-group">
-                                    <form class="example-form">
-                                        <mat-form-field appearance="fill">
-                                            <mat-label>Tipo Promotor</mat-label>
-                                            <mat-select [formControl]="TipoPromotor" disabled>
-                                                <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of TiposPromotor" [value]="Tipo.idTipoPromotor">
-                                                    {{Tipo.Nombre}}
-                                                </mat-option>
-                                            </mat-select>
-                                            <mat-error *ngIf="TipoPromotor.hasError('required')">
-                                                Ingrese Un Tipo Promotor
-                                            </mat-error>
-
-                                        </mat-form-field>
-                                    </form>
-                                </div>
-                                <!-- Tipo Nivel Academico -->
-                                <div class="form-group">
-                                    <form class="example-form">
-                                        <mat-form-field appearance="fill">
-                                            <mat-label>Niveles Academicos</mat-label>
-                                            <mat-select [formControl]="NiveleAcademicos" required>
-                                                <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of NivelesAcademicos" [value]="Tipo.idNivelAcademico">
-                                                    {{Tipo.Nombre}}
-                                                </mat-option>
-                                            </mat-select>
-                                            <mat-error *ngIf="NiveleAcademicos.hasError('required')">
-                                                Ingrese un nivele Academicos
-                                            </mat-error>
-
-                                        </mat-form-field>
-                                    </form>
-                                </div>
-
-                            </div>
-                            <div class="col-md-6">
-
-
-                                <!-- Tipo Pais -->
-                                <div class="form-group">
-                                    <form class="example-form">
-                                        <mat-form-field appearance="fill">
-                                            <mat-label>Paises</mat-label>
-                                            <mat-select [formControl]="Pais" required (selectionChange)="ActualizarDepartamentos()">
-                                                <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of Paises" [value]="Tipo.idPais">
-                                                    {{Tipo.Nombre}}
-                                                </mat-option>
-                                            </mat-select>
-                                            <mat-error *ngIf="Pais.hasError('required')">
-                                                Ingrese Pais
-                                            </mat-error>
-
-                                        </mat-form-field>
-                                    </form>
-                                </div>
-                                <!-- Tipo Departamento-->
-                                <div class="form-group">
-                                    <form class="example-form">
-                                        <mat-form-field appearance="fill">
-                                            <mat-label>Departamentos</mat-label>
-                                            <mat-select [formControl]="Departamento" required (selectionChange)="ActualizarCiudades()">
-                                                <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of Departamentos" [value]="Tipo.idDepartamento">
-                                                    {{Tipo.Nombre}}
-                                                </mat-option>
-                                            </mat-select>
-                                            <mat-error *ngIf="Departamento.hasError('required')">
-                                                Ingrese un departamento
-                                            </mat-error>
-
-                                        </mat-form-field>
-                                    </form>
-                                </div>
-                                <!-- Tipo Ciudad -->
-                                <div class="form-group">
-                                    <form class="example-form">
-                                        <mat-form-field appearance="fill">
-                                            <mat-label>Ciudades</mat-label>
-                                            <mat-select [formControl]="Ciudad" required>
-                                                <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of Ciudades" [value]="Tipo.idCiudad">
-                                                    {{Tipo.Nombre}}
-                                                </mat-option>
-                                            </mat-select>
-                                            <mat-error *ngIf="Ciudad.hasError('required')">
-                                                Ingrese una Ciudad
-                                            </mat-error>
-
-                                        </mat-form-field>
-                                    </form>
-                                </div>
-                                <!-- Direccion -->
-                                <div class="form-group">
-                                    <form class="example-form">
-                                        <mat-form-field>
-                                            <mat-label>Direccion</mat-label>
-                                            <input [formControl]="Direccion" matInput placeholder="Direccion Usuario" required>
-                                            <mat-error *ngIf="Direccion.hasError('required')">Ingrese la direccion del usuario
-                                            </mat-error>
-                                        </mat-form-field>
-                                    </form>
-                                </div>
-                                <button mat-raised-button color="primary" (click)="ActualizarInfo2()">
-                                    <mat-icon>update</mat-icon>
-                                    Actualizar Datos
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade show" id="Contrasena" role="tabpanel" aria-labelledby="Contrasena-tab">
-
-                        <div class="row register-form" style="padding-bottom:41.5% ;">
-                            <div class="col-md-6">
-
-                                <!-- Contraseña1 -->
-                                <div class="form-group">
-                                    <form class="example-form">
-                                        <mat-form-field appearance="fill">
-                                            <mat-label>Contraseña</mat-label>
-                                            <input [formControl]="Contrasena" matInput [type]="hide ? 'password' : 'text'">
-                                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                            </button>
-                                            <mat-error *ngIf="Contrasena.invalid">
-                                                {{getErrorMessageContrasena()}}
-                                            </mat-error>
-
-                                        </mat-form-field>
-
-                                    </form>
-                                </div>
-                                <button mat-raised-button color="primary" (click)="ActualizarContrasena()">
-                                    <mat-icon>update</mat-icon>
-                                    Actualizar Contraseña
-                                </button>
-
-                            </div>
-
-                        </div>
-                    </div>
+<body>
+    <div class="container" style="padding-top:5% ;">
+        <div class="container register">
+            <div class="row">
+                <div class="col-md-3 register-left">
+                    <img src="https://www.flaticon.com/svg/static/icons/svg/2919/2919600.svg" alt="usuario" />
+                    <h1>Bienvenido</h1>
+                    <h1>Editar Informacion Usuario</h1>
 
                 </div>
-            </div>
-        </div>
+                <div class="col-md-9 register-right">
+                    <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Pagina 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Pagina 2</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="Contrasena-tab" data-toggle="tab" href="#Contrasena" role="tab" aria-controls="Contrasena" aria-selected="false">Pagina 2</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
+                            <div class="row register-form">
+                                <div class="col-md-6">
+                                    <!-- Nombre -->
+                                    <div class="form-group">
+                                        <form class="example-form">
+                                            <mat-form-field>
+                                                <mat-label>Nombres</mat-label>
+                                                <input [formControl]="Nombres" matInput placeholder="Nombre Usuario" required>
+                                                <mat-error *ngIf="Nombres.invalid">
+                                                    {{getErrorMessageNombre()}}
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                    <!-- Apellidos -->
+                                    <div class="form-group">
+                                        <form class="example-form">
+                                            <mat-form-field>
+                                                <mat-label>Apellidos</mat-label>
+                                                <input [formControl]="Apellidos" matInput placeholder="Apellidos Usuario" required>
+                                                <mat-error *ngIf="Apellidos.invalid">
+                                                    {{getErrorMessageApellido()}}
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                    <!-- Fecha Nacimiento -->
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Fecha Nacimiento</mat-label>
+                                            <input matInput [formControl]="FechaNacimiento" [matDatepicker]="picker" (dateInput)="FechaNacimiento.hasError('required')" (dateChange)="FechaNacimiento.hasError('required')">
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                            <mat-error *ngIf="FechaNacimiento.hasError('required')">
+                                                Ingrese la fecha de nacimiento
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- Tipo Identificacion -->
+                                    <div class="form-group">
+                                        <form class="example-form">
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Tipo Identifiacion</mat-label>
+                                                <mat-select [formControl]="TipoIdentifiacion" disabled>
+                                                    <mat-option>--</mat-option>
+                                                    <mat-option *ngFor="let Tipo of TiposIdentificacion" [value]="Tipo.idTipoIdentificacion">
+                                                        {{Tipo.Nombre}}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="TipoIdentifiacion.hasError('required')">
+                                                    Ingrese un tipo de identificacion
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                    <!-- Identificacion -->
+                                    <div class="form-group">
+                                        <form class="example-form">
+                                            <mat-form-field>
+                                                <mat-label>Identificacion</mat-label>
+                                                <input [formControl]="Identificacion" matInput disabled placeholder="Identificacion Usuario">
+                                                <mat-error *ngIf="Identificacion.invalid">
+                                                    {{getErrorMessageIdentificacion()}}
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Profesion -->
+                                    <div class="form-group">
+                                        <form class="example-form">
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Profesion</mat-label>
+                                                <mat-select [formControl]="TipoProfesion" required>
+                                                    <mat-option>--</mat-option>
+                                                    <mat-option *ngFor="let Tipo of TipoProfesiones" [value]="Tipo.idProfesion">
+                                                        {{Tipo.Nombre}}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="TipoProfesion.hasError('required')">Porfavor escoga una Profesion
+                                                </mat-error>
+
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                    <!-- Telefono -->
+                                    <div class="form-group">
+                                        <form class="example-form">
+                                            <mat-form-field>
+                                                <mat-label>Telefono</mat-label>
+                                                <input [formControl]="Telefono" matInput placeholder="Telefono Usuario" required>
+                                                <mat-error *ngIf="Telefono.invalid">
+                                                    {{getErrorMessageTelefono()}}
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                    <!-- Seguridad Social -->
+                                    <div class="form-group">
+                                        <form class="example-form">
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Tipo Seguridad Social</mat-label>
+                                                <mat-select [formControl]="TipoSeguridadSocial" required>
+                                                    <mat-option>--</mat-option>
+                                                    <mat-option *ngFor="let Tipo of TiposSeguridadSocial" [value]="Tipo.idTipoSeguridadSocial">
+                                                        {{Tipo.Nombre}}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="TipoSeguridadSocial.hasError('required')">
+                                                    Ingrese un tipo seguridad social
+                                                </mat-error>
+
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                    <!-- Descripcion Seguridad Social -->
+                                    <div class="form-group">
+                                        <form class="example-form">
+                                            <mat-form-field>
+                                                <mat-label>Descripcion Seguridad Social</mat-label>
+                                                <input [formControl]="DescripcionSeguridadSocial" matInput placeholder="Descripcion Seguridad Social" required>
+                                                <mat-error *ngIf="DescripcionSeguridadSocial.hasError('required')">
+                                                    Ingrese la Descripcion Seguridad Social
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                    <!-- Etnia Social -->
+                                    <div class="form-group">
+                                        <form class="example-form">
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Tipo Etnia</mat-label>
+                                                <mat-select [formControl]="TipoEtnia" disabled>
+                                                    <mat-option>--</mat-option>
+                                                    <mat-option *ngFor="let Tipo of TiposEtnia" [value]="Tipo.idClasificacionEtnica">
+                                                        {{Tipo.Nombre}}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="TipoEtnia.hasError('required')">
+                                                    Porfavor escoga una tipo de Etnia Social
+                                                </mat-error>
+
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                    <button mat-raised-button color="primary" (click)="ActualizarInfo1()">
+                                        <mat-icon>update</mat-icon>
+                                        Actualizar Datos
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                            <div class="row register-form" style="padding-bottom:11.3% ;">
+                                <div class="col-md-6">
+                                    <!-- Tipo Genero -->
+                                    <div class="form-group">
+                                        <form class="example-form">
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Genero</mat-label>
+                                                <mat-select [formControl]="Genero" required>
+                                                    <mat-option>--</mat-option>
+                                                    <mat-option *ngFor="let Genero of TiposGeneros" [value]="Genero.idTipoGenero">
+                                                        {{Genero.Nombre}}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="Genero.hasError('required')">
+                                                    Porfavor escoga una tipo de genero
+                                                </mat-error>
+
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                    <!-- Email -->
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Correo Electronico</mat-label>
+                                            <input matInput placeholder="pat@example.com" [formControl]="Correo" required>
+                                            <mat-error *ngIf="Correo.invalid">{{getErrorMessageCorreo()}}</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <!-- Tipo Promotor -->
+                                    <div class="form-group">
+                                        <form class="example-form">
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Tipo Promotor</mat-label>
+                                                <mat-select [formControl]="TipoPromotor" disabled>
+                                                    <mat-option>--</mat-option>
+                                                    <mat-option *ngFor="let Tipo of TiposPromotor" [value]="Tipo.idTipoPromotor">
+                                                        {{Tipo.Nombre}}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="TipoPromotor.hasError('required')">
+                                                    Ingrese Un Tipo Promotor
+                                                </mat-error>
+
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                    <!-- Tipo Nivel Academico -->
+                                    <div class="form-group">
+                                        <form class="example-form">
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Niveles Academicos</mat-label>
+                                                <mat-select [formControl]="NiveleAcademicos" required>
+                                                    <mat-option>--</mat-option>
+                                                    <mat-option *ngFor="let Tipo of NivelesAcademicos" [value]="Tipo.idNivelAcademico">
+                                                        {{Tipo.Nombre}}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="NiveleAcademicos.hasError('required')">
+                                                    Ingrese un nivele Academicos
+                                                </mat-error>
+
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+
+
+                                    <!-- Tipo Pais -->
+                                    <div class="form-group">
+                                        <form class="example-form">
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Paises</mat-label>
+                                                <mat-select [formControl]="Pais" required (selectionChange)="ActualizarDepartamentos()">
+                                                    <mat-option>--</mat-option>
+                                                    <mat-option *ngFor="let Tipo of Paises" [value]="Tipo.idPais">
+                                                        {{Tipo.Nombre}}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="Pais.hasError('required')">
+                                                    Ingrese Pais
+                                                </mat-error>
+
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                    <!-- Tipo Departamento-->
+                                    <div class="form-group">
+                                        <form class="example-form">
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Departamentos</mat-label>
+                                                <mat-select [formControl]="Departamento" required (selectionChange)="ActualizarCiudades()">
+                                                    <mat-option>--</mat-option>
+                                                    <mat-option *ngFor="let Tipo of Departamentos" [value]="Tipo.idDepartamento">
+                                                        {{Tipo.Nombre}}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="Departamento.hasError('required')">
+                                                    Ingrese un departamento
+                                                </mat-error>
+
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                    <!-- Tipo Ciudad -->
+                                    <div class="form-group">
+                                        <form class="example-form">
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Ciudades</mat-label>
+                                                <mat-select [formControl]="Ciudad" required>
+                                                    <mat-option>--</mat-option>
+                                                    <mat-option *ngFor="let Tipo of Ciudades" [value]="Tipo.idCiudad">
+                                                        {{Tipo.Nombre}}
+                                                    </mat-option>
+                                                </mat-select>
+                                                <mat-error *ngIf="Ciudad.hasError('required')">
+                                                    Ingrese una Ciudad
+                                                </mat-error>
+
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                    <!-- Direccion -->
+                                    <div class="form-group">
+                                        <form class="example-form">
+                                            <mat-form-field>
+                                                <mat-label>Direccion</mat-label>
+                                                <input [formControl]="Direccion" matInput placeholder="Direccion Usuario" required>
+                                                <mat-error *ngIf="Direccion.hasError('required')">Ingrese la direccion del usuario
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                    <button mat-raised-button color="primary" (click)="ActualizarInfo2()">
+                                        <mat-icon>update</mat-icon>
+                                        Actualizar Datos
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show" id="Contrasena" role="tabpanel" aria-labelledby="Contrasena-tab">
+
+                            <div class="row register-form" style="padding-bottom:41.5% ;">
+                                <div class="col-md-6">
+
+                                    <!-- Contraseña1 -->
+                                    <div class="form-group">
+                                        <form class="example-form">
+                                            <mat-form-field appearance="fill">
+                                                <mat-label>Contraseña</mat-label>
+                                                <input [formControl]="Contrasena" matInput [type]="hide ? 'password' : 'text'">
+                                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                                </button>
+                                                <mat-error *ngIf="Contrasena.invalid">
+                                                    {{getErrorMessageContrasena()}}
+                                                </mat-error>
+
+                                            </mat-form-field>
+
+                                        </form>
+                                    </div>
+                                    <button mat-raised-button color="primary" (click)="ActualizarContrasena()">
+                                        <mat-icon>update</mat-icon>
+                                        Actualizar Contraseña
+                                    </button>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
+</body>
+
+
+<app-barra-inferior></app-barra-inferior>

@@ -23,7 +23,7 @@
 
 
     <div class="card-deck ">
-        <div class="card text-center shadow-lg p-3 mb-1 bg-white rounded col-md-4" style="width: 18rem;" *ngFor="let Curso of ListaCursos | filtroMisCursos:BuscarCurso.value ">
+        <div class="card bg-info mb-3 text-center shadow-lg p-3 mb-1 bg-white rounded col-md-4" style="width: 18rem;" *ngFor="let Curso of ListaCursos | filtroMisCursos:BuscarCurso.value ">
             <img src="{{Curso.LinkImagen}}" style="height: 130px; width:200px ;display:block;margin:auto;">
             <div class="card-body">
                 <h5 class="card-title">
@@ -36,7 +36,7 @@
                 </li>
             </ul>
             <div class="card-body">
-                <button button type="button" (click)="MirarCurso(Curso.idCurso)"  class="btn btn-warning text-white">Mirar Curso</button>
+                <button button type="button" (click)="MirarCurso(Curso.idCurso)" class="btn btn-warning text-white">Mirar Curso</button>
             </div>
         </div>
     </div>
