@@ -14,7 +14,6 @@ export class ResponderPreguntasComponent implements OnInit {
 
 
   Preguntas = [];
-  Opcion = 0;
 
 
   constructor(private VerCursoService: VerCursoService) { }
