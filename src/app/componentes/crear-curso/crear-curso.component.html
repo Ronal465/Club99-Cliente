@@ -45,63 +45,63 @@
 <!-- Crear Curso -->
 <ng-container *ngIf="Opcion ==  1">
 
+    <div class="container" style="width: 50%; padding-bottom:7% ;">
+        <form class="example-form" style="margin-top: 10%;">
+            <mat-form-field style="width:100%; align-content: center;">
+                <mat-label>Nombre de Curso</mat-label>
+                <input [formControl]="NombreCurso" matInput placeholder="{{Curso.Nombre}}" required>
+                <mat-error *ngIf="NombreSeccion.invalid">Ingrese el nombre de la seccion
+                </mat-error>
 
+            </mat-form-field>
+        </form>
 
-
-
-
-    <form class="example-form" style="margin-top: 10%;">
-        <mat-form-field style="width:100%; align-content: center;">
-            <mat-label>Nombre de Curso</mat-label>
-            <input [formControl]="NombreCurso" matInput placeholder="{{Curso.Nombre}}" required>
-            <mat-error *ngIf="NombreSeccion.invalid">Ingrese el nombre de la seccion
-            </mat-error>
-
-        </mat-form-field>
-    </form>
-
-    <div class="Upload">
-        <mat-card style="width: 100%;height: 100%; ">
-            <mat-card-content>
-                <ul>
-                    <li *ngFor="let file of files">
-                        <mat-progress-bar [value]="file.progress"></mat-progress-bar>
-                        <span id="file-label">
+        <div class="Upload">
+            <mat-card style="width: 100%;height: 100%; ">
+                <mat-card-content>
+                    <ul>
+                        <li *ngFor="let file of files">
+                            <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+                            <span id="file-label">
                         </span>
-                    </li>
-                </ul>
-            </mat-card-content>
-            <mat-card-actions style="text-align: center;">
+                        </li>
+                    </ul>
+                </mat-card-content>
+                <mat-card-actions style="text-align: center;">
 
-                <button mat-button color="black" (click)="onClickimg()">
+                    <button mat-button color="black" (click)="onClickimg()">
                     <mat-icon>file_upload</mat-icon>
                     Subir Multimedia
                 </button>
 
-            </mat-card-actions>
-        </mat-card>
-        <mat-error *ngIf="!ValidarIC">Subir imagen del curso
-        </mat-error>
-        <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*"
-            style="display:none;" />
-    </div>
-
-    <form class="example-form">
-        <mat-form-field style="width:100%;">
-            <mat-label>Descipcion de la seccion</mat-label>
-            <textarea style="resize: none;" [formControl]="DescripcionCurso" matInput
-                placeholder="Ingrese aqui la descripcion del curso" required></textarea>
-            <mat-error *ngIf="DescripcionCurso.hasError('required')">Ingrese la descripcion del curso
+                </mat-card-actions>
+            </mat-card>
+            <mat-error *ngIf="!ValidarIC">Subir imagen del curso
             </mat-error>
+            <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" style="display:none;" />
+        </div>
 
-        </mat-form-field>
-    </form>
+        <form class="example-form">
+            <mat-form-field style="width:100%;">
+                <mat-label>Descipcion de la seccion</mat-label>
+                <textarea style="resize: none;" [formControl]="DescripcionCurso" matInput placeholder="Ingrese aqui la descripcion del curso" required></textarea>
+                <mat-error *ngIf="DescripcionCurso.hasError('required')">Ingrese la descripcion del curso
+                </mat-error>
 
-    <div class="BotonCreate">
-        <button (click)="CrearCurso()" mat-raised-button style="background: tomato;">
-            <mat-icon>add</mat-icon>
-        </button>
+            </mat-form-field>
+        </form>
+
+        <div class="BotonCreate ">
+            <button type="button" class="btn btn-warning text-white " (click)="CrearCurso()" style=" display:block; margin-left: auto;
+            margin-right: auto;">Crear curso</button>
+
+
+        </div>
+
     </div>
+
+
+
 
 
 
@@ -152,8 +152,7 @@
                                 </mat-card>
                                 <mat-error *ngIf="!ValidarIC">Subir imagen del curso
                                 </mat-error>
-                                <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple"
-                                    accept="image/*" style="display:none;" />
+                                <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" style="display:none;" />
                             </div>
                         </div>
                     </div>
@@ -167,10 +166,8 @@
                                 <form class="example-form">
                                     <mat-form-field style="width:100%;">
                                         <mat-label>Nueva descripcion del curso</mat-label>
-                                        <textarea style="resize: none;" [formControl]="DescripcionCurso" matInput
-                                            placeholder="{{Curso.Descripcion}}" required></textarea>
-                                        <mat-error *ngIf="DescripcionSeccion.hasError('required')">Ingrese la nueva
-                                            descripcion del curso
+                                        <textarea style="resize: none;" [formControl]="DescripcionCurso" matInput placeholder="{{Curso.Descripcion}}" required></textarea>
+                                        <mat-error *ngIf="DescripcionSeccion.hasError('required')">Ingrese la nueva descripcion del curso
                                         </mat-error>
 
                                     </mat-form-field>
@@ -240,7 +237,7 @@
                     </div>
                     <div class="card-footer text-muted" style="padding-bottom: 48px;
                     padding-top: 48px;">
-                        <button mat-raised-button color="accent" (click)="ValidarCrearCursoFinal()"  >  Guardar Curso</button>
+                        <button mat-raised-button color="accent" (click)="ValidarCrearCursoFinal()">  Guardar Curso</button>
                     </div>
                 </div>
 
@@ -266,10 +263,8 @@
                             <form class="example-form" style="margin-top: 5%;">
                                 <mat-form-field style="width:100%;">
                                     <mat-label>Nombre de la seccion</mat-label>
-                                    <input [formControl]="NombreSeccion" matInput
-                                        placeholder="Introduccion A Angular II" required>
-                                    <mat-error *ngIf="NombreSeccion.hasError('required')">Ingrese el nombre de la
-                                        seccion
+                                    <input [formControl]="NombreSeccion" matInput placeholder="Introduccion A Angular II" required>
+                                    <mat-error *ngIf="NombreSeccion.hasError('required')">Ingrese el nombre de la seccion
                                     </mat-error>
 
                                 </mat-form-field>
@@ -286,13 +281,12 @@
                                             <mat-label>Tipo multimedia</mat-label>
                                             <mat-select [formControl]="TipoArchivoM" required>
                                                 <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of TiposMultimedia"
-                                                    [value]="Tipo.idTipoArchivoMultimedia">
+                                                <mat-option *ngFor="let Tipo of TiposMultimedia" [value]="Tipo.idTipoArchivoMultimedia">
                                                     {{Tipo.TipoArchivoMultimedia}}
                                                 </mat-option>
                                             </mat-select>
-                                            <mat-error *ngIf="TipoArchivoM.hasError('required')">Porfavor escoga un tipo
-                                                multimedia</mat-error>
+                                            <mat-error *ngIf="TipoArchivoM.hasError('required')">Porfavor escoga un tipo multimedia
+                                            </mat-error>
 
                                         </mat-form-field>
                                     </div>
@@ -320,8 +314,7 @@
                                         </mat-card>
                                         <mat-error *ngIf="!ValidarFC">Subir imagen del curso
                                         </mat-error>
-                                        <input type="file" #fileUpload id="fileUpload" name="fileUpload"
-                                            multiple="multiple" accept="video/*" style="display:none;" />
+                                        <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="video/*" style="display:none;" />
                                     </div>
                                 </div>
                             </div>
@@ -330,10 +323,8 @@
                             <form class="example-form">
                                 <mat-form-field style="width:100%;">
                                     <mat-label>Descipcion de la seccion</mat-label>
-                                    <textarea style="resize: none;" [formControl]="DescripcionSeccion" matInput
-                                        placeholder="Ingrese aqui la descripcion de la seccion" required></textarea>
-                                    <mat-error *ngIf="DescripcionSeccion.hasError('required')">Ingrese la descripcion de
-                                        la seccion
+                                    <textarea style="resize: none;" [formControl]="DescripcionSeccion" matInput placeholder="Ingrese aqui la descripcion de la seccion" required></textarea>
+                                    <mat-error *ngIf="DescripcionSeccion.hasError('required')">Ingrese la descripcion de la seccion
                                     </mat-error>
 
                                 </mat-form-field>
@@ -375,7 +366,7 @@
 
                 </div>
 
-                <button mat-raised-button color="accent"  (click)="Opcion = 2"  >Volver</button>
+                <button mat-raised-button color="accent" (click)="Opcion = 2">Volver</button>
             </div>
         </div>
     </div>
@@ -394,10 +385,8 @@
                         <form class="example-form" style="margin-top: 5%;">
                             <mat-form-field style="width:100%;">
                                 <mat-label>Nuevo nombre de la seccion</mat-label>
-                                <input [formControl]="NombreSeccion" matInput placeholder="Introduccion A Angular II"
-                                    required>
-                                <mat-error *ngIf="NombreSeccion.hasError('required')">Ingrese nuevo el nombre de la
-                                    seccion
+                                <input [formControl]="NombreSeccion" matInput placeholder="Introduccion A Angular II" required>
+                                <mat-error *ngIf="NombreSeccion.hasError('required')">Ingrese nuevo el nombre de la seccion
                                 </mat-error>
 
                             </mat-form-field>
@@ -412,13 +401,12 @@
                                             <mat-label>Tipo multimedia</mat-label>
                                             <mat-select [formControl]="TipoArchivoM" required>
                                                 <mat-option>--</mat-option>
-                                                <mat-option *ngFor="let Tipo of TiposMultimedia"
-                                                    [value]="Tipo.idTipoArchivoMultimedia">
+                                                <mat-option *ngFor="let Tipo of TiposMultimedia" [value]="Tipo.idTipoArchivoMultimedia">
                                                     {{Tipo.TipoArchivoMultimedia}}
                                                 </mat-option>
                                             </mat-select>
-                                            <mat-error *ngIf="TipoArchivoM.hasError('required')">Porfavor escoga un tipo
-                                                multimedia</mat-error>
+                                            <mat-error *ngIf="TipoArchivoM.hasError('required')">Porfavor escoga un tipo multimedia
+                                            </mat-error>
 
                                         </mat-form-field>
                                     </div>
@@ -443,8 +431,7 @@
                                                 </button>
 
                                             </mat-card-actions>
-                                        </mat-card><input type="file" #fileUpload id="fileUpload" name="fileUpload"
-                                            multiple="multiple" accept="video/*" style="display:none;" />
+                                        </mat-card><input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="video/*" style="display:none;" />
                                     </div>
 
 
@@ -454,10 +441,8 @@
                         <form class="example-form">
                             <mat-form-field style="width:100%;">
                                 <mat-label>Nueva descipcion de la seccion</mat-label>
-                                <textarea style="resize: none;" [formControl]="DescripcionSeccion" matInput
-                                    placeholder="Ingrese aqui la descripcion de la seccion" required></textarea>
-                                <mat-error *ngIf="DescripcionSeccion.hasError('required')">Ingrese la nueva descripcion
-                                    de la seccion
+                                <textarea style="resize: none;" [formControl]="DescripcionSeccion" matInput placeholder="Ingrese aqui la descripcion de la seccion" required></textarea>
+                                <mat-error *ngIf="DescripcionSeccion.hasError('required')">Ingrese la nueva descripcion de la seccion
                                 </mat-error>
 
                             </mat-form-field>
@@ -499,7 +484,7 @@
 
                 </div>
 
-                <button mat-raised-button color="accent"  (click)="Opcion = 2"  >Volver</button>
+                <button mat-raised-button color="accent" (click)="Opcion = 2">Volver</button>
             </div>
         </div>
     </div>
@@ -534,15 +519,15 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-        
+
             <button mat-raised-button color="black" (click)="AgregarFiltroEtnico()">
                 <mat-icon>add</mat-icon>
                 Añadir Filtro Etnico
             </button>
-        
+
             <div class="Filtros" style="border:2px solid blue">
-        
-        
+
+
                 <div *ngFor="let Exclusivo of FiltrosExclusivos">
                     <button mat-button color="black" (click)="EliminarFiltroExclusivo(Exclusivo)">
                         <mat-icon>clear</mat-icon>
@@ -555,7 +540,7 @@
                         {{Etnicos.Nombre}}
                     </button>
                 </div>
-        
+
             </div>
             <button mat-raised-button color="black" (click)="GuardarFiltros()">
                 Guardar Filtros
@@ -574,9 +559,9 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="DatoSecciones" *ngFor="let Seccion of Secciones">
-    
+
                 <div class="ContainerSeccion">
                     <div class="NombreSeccion">
                         {{Seccion.Nombre}}
@@ -587,12 +572,12 @@
                         </button>
                     </div>
                 </div>
-    
+
             </div>
-    
-            <button mat-raised-button color="accent"  (click)="Opcion = 2"  >Volver</button>
+
+            <button mat-raised-button color="accent" (click)="Opcion = 2">Volver</button>
         </div>
-    
+
     </div>
 
 
