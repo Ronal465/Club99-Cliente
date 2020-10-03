@@ -14,7 +14,7 @@ import { CrearCursoComponent } from "./componentes/crear-curso/crear-curso.compo
 import { InfoCursoComponent } from "./componentes/info-curso/info-curso.component";
 import { MisCursosComponent } from "./componentes/mis-cursos/mis-cursos.component";
 import {ResponderPreguntasComponent } from "./componentes/responder-preguntas/responder-preguntas.component";
-
+import {FuncionesProfesorComponent} from"./compponentes/funciones-profesor/funciones-profesor.component";
 
 
 const routes: Routes = [
@@ -101,6 +101,12 @@ const routes: Routes = [
     path: 'ResponderPreguntas',
     component: ResponderPreguntasComponent
   }
+  ,
+  {
+    path: 'FuncionesProfesor',
+    component:  FuncionesProfesorComponent
+  }
+ 
   ,
   {
     path: '**',
